@@ -27,8 +27,8 @@ const PartialNavbar = () => {
             <ul className={!nav ? 'hidden' : 'absolute bg-black w-fit'}>
                 <li className='border-zinc-900 w-fit text-white'><Link to="/" className='flex' onClick={handleClose}><FaHome className='text-2xl mr-4' />Home</Link></li>
                 <li className='border-zinc-900 w-fit text-white'><Link to="/music" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Music</Link></li>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/album" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Album</Link></li>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/library" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Library</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/album" className='flex' onClick={handleClose}><FaRegFolder className='text-2xl mr-4' />Album</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/library" className='flex' onClick={handleClose}><FaHeart className='text-2xl mr-4' />Library</Link></li>
             </ul>
           
             </div>
