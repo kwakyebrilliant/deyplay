@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
+import AlbumCard from '../Cards/AlbumCard'
 
 function Homepage() {
   return (
@@ -21,6 +22,8 @@ function Homepage() {
                   </h2>
             
                 </div>
+
+                <AlbumCard />
 
 
                 <div className='flex m-5 py-4'>
