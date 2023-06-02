@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { AiFillPieChart } from 'react-icons/ai'
-import { FaPlayCircle } from 'react-icons/fa'
+import { FaPlayCircle, FaHome, FaMusic } from 'react-icons/fa'
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false)
     const location = useLocation()
 
     const Menus = [
-        { title: 'Home', path: '/', src: <AiFillPieChart /> }
+        { title: 'Home', path: '/', src: <FaHome /> }
     ]
 
     return (
