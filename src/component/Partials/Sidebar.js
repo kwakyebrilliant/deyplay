@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { BsArrowLeftCircle } from 'react-icons/bs'
 import { AiFillPieChart } from 'react-icons/ai'
-import { FaHospitalSymbol } from 'react-icons/fa'
+import { FaPlayCircle } from 'react-icons/fa'
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false)
@@ -28,7 +28,7 @@ const Sidebar = () => {
                 />
                 <Link to='/'>
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
-                    <FaHospitalSymbol className=' text-emerald-600 lg:w-[35px] lg:h-[35px]' />
+                    <FaPlayCircle className=' text-emerald-600 lg:w-[35px] lg:h-[35px]' />
                         {open && (
                             <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
                                 Deyplay.
