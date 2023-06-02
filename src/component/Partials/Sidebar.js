@@ -9,7 +9,8 @@ const Sidebar = () => {
     const location = useLocation()
 
     const Menus = [
-        { title: 'Home', path: '/', src: <FaHome /> }
+        { title: 'Home', path: '/', src: <FaHome /> },
+        { title: 'Music', path: '/music', src: <FaMusic /> }
     ]
 
     return (
