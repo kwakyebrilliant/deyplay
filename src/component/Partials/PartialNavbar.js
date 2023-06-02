@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { FaHome, FaMusic } from 'react-icons/fa'
+import { FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
@@ -27,6 +27,8 @@ const PartialNavbar = () => {
             <ul className={!nav ? 'hidden' : 'absolute bg-black w-fit'}>
                 <li className='border-zinc-900 w-fit text-white'><Link to="/" className='flex' onClick={handleClose}><FaHome className='text-2xl mr-4' />Home</Link></li>
                 <li className='border-zinc-900 w-fit text-white'><Link to="/music" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Music</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/album" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Album</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/library" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Library</Link></li>
             </ul>
           
             </div>
