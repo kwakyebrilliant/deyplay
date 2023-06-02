@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import {  AiOutlineLogout, AiOutlineArrowDown, AiOutlineArrowUp, AiFillPieChart } from 'react-icons/ai'
-
+import {  AiOutlineLogout, AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
+import { FaHome, FaMusic } from 'react-icons/fa'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,8 @@ const PartialNavbar = () => {
             {!nav ? <MenuIcon className='w-5 text-black' /> : <XIcon className='w-5 text-black' />}
 
             <ul className={!nav ? 'hidden' : 'absolute bg-zinc-900 w-fit px-8 h-screen'}>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/" className='flex' onClick={handleClose}><AiFillPieChart className='text-2xl mr-4' />Home</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/" className='flex' onClick={handleClose}><FaHome className='text-2xl mr-4' />Home</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/music" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Music</Link></li>
             </ul>
           
             </div>
