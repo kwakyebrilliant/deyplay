@@ -14,6 +14,22 @@ function Homepage() {
             <div className='grow'>
                 <PartialNavbar />
 
+
+                <div className='flex m-5 py-4'>
+                  <h2 className='text-white font-bold'>
+                    Best Albums
+                  </h2>
+            
+                </div>
+
+
+                <div className='flex m-5 py-4'>
+                  <h2 className='text-white font-bold'>
+                    Most Streamed
+                  </h2>
+            
+                </div>
+
             </div>
 
         </div>
