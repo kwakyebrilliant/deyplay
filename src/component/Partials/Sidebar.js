@@ -28,7 +28,7 @@ const Sidebar = () => {
                 />
                 <Link to='/'>
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
-                    <FaPlayCircle className=' text-emerald-600 lg:w-[35px] lg:h-[35px]' />
+                    <FaPlayCircle className=' text-white lg:w-[35px] lg:h-[35px]' />
                         {open && (
                             <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
                                 Deyplay.
