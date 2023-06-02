@@ -2,7 +2,9 @@ import React from 'react'
 
 function AlbumCard() {
   return (
-    <div>AlbumCard</div>
+    <div>
+        AlbumCard
+    </div>
   )
 }
 
