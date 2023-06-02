@@ -5,7 +5,7 @@ import PartialNavbar from '../Partials/PartialNavbar'
 function Music() {
     return (
         <div>
-            <div className='text-black'>
+            <div className='bg-black/80'>
             <>
     
             <div className='flex flex-auto'>

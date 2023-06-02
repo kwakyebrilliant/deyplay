@@ -5,7 +5,7 @@ import PartialNavbar from '../Partials/PartialNavbar'
 function Homepage() {
   return (
     <div>
-        <div className='bg-black'>
+        <div className='bg-black/80'>
         <>
 
         <div className='flex flex-auto'>
