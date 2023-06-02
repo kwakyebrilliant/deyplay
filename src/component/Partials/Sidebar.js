@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { FaPlayCircle, FaHome, FaMusic, FaRegFolder } from 'react-icons/fa'
+import { FaPlayCircle, FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa'
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false)
@@ -11,7 +11,8 @@ const Sidebar = () => {
     const Menus = [
         { title: 'Home', path: '/', src: <FaHome /> },
         { title: 'Music', path: '/music', src: <FaMusic /> },
-        { title: 'Album', path: '/album', src: <FaRegFolder /> }
+        { title: 'Album', path: '/album', src: <FaRegFolder /> },
+        { title: 'Library', path: '/library', src: <FaHeart /> }
     ]
 
     return (
