@@ -31,6 +31,17 @@ function AlbumCard() {
                 </p>
 
             </div>
+
+            <a
+            className="inline-flex items-center gap-2 rounded border border-black bg-white px-4 py-2 text-black focus:outline-none focus:ring"
+            href="#"
+            >
+            <span className="text-sm font-medium"> $1 for </span>
+
+            <FaPlayCircle className=' lg:w-[20px] lg:h-[20px]' />
+            </a>
+
+
             </a>
             </article>
 
