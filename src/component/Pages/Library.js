@@ -25,6 +25,17 @@ function Library() {
 
                 {/* Album Card imported */}
                 <AlbumCard />
+
+
+                <div className='flex m-3 pt-4'>
+                  <h2 className='text-white font-bold'>
+                    Purchased Musics
+                  </h2>
+            
+                </div>
+
+                {/* Music Card imported */}
+                <MusicCard />
     
                 </div>
     
