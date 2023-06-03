@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import gm from '../assets/gm.jpeg';
+import coverimg from '../assets/coverimg.jpeg';
+import { FaPlayCircle } from 'react-icons/fa'
 
 function CoversCard() {
   return (
     <div className='flex mx-3'>
-        <a href="#" className="relative object-cover w-full block group">
+        <a className="relative object-cover w-full block group">
         <img
-            src={gm}
+            src={coverimg}
             alt=""
             className="w-full object-cover rounded transition duration-500 group-hover:opacity-90 sm:h-[450px]"
         />
@@ -19,11 +20,22 @@ function CoversCard() {
             I can fly
             </p>
 
-            <span
+
+<a
+  className="inline-flex mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
+  href="#"
+>
+  <span className="text-sm font-medium"> $1 for </span>
+
+  <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
+</a>
+
+
+            {/* <span
             className="inline-block px-5 py-3 mt-3 text-xs font-medium tracking-wide text-white uppercase bg-black"
             >
-            Shop Now
-            </span>
+            $1 <FaPlayCircle className=' text-white lg:w-[35px] lg:h-[35px]' />
+            </span> */}
         </div>
         </a>
 
