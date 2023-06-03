@@ -20,6 +20,8 @@ function Music() {
                     
                     <div className="relative mx-2">
                         <img src={coverimg} alt="Background" className="w-full rounded object-cover h-96" />
+
+                        <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 p-2">
                             <input
                             className="w-64 bg-transparent focus:outline-none text-white placeholder-white"
@@ -30,8 +32,7 @@ function Music() {
                             <FiSearch className='text-white' />
                             </button>
                         </div>
-
-                        <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
+                        
                         <h3 className="text-xl font-medium text-white">
                             John Doe
                         </h3>
