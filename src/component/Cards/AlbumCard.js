@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import coverimg from '../assets/coverimg.jpeg';
+import gm from '../assets/gm.jpeg';
+import kl from '../assets/kl.jpeg';
 
 function AlbumCard() {
   return (
@@ -14,7 +16,7 @@ function AlbumCard() {
                 <a href='#'>
             <img
                 alt="Office"
-                src={coverimg}
+                src={gm}
                 className="w-full h-40 p-4 object-cover"
             />
 
@@ -56,7 +58,7 @@ function AlbumCard() {
                 <a href='#'>
             <img
                 alt="Office"
-                src={coverimg}
+                src={gm}
                 className="w-full h-40 p-4 object-cover"
             />
 
@@ -77,7 +79,7 @@ function AlbumCard() {
                 <a href='#'>
             <img
                 alt="Office"
-                src={coverimg}
+                src={kl}
                 className="w-full h-40 p-4 object-cover"
             />
 
