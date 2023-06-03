@@ -3,6 +3,7 @@ import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
 import coverimg from '../assets/coverimg.jpeg';
 import { FiSearch } from 'react-icons/fi';
+import MusicCard from '../Cards/MusicCard';
 
 function Music() {
     return (
@@ -31,6 +32,15 @@ function Music() {
                         </div>
                    
                     </div>
+
+                    <div className='flex m-3 pt-4'>
+                    <h2 className='text-white font-bold'>
+                        Your Music
+                    </h2>
+                
+                    </div>
+
+                    <MusicCard />
     
                 </div>
     
