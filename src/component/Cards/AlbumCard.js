@@ -3,6 +3,7 @@ import React from 'react'
 import coverimg from '../assets/coverimg.jpeg';
 import gm from '../assets/gm.jpeg';
 import kl from '../assets/kl.jpeg';
+import { FaPlayCircle } from 'react-icons/fa'
 
 function AlbumCard() {
   return (
@@ -13,7 +14,7 @@ function AlbumCard() {
 
 
         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a>
             <img
                 alt="Office"
                 src={gm}

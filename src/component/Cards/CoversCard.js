@@ -21,21 +21,16 @@ function CoversCard() {
             </p>
 
 
-<a
-  className="inline-flex mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
-  href="#"
->
-  <span className="text-sm font-medium"> $1 for </span>
-
-  <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
-</a>
-
-
-            {/* <span
-            className="inline-block px-5 py-3 mt-3 text-xs font-medium tracking-wide text-white uppercase bg-black"
+            <a
+            className="inline-flex mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
+            href="#"
             >
-            $1 <FaPlayCircle className=' text-white lg:w-[35px] lg:h-[35px]' />
-            </span> */}
+            <span className="text-sm font-medium"> $1 for </span>
+
+            <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
+            </a>
+
+
         </div>
         </a>
 
