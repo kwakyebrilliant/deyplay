@@ -13,7 +13,7 @@ function AlbumCard() {
 
 
         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={gm}
@@ -40,7 +40,7 @@ function AlbumCard() {
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={coverimg}
@@ -64,7 +64,7 @@ function AlbumCard() {
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={gm}
@@ -88,7 +88,7 @@ function AlbumCard() {
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={kl}
@@ -112,7 +112,7 @@ function AlbumCard() {
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={coverimg}
@@ -136,7 +136,7 @@ function AlbumCard() {
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/albumsingle'>
             <img
                 alt="Office"
                 src={coverimg}
