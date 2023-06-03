@@ -17,6 +17,7 @@ function Homepage() {
             <div className='grow'>
                 <PartialNavbar />
 
+            {/* Cover Card imported */}
                 <CoversCard />
 
                 <div className='flex m-3 pt-4'>
