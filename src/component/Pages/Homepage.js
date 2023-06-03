@@ -16,7 +16,7 @@ function Homepage() {
                 <PartialNavbar />
 
 
-                <div className='flex m-5 py-4'>
+                <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
                     Best Albums
                   </h2>
