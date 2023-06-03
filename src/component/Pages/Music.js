@@ -27,8 +27,18 @@ function Music() {
                             placeholder="Search..."
                             />
                             <button className="ml-2 text-white">
-                            <FiSearch />
+                            <FiSearch className='text-white' />
                             </button>
+                        </div>
+
+                        <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
+                        <h3 className="text-xl font-medium text-white">
+                            John Doe
+                        </h3>
+                        <p class="mt-1.5 max-w-[40ch] text-xs text-white">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
+                        dicta impedit aperiam ipsum!
+                        </p>
                         </div>
                    
                     </div>
@@ -40,6 +50,8 @@ function Music() {
                 
                     </div>
 
+
+                    {/* Music Card imported */}
                     <MusicCard />
     
                 </div>
