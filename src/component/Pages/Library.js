@@ -27,7 +27,7 @@ function Library() {
                             </h1>
 
                             <p className="mt-1.5 text-sm text-gray-900">
-                            Check your statistics on LOGCHAIN 🎉
+                            Check your musics that you love🎉
                             </p>
                         </div>
 
