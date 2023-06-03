@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
+import coverimg from '../assets/coverimg.jpeg';
 
 function AlbumCard() {
   return (
@@ -13,7 +14,7 @@ function AlbumCard() {
                 <a href='#'>
             <img
                 alt="Office"
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src={coverimg}
                 className="w-full h-40 p-4 object-cover"
             />
 
