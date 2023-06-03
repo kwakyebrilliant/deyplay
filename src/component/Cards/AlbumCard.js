@@ -3,7 +3,6 @@ import React from 'react'
 import coverimg from '../assets/coverimg.jpeg';
 import gm from '../assets/gm.jpeg';
 import kl from '../assets/kl.jpeg';
-import { FaPlayCircle } from 'react-icons/fa'
 
 function AlbumCard() {
   return (
@@ -14,12 +13,13 @@ function AlbumCard() {
 
 
         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a>
+                <a href='#'>
             <img
                 alt="Office"
                 src={gm}
                 className="w-full h-40 p-4 object-cover"
             />
+
 
             <div className="p-4 sm:p-6">
                 <h3 className="font-medium text-white">
@@ -29,17 +29,11 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
-
-            <a
-            className="inline-flex items-center gap-2 rounded border border-black bg-white px-4 py-2 text-black focus:outline-none focus:ring"
-            href="#"
-            >
-            <span className="text-sm font-medium"> $1 for </span>
-
-            <FaPlayCircle className=' lg:w-[20px] lg:h-[20px]' />
-            </a>
 
 
             </a>
@@ -61,6 +55,9 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
             </a>
@@ -82,6 +79,9 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
             </a>
@@ -103,6 +103,9 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
             </a>
@@ -124,6 +127,9 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
             </a>
@@ -145,6 +151,9 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
+                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
+                $1 
+                </span>
 
             </div>
             </a>
