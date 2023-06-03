@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
 import AlbumCard from '../Cards/AlbumCard'
+import MusicCard from '../Cards/MusicCard'
 
 function Homepage() {
   return (
@@ -23,15 +24,19 @@ function Homepage() {
             
                 </div>
 
+                {/* Album Card imported */}
                 <AlbumCard />
 
 
-                <div className='flex m-5 py-4'>
+                <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
                     Most Streamed
                   </h2>
             
                 </div>
+
+                {/* Music Card imported */}
+                <MusicCard />
 
             </div>
 
