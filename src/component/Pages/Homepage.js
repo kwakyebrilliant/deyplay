@@ -3,6 +3,7 @@ import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
 import AlbumCard from '../Cards/AlbumCard'
 import MusicCard from '../Cards/MusicCard'
+import CoversCard from '../Cards/CoversCard'
 
 function Homepage() {
   return (
@@ -16,6 +17,7 @@ function Homepage() {
             <div className='grow'>
                 <PartialNavbar />
 
+                <CoversCard />
 
                 <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
