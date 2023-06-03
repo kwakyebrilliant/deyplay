@@ -29,9 +29,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
 
@@ -55,9 +52,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
@@ -79,9 +73,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
@@ -103,9 +94,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
@@ -127,9 +115,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
@@ -151,9 +136,6 @@ function AlbumCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
