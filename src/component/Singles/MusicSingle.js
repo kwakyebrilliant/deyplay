@@ -50,6 +50,14 @@ function MusicSingle() {
                         </div>
                    
                     </div>
+
+
+                    <div className='flex m-3 pt-4'>
+                      <h2 className='text-white font-bold'>
+                        Most Streamed
+                      </h2>
+                
+                    </div>
                 
 
 
