@@ -4,6 +4,7 @@ import React from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import gm from '../assets/gm.jpeg';
+import { FaPlayCircle, FaMoneyBill, FaEye } from 'react-icons/fa'
 
 function AlbumSingle() {
   return (
@@ -25,7 +26,7 @@ function AlbumSingle() {
                       className="w-full h-80 p-4 object-cover"
                     />
 
-                    <div className="p-4 sm:p-6">
+                    <div className="px-4 pt-4 sm:pt-4 sm:px-6">
                         <div className='flex justify-between'>
                             <h3 className="font-bold text-3xl text-white">
                             I can fly
@@ -40,7 +41,19 @@ function AlbumSingle() {
                         </p>
                     </div>
 
-                    
+
+                    <div className="px-4 pt-4 sm:px-6">
+                        <div className='flex'>
+                            <h3 className="font-bold flex text-sm/relaxed text-gray-500">
+                            <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 52, 367
+                            </h3>
+                            <h3 className="font-bold flex px-2 text-sm/relaxed text-gray-500">
+                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 178
+                            </h3>
+                        </div>
+                    </div>
+
+
                   </a>
                 </article>
 
