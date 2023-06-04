@@ -17,19 +17,20 @@ function MusicSingle() {
                 <PartialNavbar />
 
 
-                <div className="h-96 overflow-y-scroll">
-                  <div className="relative mx-2">
-                    <img src={coverimg} alt="Background" className="w-full rounded object-cover h-96" />
+                <div className="relative mx-2">
+                        <img src={coverimg} alt="Background" className="w-full rounded object-cover h-96" />
 
-                    <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
-                      <h3 className="text-xl font-medium text-white">
-                        John Doe
-                      </h3>
-                      <p className="mt-1.5 max-w-[40ch] text-xs text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi dicta impedit aperiam ipsum!
-                      </p>
+                        <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
+                        
+                        <h3 className="text-xl font-medium text-white">
+                            John Doe
+                        </h3>
+                        <p class="mt-1.5 max-w-[40ch] text-xs text-white">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
+                        dicta impedit aperiam ipsum!
+                        </p>
 
-                      <div className="mt-4 flex flex-col items-center">
+                        <div className="mt-4 flex flex-col items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-12 w-12 text-white cursor-pointer"
@@ -43,13 +44,12 @@ function MusicSingle() {
                         </svg>
 
                         <div className="w-96 h-2 bg-gray-300 mt-2">
-                          <div className="h-full bg-emerald-500" style={{ width: '80%' }} />
+                          <div className="h-full bg-green-500" style={{ width: '80%' }} />
                         </div>
-                      </div>
+                        </div>
+                        </div>
+                   
                     </div>
-                  </div>
-
-                </div>
                 
 
 
