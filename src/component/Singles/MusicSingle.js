@@ -43,7 +43,7 @@ function MusicSingle() {
                         </svg>
 
                         <div className="w-96 h-2 bg-gray-300 mt-2">
-                          <div className="h-full bg-green-500" style={{ width: '80%' }} />
+                          <div className="h-full bg-emerald-500" style={{ width: '80%' }} />
                         </div>
                       </div>
                     </div>
