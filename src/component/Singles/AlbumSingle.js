@@ -46,6 +46,23 @@ function AlbumSingle() {
                     </a>
                     </article>
 
+                    <div>
+
+                        <div className="flex p-4 rounded-lg hover:bg-black/80 text-white hover:text-white">
+                        <div className="p-4 flex justify-center items-center">
+                            <p className="text-lg font-bold">1</p>
+                        </div>
+                        <div className="">
+                            <img src={gm} alt="Image" className="w-60 h-28 rounded-lg object-cover" />
+                        </div>
+                        <div className="p-4">
+                            <p className="text-lg font-bold mb-2">Title</p>
+                            <p className="text-base">Description</p>
+                        </div>
+                        </div>
+
+                    </div>
+
 
                     </div>
 
