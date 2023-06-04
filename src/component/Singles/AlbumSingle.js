@@ -26,14 +26,21 @@ function AlbumSingle() {
                     />
 
                     <div className="p-4 sm:p-6">
-                      <h3 className="font-medium text-white">
-                        John Doe
-                      </h3>
+                        <div className='flex justify-between'>
+                            <h3 className="font-bold text-3xl text-white">
+                            I can fly
+                            </h3>
+                            <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
+                            $7.99
+                            </h3>
+                        </div>
 
-                      <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                        I can fly
-                      </p>
+                        <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                            John Doe
+                        </p>
                     </div>
+
+                    
                   </a>
                 </article>
 
