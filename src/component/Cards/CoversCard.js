@@ -23,7 +23,7 @@ function CoversCard() {
 
             <a
             className="inline-flex mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
-            href="#"
+            href="/musicsingle"
             >
             <span className="text-sm font-medium"> $1 for </span>
 
