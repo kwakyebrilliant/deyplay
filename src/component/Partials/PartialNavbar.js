@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -18,7 +18,9 @@ const PartialNavbar = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    
+    const navigate = useNavigate();
+
+    const [usrt, setUser] = useState('');
 
   return (
     <nav className='bg-black/80 shadow-sm border-gray-200 lg:mx-2 px-2 py-2.5 rounded'>
