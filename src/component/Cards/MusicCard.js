@@ -13,7 +13,7 @@ function MusicCard() {
 
 
         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={coverimg}
@@ -28,16 +28,13 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={gm}
@@ -52,16 +49,13 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={kl}
@@ -76,16 +70,13 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={gm}
@@ -100,16 +91,13 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={gm}
@@ -124,16 +112,13 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
             </article>
 
             <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                <a href='#'>
+                <a href='/musicsingle'>
             <img
                 alt="Office"
                 src={kl}
@@ -148,9 +133,6 @@ function MusicCard() {
                 <p className="line-clamp-3 text-sm/relaxed text-gray-500">
                 I can fly
                 </p>
-                <span className="text-sm font-medium bg-white rounded-full p-1.5"> 
-                $1 
-                </span>
 
             </div>
             </a>
