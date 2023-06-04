@@ -65,6 +65,14 @@ function AlbumSingle() {
                     </a>
                     </div>
 
+                    <div className="px-4 py-4 sm:px-6">
+                    <h3 className="text-sm/relaxed text-white">
+                    Learn to Build Native Android & iOS Applications with React Native 
+I                   included: React Hooks, Redux, React Navigation, Firebase Push Notification
+                     & Functional Component
+                    </h3>
+                    </div>
+
 
                   </a>
                 </article>
