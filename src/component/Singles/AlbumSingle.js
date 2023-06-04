@@ -54,6 +54,17 @@ function AlbumSingle() {
                     </div>
 
 
+                    <div className="px-4 pt-4 sm:px-6">
+                    <a className="inline-flex mt-3 items-center gap-2 rounded-2xl border border-white bg-white px-4 py-2 text-black"
+                        href="#"
+                    >
+                    <span className="text-sm font-medium">Play all </span>
+
+                    <FaPlayCircle className=' lg:w-6 lg:h-6 hover:text-black' />
+                    </a>
+                    </div>
+
+
                   </a>
                 </article>
 
