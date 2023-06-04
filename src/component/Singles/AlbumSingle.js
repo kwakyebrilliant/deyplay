@@ -18,7 +18,8 @@ function AlbumSingle() {
 
             <div className='mx-3 mt-8'>
               <div className='relative grid grid-cols-1 lg:grid-cols-2'>
-                <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg border border-black/80 bg-black shadow-sm">
+                <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg bg-gradient-to-b from-black to-transparent shadow-sm">
+                
                   <a>
                     <img
                       alt="Office"
