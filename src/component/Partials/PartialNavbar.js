@@ -20,7 +20,7 @@ const PartialNavbar = () => {
 
     const navigate = useNavigate();
 
-    const [usrt, setUser] = useState('');
+    const [user, setUser] = useState('');
 
   return (
     <nav className='bg-black/80 shadow-sm border-gray-200 lg:mx-2 px-2 py-2.5 rounded'>
@@ -97,12 +97,23 @@ const PartialNavbar = () => {
                                             name="HeadlineAct"
                                             id="HeadlineAct"
                                             className="mt-1.5 py-2 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+                                            required onChange={(e) => { setUser(e.target.value) }}
                                         >
-                                            <option value="">Please select</option>
+                                            <option>Please select</option>
                                             <option value="user">User</option>
                                             <option value="artiste">Artiste</option>
                                         </select>
                                         </div>
+                                        {
+                                            user ==='user' && (
+                                                navigate('/', {state: user})
+                                            )
+                                        } 
+                                        {
+                                            user ==='artiste' && (
+                                                navigate('/dashboard', {state: user})
+                                            )
+                                        } 
 
                                     
  
