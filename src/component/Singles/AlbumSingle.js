@@ -16,7 +16,7 @@ function AlbumSingle() {
           <div className='grow'>
             <PartialNavbar />
 
-            <div className='mx-3 my-8'>
+            <div className='mx-3 mt-8 mb-32'>
               <div className='relative grid grid-cols-1 lg:grid-cols-2'>
                 <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg bg-gradient-to-b from-black to-transparent shadow-sm">
                 
