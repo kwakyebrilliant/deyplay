@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
 import coverimg from '../assets/coverimg.jpeg';
+import MusicCard from '../Cards/MusicCard';
 
 
 function MusicSingle() {
@@ -54,10 +55,13 @@ function MusicSingle() {
 
                     <div className='flex m-3 pt-4'>
                       <h2 className='text-white font-bold'>
-                        Most Streamed
+                        Similar Music
                       </h2>
                 
                     </div>
+
+                    {/* Music Card imported */}
+                    <MusicCard />
                 
 
 
