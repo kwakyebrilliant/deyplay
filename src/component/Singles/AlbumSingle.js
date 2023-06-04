@@ -22,12 +22,12 @@ function AlbumSingle() {
                     <div className='relative grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-16'>
 
 
-                    <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                    <article className="overflow-hidden w-96 mb-8 rounded-lg border border-black/80 bg-black shadow-sm">
                     <a>
                     <img
                         alt="Office"
                         src={gm}
-                        className="w-full h-40 p-4 object-cover"
+                        className="w-full h-72 p-4 object-cover"
                     />
 
 
