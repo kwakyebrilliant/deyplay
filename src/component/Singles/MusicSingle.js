@@ -31,7 +31,7 @@ function MusicSingle() {
                         </p>
                         </div>
                    
-                    </div>
+                </div>
                 
 
 
