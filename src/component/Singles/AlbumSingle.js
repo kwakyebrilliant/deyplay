@@ -16,7 +16,7 @@ function AlbumSingle() {
           <div className='grow'>
             <PartialNavbar />
 
-            <div className='mx-3 mt-8'>
+            <div className='mx-3 my-8'>
               <div className='relative grid grid-cols-1 lg:grid-cols-2'>
                 <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg bg-gradient-to-b from-black to-transparent shadow-sm">
                 
@@ -77,7 +77,7 @@ I                   included: React Hooks, Redux, React Navigation, Firebase Pus
                   </a>
                 </article>
 
-                <div>
+                <div className='overflow-y-scroll h-[500px]'>
 
                   <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
                     <div className="p-4 flex justify-center items-center">
