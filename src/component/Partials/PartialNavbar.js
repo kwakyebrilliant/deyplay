@@ -97,8 +97,8 @@ const PartialNavbar = () => {
                                             className="mt-1.5 py-2 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                                         >
                                             <option value="">Please select</option>
-                                            <option value="JM">John Mayer</option>
-                                            <option value="SRV">Stevie Ray Vaughn</option>
+                                            <option value="user">User</option>
+                                            <option value="artiste">Artiste</option>
                                         </select>
                                         </div>
 
