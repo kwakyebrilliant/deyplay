@@ -5,6 +5,7 @@ import Music from './component/Pages/Music';
 import Album from './component/Pages/Album.js';
 import Library from './component/Pages/Library';
 import AlbumSingle from './component/Singles/AlbumSingle';
+import MusicSingle from './component/Singles/MusicSingle';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/album" exact element={<Album />} />
         <Route path="/library" exact element={<Library />} />
         <Route path="/albumsingle" exact element={<AlbumSingle />} />
+        <Route path="/musicsingle" exact element={<MusicSingle />} />
         </Routes>
 
       </Router>
