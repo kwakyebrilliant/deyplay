@@ -112,7 +112,7 @@ function AlbumSingle() {
               </div>
 
 
-              
+
             </div>
           </div>
         </div>
