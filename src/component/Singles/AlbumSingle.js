@@ -17,7 +17,7 @@ function AlbumSingle() {
 
             <div className='mx-3 mt-8'>
               <div className='relative grid grid-cols-1 lg:grid-cols-2'>
-                <article className="overflow-hidden lg:w-11/12 mb-8 rounded-lg border border-black/80 bg-black shadow-sm">
+                <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg border border-black/80 bg-black shadow-sm">
                   <a>
                     <img
                       alt="Office"
@@ -38,20 +38,81 @@ function AlbumSingle() {
                 </article>
 
                 <div>
-                  <div className="flex p-4 rounded-lg hover:bg-black/80 text-white hover:text-white">
+
+                  <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
                     <div className="p-4 flex justify-center items-center">
                       <p className="text-lg font-bold">1</p>
                     </div>
                     <div className="">
-                      <img src={gm} alt="Image" className="w-52 h-28 rounded-lg object-cover" />
+                      <img src={gm} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
                     </div>
                     <div className="p-4">
                       <p className="text-lg font-bold mb-2">Title</p>
                       <p className="text-base">Description</p>
                     </div>
                   </div>
+
+                  <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
+                    <div className="p-4 flex justify-center items-center">
+                      <p className="text-lg font-bold">2</p>
+                    </div>
+                    <div className="">
+                      <img src={gm} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                  </div>
+
+                  <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
+                    <div className="p-4 flex justify-center items-center">
+                      <p className="text-lg font-bold">3</p>
+                    </div>
+                    <div className="">
+                      <img src={gm} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                  </div>
+
+                  <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
+                    <div className="p-4 flex justify-center items-center">
+                      <p className="text-lg font-bold">4</p>
+                    </div>
+                    <div className="">
+                      <img src={gm} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                  </div>
+
+                  <div className="flex p-4 rounded-lg cursor-pointer hover:bg-black/80 text-white hover:text-white">
+                    <div className="p-4 flex justify-center items-center">
+                      <p className="text-lg font-bold">5</p>
+                    </div>
+                    <div className="">
+                      <img src={gm} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                  </div>
+
+
                 </div>
+
+                
+
               </div>
+
+
+              
             </div>
           </div>
         </div>
