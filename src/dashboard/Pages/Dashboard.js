@@ -1,4 +1,6 @@
 import React from 'react'
+import Sidebar from '../Partials/Sidebar';
+import PartialNavbar from '../Partials/PartialNavbar';
 
 function Dashboard() {
   return (
