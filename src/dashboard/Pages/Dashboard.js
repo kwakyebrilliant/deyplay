@@ -4,6 +4,7 @@ import PartialNavbar from '../Partials/PartialNavbar';
 import gm from '../../component/assets/gm.jpeg';
 import kl from '../../component/assets/kl.jpeg';
 import coverimg from '../../component/assets/coverimg.jpeg';
+import { FaEye, FaMoneyBill } from 'react-icons/fa'
 
 function Dashboard() {
 
@@ -74,8 +75,8 @@ function Dashboard() {
                                 Total Amount From Albums
                             </h3>
 
-                            <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            $1, 670
+                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
+                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> $1, 670
                             </p>
 
                         </div>
@@ -95,8 +96,8 @@ function Dashboard() {
                                 Total Amount From Musics
                             </h3>
 
-                            <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            $1, 670
+                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
+                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> $13, 643
                             </p>
 
                         </div>
@@ -116,8 +117,8 @@ function Dashboard() {
                                 Albums Streams
                             </h3>
 
-                            <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            4,350
+                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
+                            <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 4, 370
                             </p>
 
                         </div>
@@ -137,8 +138,8 @@ function Dashboard() {
                                 Musics Streams
                             </h3>
 
-                            <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            73, 444
+                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
+                            <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 73, 442
                             </p>
 
                         </div>
