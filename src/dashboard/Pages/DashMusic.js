@@ -33,10 +33,47 @@ function DashMusic() {
 
 
                     <div className='flex m-3 pt-4'>
-                      <h2 className='text-white font-bold'>
-                        Share your music
-                      </h2>
+                    <h2 className="text-2xl text-white font-bold mb-4">Music Upload Form</h2>
               
+                    </div>
+
+                    <div className='flex m-3 pt-4'>
+
+                    <div className="flex w-full">
+                      <div className="px-8 w-full">
+                        
+                        <form>
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="name">
+                              Name
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="name"
+                              name="name"
+                              placeholder="Your Name"
+                              required
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
+                              Email
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="email"
+                              id="email"
+                              name="email"
+                              placeholder="Your Email"
+                              required
+                            />
+                          </div>
+                         
+                        </form>
+                      </div>
+                    </div>
+
                     </div>
 
 
