@@ -7,6 +7,9 @@ import Library from './component/Pages/Library';
 import AlbumSingle from './component/Singles/AlbumSingle';
 import MusicSingle from './component/Singles/MusicSingle';
 import Dashboard from './dashboard/Pages/Dashboard';
+import DashAlbum from './dashboard/Pages/DashAlbum';
+import DashMusic from './dashboard/Pages/DashMusic';
+import DashLibrary from './dashboard/Pages/DashLibrary';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/albumsingle" exact element={<AlbumSingle />} />
         <Route path="/musicsingle" exact element={<MusicSingle />} />
         <Route path="/dashboard" exact element={<Dashboard />} />
+        <Route path="/dashalbum" exact element={<DashAlbum />} />
+        <Route path="/dashmusic" exact element={<DashMusic />} />
+        <Route path="/dashlibrary" exact element={<DashLibrary />} />
         </Routes>
 
       </Router>
