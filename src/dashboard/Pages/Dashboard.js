@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
@@ -63,7 +64,7 @@ function Dashboard() {
 
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a href='/musicsingle'>
+                            <a>
                         <img
                             alt="Office"
                             src={albums}
@@ -84,7 +85,7 @@ function Dashboard() {
                         </article>
 
                         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a href='/musicsingle'>
+                            <a>
                         <img
                             alt="Office"
                             src={gm}
@@ -105,7 +106,7 @@ function Dashboard() {
                         </article>
 
                         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a href='/musicsingle'>
+                            <a>
                         <img
                             alt="Office"
                             src={kl}
@@ -126,7 +127,7 @@ function Dashboard() {
                         </article>
 
                         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a href='/musicsingle'>
+                            <a>
                         <img
                             alt="Office"
                             src={gm}
