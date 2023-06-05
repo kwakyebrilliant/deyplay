@@ -44,28 +44,41 @@ function DashMusic() {
                         
                         <form>
                           <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="name">
-                              Name
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="title">
+                              Title
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
-                              id="name"
-                              name="name"
-                              placeholder="Your Name"
+                              id="title"
+                              name="natitleme"
+                              placeholder="Song Title"
                               required
                             />
                           </div>
                           <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
-                              Email
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="address">
+                              Your Address
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
-                              type="email"
-                              id="email"
-                              name="email"
-                              placeholder="Your Email"
+                              type="text"
+                              id="address"
+                              name="address"
+                              placeholder="Artiste Address"
+                              required
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="price">
+                              Price
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="number"
+                              id="price"
+                              name="price"
+                              placeholder="Song Price"
                               required
                             />
                           </div>
