@@ -32,6 +32,14 @@ function DashMusic() {
                     </div>
 
 
+                    <div className='flex m-3 pt-4'>
+                      <h2 className='text-white font-bold'>
+                        Share your music
+                      </h2>
+              
+                    </div>
+
+
             </div>
 
         </div>
