@@ -6,6 +6,7 @@ import Album from './component/Pages/Album.js';
 import Library from './component/Pages/Library';
 import AlbumSingle from './component/Singles/AlbumSingle';
 import MusicSingle from './component/Singles/MusicSingle';
+import Dashboard from './dashboard/Pages/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/library" exact element={<Library />} />
         <Route path="/albumsingle" exact element={<AlbumSingle />} />
         <Route path="/musicsingle" exact element={<MusicSingle />} />
+        <Route path="/dashboard" exact element={<Dashboard />} />
         </Routes>
 
       </Router>
