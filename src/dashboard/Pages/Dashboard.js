@@ -4,7 +4,24 @@ import PartialNavbar from '../Partials/PartialNavbar';
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+        <div className='bg-black/80'>
+        <>
+        <div className='flex flex-auto'>
+            <Sidebar />
+
+            <div className='grow'>
+                <PartialNavbar />
+
+                
+
+            </div>
+
+            </div>
+        </>
+        
+        </div>
+    </div>
   )
 }
 
