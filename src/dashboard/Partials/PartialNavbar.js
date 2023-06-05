@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,11 +16,6 @@ const PartialNavbar = () => {
 
     const handleClose =()=> setNav(!nav)
 
-    const [showModal, setShowModal] = useState(false);
-
-    const navigate = useNavigate();
-
-    const [user, setUser] = useState('');
 
   return (
     <nav className='bg-black/80 shadow-sm border-gray-200 lg:mx-2 px-2 py-2.5 rounded'>
@@ -30,10 +25,7 @@ const PartialNavbar = () => {
             {!nav ? <MenuIcon className='w-5 text-white' /> : <XIcon className='w-5 text-white' />}
 
             <ul className={!nav ? 'hidden' : 'absolute bg-black w-fit'}>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/" className='flex' onClick={handleClose}><FaHome className='text-2xl mr-4' />Home</Link></li>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/music" className='flex' onClick={handleClose}><FaMusic className='text-2xl mr-4' />Music</Link></li>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/album" className='flex' onClick={handleClose}><FaRegFolder className='text-2xl mr-4' />Album</Link></li>
-                <li className='border-zinc-900 w-fit text-white'><Link to="/library" className='flex' onClick={handleClose}><FaHeart className='text-2xl mr-4' />Library</Link></li>
+                <li className='border-zinc-900 w-fit text-white'><Link to="/dashboard" className='flex' onClick={handleClose}><FaHome className='text-2xl mr-4' />Home</Link></li>
                 <li className='border-zinc-900 w-fit text-white'>
                 <a
                     className="text-center cursor-pointer items-center px-8 py-2 text-black-600 bg-black border border-white rounded hover:bg-transparent hover:text-white active:text-white focus:outline-none focus:ring"
@@ -58,7 +50,6 @@ const PartialNavbar = () => {
                     <a
                     className="text-center cursor-pointer items-center px-8 py-2 mx-2 text-black-600 bg-white border border-white rounded hover:bg-transparent hover:text-white active:text-white focus:outline-none focus:ring"
                     type="submit"
-                    onClick={() => setShowModal(true)}
                     >
                     <span className="text-sm font-medium">
                     Connect Wallet
