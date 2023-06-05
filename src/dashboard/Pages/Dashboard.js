@@ -3,7 +3,7 @@ import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import gm from '../../component/assets/gm.jpeg';
 import kl from '../../component/assets/kl.jpeg';
-import coverimg from '../../component/assets/coverimg.jpeg';
+import albums from '../../component/assets/albums.jpg';
 import { FaEye, FaMoneyBill } from 'react-icons/fa'
 
 function Dashboard() {
@@ -66,7 +66,7 @@ function Dashboard() {
                             <a href='/musicsingle'>
                         <img
                             alt="Office"
-                            src={coverimg}
+                            src={albums}
                             className="w-full h-40 p-4 object-cover"
                         />
 
