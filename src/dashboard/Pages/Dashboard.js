@@ -71,11 +71,11 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                John Doe
+                                Total Amount From Albums
                             </h3>
 
                             <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            I can fly
+                            $1, 670
                             </p>
 
                         </div>
@@ -92,11 +92,11 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                John Doe
+                                Total Amount From Musics
                             </h3>
 
                             <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            I can fly
+                            $1, 670
                             </p>
 
                         </div>
@@ -113,11 +113,11 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                John Doe
+                                Albums Streams
                             </h3>
 
                             <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            I can fly
+                            4,350
                             </p>
 
                         </div>
@@ -134,11 +134,11 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                John Doe
+                                Musics Streams
                             </h3>
 
                             <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                            I can fly
+                            73, 444
                             </p>
 
                         </div>
