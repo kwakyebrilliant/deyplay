@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import albums from '../../component/assets/albums.jpg';
 
 function DashAlbum() {
+
+  const [inputs, setInputs] = useState(['']);
+
+  const handleAddInput = () => {
+    setInputs([...inputs, '']);
+  };
+
+  const handleChangeInput = (index, value) => {
+    const updatedInputs = [...inputs];
+    updatedInputs[index] = value;
+    setInputs(updatedInputs);
+  };
+
+
   return (
     <div>
         <div className='bg-black/80'>
@@ -83,6 +97,32 @@ function DashAlbum() {
                               required
                             />
                           </div>
+
+                          <div className="py-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="royalties">
+                              Royalties
+                              <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
+                              onClick={handleAddInput}>
+                              Add Royalties
+                            </button> 
+                            </label>
+                            {inputs.map((input, index) => (
+                            <div className="flex items-center mt-4" key={index}>
+                            <input
+                              className="w-full mb-6 px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="royalties"
+                              name="royalties"
+                              placeholder="Address of Royalties owner"
+                              value={input}
+                              onChange={(e) => handleChangeInput(index, e.target.value)}
+                              required
+                            />
+                          </div>
+                          ))}
+                          </div>
+
+                          
 
                         </form>
 
