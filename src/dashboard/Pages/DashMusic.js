@@ -60,7 +60,7 @@ function DashMusic() {
                         </p>
                         </div>
                    
-                    </div>
+                </div>
 
 
                     <div className='flex m-3 pt-4'>
