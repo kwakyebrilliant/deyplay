@@ -139,10 +139,10 @@ function DashMusic() {
 
 
                           <div className="container mx-auto p-4">
-                            <h1 className="text-3xl font-bold text-gray-900 mb-8">File Upload</h1>
+                            <h1 className="text-3xl font-bold text-white mb-8">File Upload</h1>
                             <div className="grid grid-cols gap-6">
                               <div className="mb-6">
-                                <label className="block mb-2 text-lg font-medium text-gray-700">
+                                <label className="block mb-2 text-lg font-medium text-white">
                                   Audio File
                                 </label>
                                 <div className="flex items-center">
