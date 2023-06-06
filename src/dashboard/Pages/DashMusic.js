@@ -139,62 +139,62 @@ function DashMusic() {
 
 
                           <div className="container mx-auto p-4">
-  <h1 className="text-3xl font-bold text-white mb-8">File Upload</h1>
-  <div className="grid grid-cols gap-6">
-    <div className="mb-6">
-      <label className="block mb-2 text-lg font-medium text-white">
-        Audio File
-      </label>
-      <div className="flex items-center">
-        <label
-          htmlFor="audio-file-input"
-          className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
-        >
-          Choose Audio
-          <input
-            id="audio-file-input"
-            type="file"
-            accept="audio/*"
-            onChange={handleAudioFileChange}
-            className="hidden"
-          />
-        </label>
-      </div>
-      {audioFile && (
-        <audio controls className="my-4 w-full">
-          <source src={URL.createObjectURL(audioFile)} />
-        </audio>
-      )}
-    </div>
-    <div className="mb-6">
-      <label className="block mb-2 text-lg font-medium text-white">
-        Image File
-      </label>
-      <div className="flex items-center">
-        <label
-          htmlFor="image-file-input"
-          className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
-        >
-          Choose Image
-          <input
-            id="image-file-input"
-            type="file"
-            accept="image/*"
-            onChange={handleImageFileChange}
-            className="hidden"
-          />
-        </label>
-      </div>
-      {imageFile && (
-        <img
-          src={URL.createObjectURL(imageFile)}
-          alt="Image Preview"
-          className="my-4 sm:w-24 sm:h-24 lg:w-full lg:h-96 object-cover rounded"
-        />
-      )}
-    </div>
-  </div>
-</div>
+                            <h1 className="text-3xl font-bold text-white mb-8">File Upload</h1>
+                            <div className="grid grid-cols gap-6">
+                              <div className="mb-6">
+                                <label className="block mb-2 text-lg font-medium text-white">
+                                  Audio File
+                                </label>
+                                <div className="flex items-center">
+                                  <label
+                                    htmlFor="audio-file-input"
+                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
+                                  >
+                                    Choose Audio
+                                    <input
+                                      id="audio-file-input"
+                                      type="file"
+                                      accept="audio/*"
+                                      onChange={handleAudioFileChange}
+                                      className="hidden"
+                                    />
+                                  </label>
+                                </div>
+                                {audioFile && (
+                                  <audio controls className="my-4 w-full">
+                                    <source src={URL.createObjectURL(audioFile)} />
+                                  </audio>
+                                )}
+                              </div>
+                              <div className="mb-6">
+                                <label className="block mb-2 text-lg font-medium text-white">
+                                  Image File
+                                </label>
+                                <div className="flex items-center">
+                                  <label
+                                    htmlFor="image-file-input"
+                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
+                                  >
+                                    Choose Image
+                                    <input
+                                      id="image-file-input"
+                                      type="file"
+                                      accept="image/*"
+                                      onChange={handleImageFileChange}
+                                      className="hidden"
+                                    />
+                                  </label>
+                                </div>
+                                {imageFile && (
+                                  <img
+                                    src={URL.createObjectURL(imageFile)}
+                                    alt="Image Preview"
+                                    className="my-4 sm:w-24 sm:h-24 lg:w-full lg:h-96 object-cover rounded"
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          </div>
 
                          
                         </form>
