@@ -148,7 +148,7 @@ function DashMusic() {
                                 <div className="flex items-center">
                                   <label
                                     htmlFor="audio-file-input"
-                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-white bg-indigo-500 rounded-md cursor-pointer hover:bg-indigo-600 focus:outline-none"
+                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
                                   >
                                     Choose File
                                     <input
@@ -167,13 +167,13 @@ function DashMusic() {
                                 </div>
                               </div>
                               <div className="mb-6">
-                                <label className="block mb-2 text-lg font-medium text-gray-700">
+                                <label className="block mb-2 text-lg font-medium text-white">
                                   Image File
                                 </label>
                                 <div className="flex items-center">
                                   <label
                                     htmlFor="image-file-input"
-                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-white bg-indigo-500 rounded-md cursor-pointer hover:bg-indigo-600 focus:outline-none"
+                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
                                   >
                                     Choose File
                                     <input
