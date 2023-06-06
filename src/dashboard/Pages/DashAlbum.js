@@ -155,7 +155,7 @@ function DashAlbum() {
                               Audio File
                               <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
                               onClick={handleAddAudioFiles}>
-                              Add Royalties
+                              Add Audio File
                             </button> 
                             </label>
 
