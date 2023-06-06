@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import albums from '../../component/assets/albums.jpg';
+import { FaUpload } from 'react-icons/fa';
 
 function DashAlbum() {
 
@@ -220,6 +221,21 @@ function DashAlbum() {
                             </div>
                           </div>
                           
+
+                          <div className="flex mb-12 ml-4 items-center">
+                            <label
+                              htmlFor="file-input"
+                              className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
+                            >
+                              <FaUpload className="mr-2" />
+                              Upload Album
+                              <input
+                                id="file-input"
+                                type="file"
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
 
                         </form>
 
