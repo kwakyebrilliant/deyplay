@@ -70,6 +70,20 @@ function DashAlbum() {
                             />
                           </div>
 
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="price">
+                              Price
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="number"
+                              id="price"
+                              name="price"
+                              placeholder="Album Price"
+                              required
+                            />
+                          </div>
+
                         </form>
 
                       </div>
