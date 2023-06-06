@@ -101,7 +101,7 @@ function DashMusic() {
                           <div className="py-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="royalties">
                               Royalties
-                              <button className="px-3 mx-4 py-2 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
+                              <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
                               onClick={handleAddInput}>
                               Add Royalties
                             </button> 
