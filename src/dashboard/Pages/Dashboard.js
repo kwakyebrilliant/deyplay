@@ -2,7 +2,7 @@
 import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
-import gm from '../../component/assets/gm.jpeg';
+import musicstream from '../../component/assets/musicstream.jpg';
 import albumstream from '../../component/assets/albumstream.jpg';
 import musics from '../../component/assets/musics.jpg'
 import albums from '../../component/assets/albums.jpg';
@@ -131,7 +131,7 @@ function Dashboard() {
                             <a>
                         <img
                             alt="Office"
-                            src={gm}
+                            src={musicstream}
                             className="w-full h-40 p-4 object-cover"
                         />
 
