@@ -11,10 +11,11 @@ function DashMusic() {
         <div className='flex flex-auto'>
             <Sidebar />
 
+            
             <div className='grow'>
                 <PartialNavbar />
 
-
+                
                 <div className="relative mx-2">
                         <img src={musics} alt="Background" className="w-full rounded object-cover h-96" />
 
