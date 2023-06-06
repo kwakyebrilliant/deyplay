@@ -3,7 +3,8 @@ import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import gm from '../../component/assets/gm.jpeg';
-import kl from '../../component/assets/kl.jpeg';
+import albumstream from '../../component/assets/albumstream.jpg';
+import musics from '../../component/assets/musics.jpg'
 import albums from '../../component/assets/albums.jpg';
 import { FaEye, FaMoneyBill } from 'react-icons/fa'
 
@@ -88,7 +89,7 @@ function Dashboard() {
                             <a>
                         <img
                             alt="Office"
-                            src={gm}
+                            src={musics}
                             className="w-full h-40 p-4 object-cover"
                         />
 
@@ -109,7 +110,7 @@ function Dashboard() {
                             <a>
                         <img
                             alt="Office"
-                            src={kl}
+                            src={albumstream}
                             className="w-full h-40 p-4 object-cover"
                         />
 
