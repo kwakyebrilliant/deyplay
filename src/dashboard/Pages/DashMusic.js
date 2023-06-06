@@ -125,7 +125,7 @@ function DashMusic() {
                             {inputs.map((input, index) => (
                             <div className="flex items-center mt-4" key={index}>
                             <input
-                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              className="w-full mb-6 px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
                               id="royalties"
                               name="royalties"
@@ -139,7 +139,7 @@ function DashMusic() {
                           </div>
 
 
-                          <div className="container mx-auto p-4">
+                          <div className="container mx-auto px-4">
                             <h1 className="text-3xl font-bold text-white mb-8">File Upload</h1>
                             <div className="grid grid-cols gap-6">
                               <div className="mb-6">
