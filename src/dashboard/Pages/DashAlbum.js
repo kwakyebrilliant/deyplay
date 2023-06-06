@@ -42,7 +42,19 @@ function DashAlbum() {
                       <div className="px-8 w-full">
 
                         <form>
-                          
+                        <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="title">
+                              Title
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="title"
+                              name="natitleme"
+                              placeholder="Album Title"
+                              required
+                            />
+                          </div>
 
                         </form>
 
