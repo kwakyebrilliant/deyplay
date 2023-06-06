@@ -33,12 +33,22 @@ function DashAlbum() {
 
 
                 <div className='flex m-3 pt-4'>
-                    <h2 className="text-2xl text-white font-bold mb-4">Album Upload Form</h2>
-              
-                    </div>
+                  <h2 className="text-2xl text-white font-bold mb-4">Album Upload Form</h2>
+                
+                </div>
+
+                <div className='flex m-3 pt-4'>
+                  <div className="flex w-full">
+                      <div className="px-8 w-full">
+
+                        
+
+                      </div>
+                  </div>
+                </div>
                 
 
-            </div>
+                </div>
 
         </div>
         </>
