@@ -55,7 +55,6 @@ function DashLibrary() {
 
                 <div className='mx-3'>
 
-
                 <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
 
 
@@ -193,10 +192,151 @@ function DashLibrary() {
 
                 </div>
 
+
+
                 <div className='flex m-3 pt-4'>
                   <h2 className="text-2xl text-white font-bold mb-4">Songs Uploaded</h2>
                 
                 </div>
+
+                <div className='mx-3 mb-12'>
+
+                  <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
+
+
+                  <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={gm}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+
+
+                      </a>
+                      </article>
+
+                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={coverimg}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+                      </a>
+                      </article>
+
+                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={gm}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+                      </a>
+                      </article>
+
+                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={kl}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+                      </a>
+                      </article>
+
+                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={coverimg}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+                      </a>
+                      </article>
+
+                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                          <a>
+                      <img
+                          alt="Office"
+                          src={coverimg}
+                          className="w-full h-40 p-4 object-cover"
+                      />
+
+                      <div className="p-4 sm:p-6">
+                          <h3 className="font-medium text-white">
+                              John Doe
+                          </h3>
+
+                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                          I can fly
+                          </p>
+
+                      </div>
+                      </a>
+                      </article>
+
+                  </div>
+
+
+                  </div>
 
                 
 
