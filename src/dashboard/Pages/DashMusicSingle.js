@@ -1,8 +1,28 @@
 import React from 'react'
+import Sidebar from '../Partials/Sidebar';
+import PartialNavbar from '../Partials/PartialNavbar';
 
 function DashMusicSingle() {
   return (
-    <div>DashMusicSingle</div>
+    <div>
+        <div className='bg-black/80'>
+        <>
+
+            <div className='flex flex-auto'>
+            <Sidebar />
+
+                <div className='grow'>
+                    <PartialNavbar />
+
+                    
+
+                </div>
+
+            </div>
+        
+        </>
+        </div>
+    </div>
   )
 }
 
