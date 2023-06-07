@@ -33,7 +33,7 @@ function DashLibrary() {
                         </div>
                         
                         <h3 className="text-xl font-medium text-white">
-                            John Doe
+                        0xgt...4bxe
                         </h3>
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
