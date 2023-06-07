@@ -205,7 +205,7 @@ function DashLibrary() {
 
 
                   <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <a>
+                          <a href='dashmusicsingle'>
                       <img
                           alt="Office"
                           src={gm}
