@@ -50,6 +50,20 @@ function DashMusicSingle() {
                     </div>
 
 
+                    <div className='flex mx-3 pt-4'>
+                      <h2 className='text-white font-bold'>
+                        Take Action
+                      </h2>
+                
+                    </div>
+
+                    <div className='flex mx-3'>
+                        <p class="text-xs text-white">
+                        You have the opportunity to add this song to an album
+                        </p>
+                    </div>
+
+
 
                 </div>
 
