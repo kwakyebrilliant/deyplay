@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import coverimg from '../../component/assets/coverimg.jpeg';
+import { FaUpload } from 'react-icons/fa';
 
 function DashMusicSingle() {
   return (
@@ -75,6 +76,21 @@ function DashMusicSingle() {
                                             <option value="user">I can fly</option>
                                             <option value="artiste">I can fly</option>
                                         </select>
+                                    </div>
+
+                                    <div className="flex mb-12 pt-4 items-center">
+                                        <label
+                                        htmlFor="file-input"
+                                        className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
+                                        >
+                                        <FaUpload className="mr-2" />
+                                        Add to Album
+                                        <input
+                                            id="file-input"
+                                            type="file"
+                                            className="hidden"
+                                        />
+                                        </label>
                                     </div>
                                 </form>
 
