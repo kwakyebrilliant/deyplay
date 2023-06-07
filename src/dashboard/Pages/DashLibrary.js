@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
@@ -59,7 +60,7 @@ function DashLibrary() {
 
 
                 <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={gm}
@@ -83,7 +84,7 @@ function DashLibrary() {
                     </article>
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={coverimg}
@@ -104,7 +105,7 @@ function DashLibrary() {
                     </article>
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={gm}
@@ -125,7 +126,7 @@ function DashLibrary() {
                     </article>
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={kl}
@@ -146,7 +147,7 @@ function DashLibrary() {
                     </article>
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={coverimg}
@@ -167,7 +168,7 @@ function DashLibrary() {
                     </article>
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                        <a href='/albumsingle'>
+                        <a>
                     <img
                         alt="Office"
                         src={coverimg}
