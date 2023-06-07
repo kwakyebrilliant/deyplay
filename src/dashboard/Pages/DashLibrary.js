@@ -37,6 +37,11 @@ function DashLibrary() {
                 
                 </div>
 
+                <div className='flex m-3 pt-4'>
+                  <h2 className="text-2xl text-white font-bold mb-4">Songs Uploaded</h2>
+                
+                </div>
+
                 
 
             </div>
