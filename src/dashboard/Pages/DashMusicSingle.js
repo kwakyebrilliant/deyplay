@@ -51,9 +51,7 @@ function DashMusicSingle() {
 
 
                     <div className='flex mx-3 pt-4'>
-                      <h2 className='text-white font-bold'>
-                        Take Action
-                      </h2>
+                    <h2 className="text-2xl text-white font-bold">Music Upload Form</h2>
                 
                     </div>
 
@@ -62,6 +60,8 @@ function DashMusicSingle() {
                         You have the opportunity to add this song to an album
                         </p>
                     </div>
+
+                    
 
 
 
