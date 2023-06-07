@@ -160,7 +160,7 @@ function Dashboard() {
                 
                     </div>
 
-                    <div className="flex mb-12 justify-center items-center">
+                    <div className="flex mb-96 justify-center items-center">
                     <span className="inline-flex justify-center -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
                         <button className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
                         <a href="dashalbum">
