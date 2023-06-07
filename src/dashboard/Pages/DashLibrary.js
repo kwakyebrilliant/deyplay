@@ -27,8 +27,8 @@ function DashLibrary() {
                             type="text"
                             placeholder="Search..."
                             />
-                            <button className="ml-2 text-white">
-                            <FiSearch className='text-white' />
+                            <button className="ml-2 text-black">
+                            <FiSearch className='text-black' />
                             </button>
                         </div>
                         
