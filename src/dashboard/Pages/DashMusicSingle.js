@@ -61,7 +61,26 @@ function DashMusicSingle() {
                         </p>
                     </div>
 
-                    
+                    <div className='flex m-3 pt-4'>
+                        <div className="flex w-full">
+                            <div className="px-8 w-full">
+                                <form>
+                                    <div className="mb-4">
+                                    <select
+                                            name="HeadlineAct"
+                                            id="HeadlineAct"
+                                            className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                                        >
+                                            <option>Please select</option>
+                                            <option value="user">I can fly</option>
+                                            <option value="artiste">I can fly</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
 
 
 
