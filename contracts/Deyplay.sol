@@ -118,7 +118,10 @@ contract Deyplay{
         return artistTracks;
     }
 
-    
+    //Allow a user to stream a track
+     function streamTrack(uint _trackId) public payable trackExists(_trackId) {
+     
+     }
 
     
 }
