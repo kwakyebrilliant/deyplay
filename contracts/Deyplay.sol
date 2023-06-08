@@ -43,6 +43,9 @@ contract Deyplay{
 
 
     //Events
+    event AlbumCreated(uint id, string title, address artist);
+    event TrackCreated(uint id, string title, address artist);
+    event TrackStreamed(uint trackId, address user, uint amount);
 
     
 }
