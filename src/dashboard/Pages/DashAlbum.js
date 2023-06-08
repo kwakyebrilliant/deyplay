@@ -124,6 +124,22 @@ function DashAlbum() {
                             />
                           </div>
 
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="description">
+                              Description
+                            </label>
+                            <textarea
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="description"
+                              name="description"
+                              placeholder="Album Description"
+                              required
+                              rows='4'
+                            >
+                              </textarea>
+                          </div>
+
                           <div className="container mx-auto p-4">
                             <h1 className="text-sm font-bold text-white">
                               Add Royalties
