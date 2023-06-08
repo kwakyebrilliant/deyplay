@@ -104,6 +104,20 @@ contract Deyplay{
         return artistAlbums;
     }
 
+
+    //List all albums by an artiste
+    function listTracksByArtist(address _artist) public view returns (uint[] memory) {
+        uint[] memory artistTracks = new uint[](trackCount);
+        uint counter = 0;
+        for (uint i = 1; i <= trackCount; i++) {
+            if (tracks[i].artist == _artist) {
+                artistTracks[counter] = tracks[i].id;
+                counter++;
+            }
+        }
+        return artistTracks;
+    }
+
     
 
     
