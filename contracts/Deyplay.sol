@@ -75,7 +75,7 @@ contract Deyplay{
     }
 
 
-    
+    //Add album function
 
     
 }
