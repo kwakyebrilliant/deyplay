@@ -12,8 +12,7 @@ contract Deyplay{
         uint price;
         uint totalStreams;
         uint totalPurchases;
-        uint[] audioFiles;
-        address[] royaltiesOwners;
+        uint[] royaltiesOwners;
         uint[] royaltiesPercentages;
     }
 
@@ -22,14 +21,14 @@ contract Deyplay{
     struct Album {
         uint id;
         string title;
-        string description;
         address artist;
         string imageUrl;
+        string description;
         uint price;
         uint totalStreams;
         uint totalPurchases;
         uint[] audioFiles;
-        address[] royaltiesOwners;
+        uint[] royaltiesOwners;
         uint[] royaltiesPercentages;
     }
 
@@ -37,20 +36,22 @@ contract Deyplay{
     //Mappings
     uint private trackCount;
     uint private albumCount;
+
     mapping(uint => Track) private tracks;
     mapping(uint => Album) private albums;
     mapping(address => uint[]) private userPurchasedTracks;
     mapping(address => uint[]) private userPurchasedAlbums;
+
     mapping(address => uint) private artistBalances;
 
 
     //Events
     event TrackCreated(uint id, string title, address artist, string imageUrl, uint price);
-    event AlbumCreated(uint id, string title, string description, address artist, string imageUrl, uint price);
-    event TrackStreamed(uint trackId, address user, uint amount);
-    event AlbumStreamed(uint albumId, address user, uint amount);
-    event TrackPurchased(uint trackId, address user, uint amount);
-    event AlbumPurchased(uint albumId, address user, uint amount);
+    event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price);
+    event TrackStreamed(uint trackId, address listener, uint amount);
+    event AlbumStreamed(uint albumId, address listener, uint amount);
+    event TrackPurchased(uint trackId, address buyer, uint amount);
+    event AlbumPurchased(uint albumId, address buyer, uint amount);
 
 
     //Modiefiers
@@ -66,23 +67,25 @@ contract Deyplay{
 
 
     //Add track function
-    function addTrack(string memory _title, string memory _imageUrl, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
-            trackCount++;
-            uint[] memory audioFiles;
-            tracks[trackCount] = Track(trackCount, _title, msg.sender, _imageUrl, _price, 0, 0, audioFiles, _royaltiesOwners, _royaltiesPercentages);
+     function addTrack(string memory _title, address _artist, string memory _imageUrl, uint _price) public {
+        trackCount++;
+        tracks[trackCount] = Track(trackCount, _title, _artist, _imageUrl, _price, 0, 0, new uint[](0), new uint[](0));
 
-            emit TrackCreated(trackCount, _title, msg.sender, _imageUrl, _price);
+        emit TrackCreated(trackCount, _title, _artist, _imageUrl, _price);
     }
 
 
     //Add album function
-     function addAlbum(string memory _title, string memory _description, string memory _imageUrl, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
-        albumCount++;
-        uint[] memory audioFiles;
-        albums[albumCount] = Album(albumCount, _title, _description, msg.sender, _imageUrl, _price, 0, 0, audioFiles, _royaltiesOwners, _royaltiesPercentages);
+      function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles) public {
+        require(_audioFiles.length > 0, "Album must have at least one audio file");
 
-        emit AlbumCreated(albumCount, _title, _description, msg.sender, _imageUrl, _price);
-     }
+        albumCount++;
+        albums[albumCount] = Album(albumCount, _title, _artist, _imageUrl, _description, _price, 0, 0, _audioFiles, new uint[](0), new uint[](0));
+
+        emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price);
+    }
+
+    
 
     
 }
