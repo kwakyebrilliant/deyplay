@@ -7,16 +7,16 @@ import { FaUpload } from 'react-icons/fa';
 
 function DashMusic() {
 
-  const [inputs, setInputs] = useState(['']);
+  const [inputs, setInputs] = useState([]);
 
   const handleAddInput = () => {
-    setInputs([...inputs, '']);
+    setInputs((prevInputs) => [...prevInputs, '', '']);
   };
 
-  const handleChangeInput = (index, value) => {
-    const updatedInputs = [...inputs];
-    updatedInputs[index] = value;
-    setInputs(updatedInputs);
+  const handleInputChange = (e, index) => {
+    const newInputs = [...inputs];
+    newInputs[index] = e.target.value;
+    setInputs(newInputs);
   };
 
 
@@ -114,29 +114,30 @@ function DashMusic() {
                             />
                           </div>
 
-                          <div className="py-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="royalties">
-                              Royalties
-                              <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
-                              onClick={handleAddInput}>
-                              Add Royalties
-                            </button> 
-                            </label>
-                            {inputs.map((input, index) => (
-                            <div className="flex items-center mt-4" key={index}>
-                            <input
-                              className="w-full mb-6 px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
-                              type="text"
-                              id="royalties"
-                              name="royalties"
-                              placeholder="Address of Royalties owner"
-                              value={input}
-                              onChange={(e) => handleChangeInput(index, e.target.value)}
-                              required
-                            />
-                          </div>
-                          ))}
-                          </div>
+                          <div className="container mx-auto p-4">
+      <h1 className="text-sm font-bold text-white mb-8">
+        Add Royalties
+        <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
+          onClick={handleAddInput}>
+          Add Royalties
+        </button> 
+      </h1>
+
+      {inputs.map((input, index) => (
+        <div key={index}>
+          <label className="block mb-1 text-lg font-medium text-white">
+            Input {index + 1}
+          </label>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => handleInputChange(e, index)}
+            required
+            className="w-full mb-3 px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+          />
+        </div>
+      ))}
+    </div>
 
 
                           <div className="container mx-auto px-4">
