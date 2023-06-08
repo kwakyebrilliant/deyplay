@@ -37,5 +37,9 @@ contract Deyplay{
     uint public albumCount;
     uint public trackCount;
 
+    mapping(address => uint[]) public userPurchasedAlbums;
+    mapping(address => uint[]) public userPurchasedTracks;
+    mapping(address => uint) public artistBalances;
+
     
 }
