@@ -34,6 +34,8 @@ contract Deyplay{
     //Mappings
     mapping(uint => Album) public albums;
     mapping(uint => Track) public tracks;
+    uint public albumCount;
+    uint public trackCount;
 
     
 }
