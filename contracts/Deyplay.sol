@@ -15,5 +15,19 @@ contract Deyplay{
         uint totalStreams;
         uint totalPurchases;
     }
+
+    struct Track {
+        uint id;
+        string title;
+        address artist;
+        string imageUrl;
+        uint price;
+        uint albumId;
+        mapping(address => uint) royalties;
+        uint totalStreams;
+        uint totalPurchases;
+    }
+
+    
     
 }
