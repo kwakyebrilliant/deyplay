@@ -77,7 +77,8 @@ contract Deyplay{
 
     //Add album function
      function addAlbum(string memory _title, string memory _description, string memory _imageUrl, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
-        
+        albumCount++;
+        uint[] memory audioFiles;
      }
 
     
