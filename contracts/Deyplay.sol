@@ -93,8 +93,18 @@ contract Deyplay{
 
     //List all tracks by an artiste
     function listAlbumsByArtist(address _artist) public view returns (uint[] memory) {
-        
+        uint[] memory artistAlbums = new uint[](albumCount);
+        uint counter = 0;
+        for (uint i = 1; i <= albumCount; i++) {
+            if (albums[i].artist == _artist) {
+                artistAlbums[counter] = albums[i].id;
+                counter++;
+            }
+        }
+        return artistAlbums;
     }
+
+    
 
     
 }
