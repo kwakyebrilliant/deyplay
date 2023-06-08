@@ -41,5 +41,8 @@ contract Deyplay{
     mapping(address => uint[]) public userPurchasedTracks;
     mapping(address => uint) public artistBalances;
 
+
+    //Events
+
     
 }
