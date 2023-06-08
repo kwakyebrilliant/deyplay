@@ -53,7 +53,7 @@ contract Deyplay{
 
     //Function for creating album
     function createAlbum(string memory _title, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles) public {
-    
+        albumCount++;
     }
 
     
