@@ -120,8 +120,34 @@ contract Deyplay{
 
     //Allow a user to stream a track
      function streamTrack(uint _trackId) public payable trackExists(_trackId) {
-     
+        Track storage track = tracks[_trackId];
+        require(msg.value >= track.price, "Insufficient payment to stream the track");
+
+        uint royaltiesAmount = calculateRoyalties(track.price, track.royaltiesOwners, track.royaltiesPercentages);
+        uint artistAmount = track.price - royaltiesAmount;
+
+        track.totalStreams++;
+        artistBalances[track.artist] += artistAmount;
+        distributeRoyalties(track.royaltiesOwners, track.royaltiesPercentages, royaltiesAmount);
+
+        emit TrackStreamed(_trackId, msg.sender, track.price);
      }
+
+
+     //Allow a user to stream an album
+      function streamAlbum(uint _albumId) public payable albumExists(_albumId) {
+        Album storage album = albums[_albumId];
+        require(msg.value >= album.price, "Insufficient payment to stream the album");
+
+        uint royaltiesAmount = calculateRoyalties(album.price, album.royaltiesOwners, album.royaltiesPercentages);
+        uint artistAmount = album.price - royaltiesAmount;
+
+        album.totalStreams++;
+        artistBalances[album.artist] += artistAmount;
+        distributeRoyalties(album.royaltiesOwners, album.royaltiesPercentages, royaltiesAmount);
+
+        emit AlbumStreamed(_albumId, msg.sender, album.price);
+    }
 
     
 }
