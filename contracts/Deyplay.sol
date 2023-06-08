@@ -51,7 +51,7 @@ contract Deyplay{
     event AlbumPurchased(uint albumId, address user, uint amount);
 
 
-    
+    //Function for creating album
 
     
 }
