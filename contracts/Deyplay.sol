@@ -51,6 +51,18 @@ contract Deyplay{
     event TrackPurchased(uint trackId, address buyer, uint amount);
     event AlbumPurchased(uint albumId, address buyer, uint amount);
 
+    //Modifiers
+    modifier trackExists(uint _trackId) {
+        require(_trackId <= trackCount, "Track does not exist");
+        _;
+    }
+
+    modifier albumExists(uint _albumId) {
+        require(_albumId <= albumCount, "Album does not exist");
+        _;
+    }
+
+
     
 
     
