@@ -86,6 +86,10 @@ contract Deyplay{
     }
 
     //Add track to album function
+    function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
+        Album storage album = albums[_albumId];
+        album.audioFiles.push(_trackId);
+    }
 
     
 }
