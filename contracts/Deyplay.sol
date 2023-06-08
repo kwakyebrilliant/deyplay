@@ -3,60 +3,53 @@ pragma solidity ^0.8.4;
 
 contract Deyplay{
 
+    //Track struct
+   struct Track {
+        uint id;
+        string title;
+        address artist;
+        string imageUrl;
+        uint price;
+        uint totalStreams;
+        uint totalPurchases;
+        uint[] audioFiles;
+        mapping(address => uint) royalties;
+    }
+
     //Album struct
     struct Album {
         uint id;
         string title;
+        string description;
         address artist;
         string imageUrl;
-        string description;
         uint price;
+        uint totalStreams;
+        uint totalPurchases;
         uint[] audioFiles;
         mapping(address => uint) royalties;
-        uint totalStreams;
-        uint totalPurchases;
-    }
-
-    //Track struct
-    struct Track {
-        uint id;
-        string title;
-        address artist;
-        string imageUrl;
-        uint price;
-        uint albumId;
-        mapping(address => uint) royalties;
-        uint totalStreams;
-        uint totalPurchases;
     }
 
 
     //Mappings
-    mapping(uint => Album) public albums;
-    mapping(uint => Track) public tracks;
-    uint public albumCount;
-    uint public trackCount;
+    uint private trackCount;
+    uint private albumCount;
+    mapping(uint => Track) private tracks;
+    mapping(uint => Album) private albums;
 
-    mapping(address => uint[]) public userPurchasedAlbums;
-    mapping(address => uint[]) public userPurchasedTracks;
-    mapping(address => uint) public artistBalances;
+    mapping(address => uint[]) private userPurchasedTracks;
+    mapping(address => uint[]) private userPurchasedAlbums;
+
+    mapping(address => uint) private artistBalances;
 
 
     //Events
-    event AlbumCreated(uint id, string title, address artist);
-    event TrackCreated(uint id, string title, address artist);
-    event TrackStreamed(uint trackId, address user, uint amount);
-    event AlbumStreamed(uint albumId, address user, uint amount);
-    event TrackPurchased(uint trackId, address user, uint amount);
-    event AlbumPurchased(uint albumId, address user, uint amount);
-
-
-    //Function for creating album
-     function createAlbum(string memory _title, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles) public {
-        albumCount++;
-        albums[albumCount] = Album(albumCount, _title, msg.sender, _imageUrl, _description, _price, _audioFiles, 0, 0);
-        emit AlbumCreated(albumCount, _title, msg.sender);
-    }
+    event TrackAdded(uint trackId, string title, address artist, string imageUrl, uint price);
+    event AlbumAdded(uint albumId, string title, address artist, string imageUrl, uint price);
+    event TrackStreamed(uint trackId, address listener, uint amount);
+    event AlbumStreamed(uint albumId, address listener, uint amount);
+    event TrackPurchased(uint trackId, address buyer, uint amount);
+    event AlbumPurchased(uint albumId, address buyer, uint amount);
 
     
 
