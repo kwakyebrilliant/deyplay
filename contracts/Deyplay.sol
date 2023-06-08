@@ -17,6 +17,7 @@ contract Deyplay{
         uint totalPurchases;
     }
 
+    //Track struct
     struct Track {
         uint id;
         string title;
