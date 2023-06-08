@@ -3,6 +3,7 @@ pragma solidity ^0.8.4;
 
 contract Deyplay{
 
+    //Album struct
     struct Album {
         uint id;
         string title;
@@ -28,6 +29,6 @@ contract Deyplay{
         uint totalPurchases;
     }
 
-    
+
     
 }
