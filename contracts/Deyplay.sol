@@ -92,6 +92,9 @@ contract Deyplay{
     }
 
     //List all tracks by an artiste
+    function listAlbumsByArtist(address _artist) public view returns (uint[] memory) {
+        
+    }
 
     
 }
