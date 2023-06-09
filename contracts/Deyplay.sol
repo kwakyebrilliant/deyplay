@@ -169,6 +169,24 @@ contract Deyplay{
 
 
     //Purchase album function
+     function purchaseAlbum(uint _albumId) public payable albumExists(_albumId) {
+        Album storage album = albums[_albumId];
+        require(msg.value >= album.price, "Insufficient payment to purchase the album");
+
+        uint royaltiesAmount = calculateRoyalties(album.price, album.royaltiesOwners, album.royaltiesPercentages);
+        uint artistAmount = album.price - royaltiesAmount;
+
+        album.totalPurchases++;
+        artistBalances[album.artist] += artistAmount;
+        distributeRoyalties(album.royaltiesOwners, album.royaltiesPercentages, royaltiesAmount);
+
+        userPurchasedAlbums[msg.sender].push(_albumId);
+
+        emit AlbumPurchased(_albumId, msg.sender, album.price);
+    }
+
+    //Gets a user purchased track
+    
 
 
     
