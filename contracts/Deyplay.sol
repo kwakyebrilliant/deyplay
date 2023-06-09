@@ -150,6 +150,26 @@ contract Deyplay{
     }
 
 
+    //Gets total track streams
+     function getTotalTrackStreams() public view returns (uint) {
+        uint totalStreams = 0;
+        for (uint i = 1; i <= trackCount; i++) {
+            totalStreams += tracks[i].totalStreams;
+        }
+        return totalStreams;
+    }
+
+
+    //Gets total album streams
+    function getTotalAlbumStreams() public view returns (uint) {
+        uint totalStreams = 0;
+        for (uint i = 1; i <= albumCount; i++) {
+            totalStreams += albums[i].totalStreams;
+        }
+        return totalStreams;
+    }
+
+
     //Purchase track function
     function purchaseTrack(uint _trackId) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
