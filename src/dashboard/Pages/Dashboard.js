@@ -148,12 +148,29 @@ function Dashboard() {
                         </a>
                         </article>
 
-                       
-
                     </div>
 
+                    <div className='flex mt-4 justify-center m-3 pt-4'>
+                    <h2 className='text-white font-bold'>
+                        What next?
+                    </h2>
+                
+                    </div>
 
-                    <div className='flex mt-12 justify-center m-3 pt-4'>
+                    <div className='flex justify-center m-3 pt-4'>
+                    <div className="flex justify-between p-4 w-full rounded-lg bg-black text-white">
+                    <div className="p-4 flex justify-center items-center">
+                      <p className="text-lg font-bold">1</p>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-lg font-bold mb-2">Title</p>
+                      <p className="text-base">Description</p>
+                    </div>
+                  </div>
                     
                 
                     </div>
