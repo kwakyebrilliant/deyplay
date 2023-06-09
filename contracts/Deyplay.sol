@@ -152,8 +152,23 @@ contract Deyplay{
 
     //Purchase track function
     function purchaseTrack(uint _trackId) public payable trackExists(_trackId) {
-        
+        Track storage track = tracks[_trackId];
+        require(msg.value >= track.price, "Insufficient payment to purchase the track");
+
+        uint royaltiesAmount = calculateRoyalties(track.price, track.royaltiesOwners, track.royaltiesPercentages);
+        uint artistAmount = track.price - royaltiesAmount;
+
+        track.totalPurchases++;
+        artistBalances[track.artist] += artistAmount;
+        distributeRoyalties(track.royaltiesOwners, track.royaltiesPercentages, royaltiesAmount);
+
+        userPurchasedTracks[msg.sender].push(_trackId);
+
+        emit TrackPurchased(_trackId, msg.sender, track.price);
     }
+
+
+    
 
     
 }
