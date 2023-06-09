@@ -149,5 +149,9 @@ contract Deyplay{
         emit AlbumStreamed(_albumId, msg.sender, album.price);
     }
 
+
+    //Purchase track function
+    
+
     
 }
