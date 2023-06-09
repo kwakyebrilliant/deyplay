@@ -216,6 +216,55 @@ contract Deyplay{
         return userPurchasedAlbums[_user];
     }
 
+    //Gets total amount an artiste has made on all tracks
+    function getTotalTrackAmount(address _artist) public view returns (uint) {
+        uint totalAmount = 0;
+        for (uint i = 1; i <= trackCount; i++) {
+            if (tracks[i].artist == _artist) {
+                totalAmount += tracks[i].totalPurchases * tracks[i].price;
+            }
+        }
+        return totalAmount;
+    }
+
+
+    //Gets total amount an artiste has made on all albums
+    function getTotalAlbumAmount(address _artist) public view returns (uint) {
+        uint totalAmount = 0;
+        for (uint i = 1; i <= albumCount; i++) {
+            if (albums[i].artist == _artist) {
+                totalAmount += albums[i].totalPurchases * albums[i].price;
+            }
+        }
+        return totalAmount;
+    }
+
+
+    //Gets total streams from all tracks by an artiste
+    function getTotalTrackStreams(address _artist) public view returns (uint) {
+        uint totalStreams = 0;
+        for (uint i = 1; i <= trackCount; i++) {
+            if (tracks[i].artist == _artist) {
+                totalStreams += tracks[i].totalStreams;
+            }
+        }
+        return totalStreams;
+    }
+
+
+    //Gets total streams from all albums by an artiste
+    function getTotalAlbumStreams(address _artist) public view returns (uint) {
+        uint totalStreams = 0;
+        for (uint i = 1; i <= albumCount; i++) {
+            if (albums[i].artist == _artist) {
+                totalStreams += albums[i].totalStreams;
+            }
+        }
+        return totalStreams;
+    }
+
+
+
     //Gets balance of an artiste
     function getArtistBalance(address _artist) public view returns (uint) {
         return artistBalances[_artist];
