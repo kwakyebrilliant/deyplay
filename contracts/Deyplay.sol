@@ -186,7 +186,9 @@ contract Deyplay{
     }
 
     //Gets a user purchased track
-    
+     function getUserPurchasedTracks(address _user) public view returns (uint[] memory) {
+        return userPurchasedTracks[_user];
+    }
 
 
     
