@@ -53,11 +53,40 @@ function Dashboard() {
                     </header>
                 </div>
 
+
+                <div className='flex m-3 pt-4'>
+                  <h2 className='text-white font-bold'>
+                    Some Actions
+                  </h2>
+                </div>
+
+                <div className="container mx-auto p-4">
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                    <FaMoneyBill className=' text-white w-6 h-6 lg:w-8 lg:h-8 pr-1' />
+                    <h3 className="text-xl ml-2 font-bold text-white">
+                        $17, 259
+                    </h3>
+                    </div>
+
+                    <div className="flex items-center">
+                    <div className="w-8 h-1 bg-blue-500 mr-2"></div>
+                    <h3 className="text-xl font-bold text-gray-900">Text 2</h3>
+                    </div>
+
+                    <div className="flex items-center">
+                    <div className="w-8 h-1 bg-blue-500 mr-2"></div>
+                    <h3 className="text-xl font-bold text-gray-900">Text 3</h3>
+                    </div>
+                </div>
+
+                <div className="w-full h-px bg-gray-200"></div>
+                </div>
+
                 <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
                     These Statistics
                   </h2>
-            
                 </div>
 
 
@@ -149,32 +178,6 @@ function Dashboard() {
                         </article>
 
                     </div>
-
-                    <div className='flex mt-4 justify-center m-3 pt-4'>
-                    <h2 className='text-white font-bold'>
-                        What next?
-                    </h2>
-                
-                    </div>
-
-                    <div className='flex justify-center m-3 pt-4'>
-                    <div className="flex justify-between p-4 w-full rounded-lg bg-black text-white">
-                    <div className="p-4 flex justify-center items-center">
-                      <p className="text-lg font-bold">1</p>
-                    </div>
-                    <div className="p-4">
-                      <p className="text-lg font-bold mb-2">Title</p>
-                      <p className="text-base">Description</p>
-                    </div>
-                    <div className="p-4">
-                      <p className="text-lg font-bold mb-2">Title</p>
-                      <p className="text-base">Description</p>
-                    </div>
-                  </div>
-                    
-                
-                    </div>
-
 
                     <div className='flex mt-4 justify-center m-3 pt-4'>
                     <h2 className='text-white font-bold'>
