@@ -151,7 +151,9 @@ contract Deyplay{
 
 
     //Purchase track function
-    
+    function purchaseTrack(uint _trackId) public payable trackExists(_trackId) {
+        
+    }
 
     
 }
