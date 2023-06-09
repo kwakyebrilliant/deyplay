@@ -1,0 +1,75 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/brilliantkwakye/Documents/web3/deyplay/contracts/Deyplay.sol": {
+      "lastModificationDate": 1686295852416,
+      "contentHash": "1f912cd1d128b854a869035ff0e35f56",
+      "sourceName": "contracts/Deyplay.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "Deyplay"
+      ]
+    },
+    "/Users/brilliantkwakye/Documents/web3/deyplay/contracts/Lock.sol": {
+      "lastModificationDate": 1686294509246,
+      "contentHash": "dbdd2548fb2f2a4ae42b86b48ba69405",
+      "sourceName": "contracts/Lock.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "Lock"
+      ]
+    }
+  }
+}
