@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link, useNavigate } from 'react-router-dom';
+import { ethers } from 'ethers';
 
 const PartialNavbar = () => {
   const [nav, setNav] = useState(false);
@@ -61,6 +62,7 @@ const PartialNavbar = () => {
 
   const ConnectWalletModal = () => {
     const [user, setUser] = useState('');
+    const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
 
     const handleUserSelection = (e) => {
       setUser(e.target.value);
@@ -70,7 +72,23 @@ const PartialNavbar = () => {
       setShowModal(false);
     };
 
+    const connectToMetamask = async () => {
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          setIsMetamaskConnected(true);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
     const handleModalSubmit = () => {
+      if (!isMetamaskConnected) {
+        connectToMetamask();
+        return;
+      }
+
       if (user === 'user') {
         navigate('/', { state: user });
       } else if (user === 'artiste') {
@@ -97,6 +115,30 @@ const PartialNavbar = () => {
                 <option value='user'>User</option>
                 <option value='artiste'>Artiste</option>
               </select>
+              {isMetamaskConnected ? (
+                <p className='text-green-500 mt-4'></p>
+              ) : (
+                user === 'user' && (
+                  <button
+                  className='mt-2 w-full bg-black hover:bg-transparent hover:text-black border-black text-white py-1.5 px-4 rounded'
+                  onClick={connectToMetamask}
+                >
+                  Connect
+                </button>
+                )
+              ) }
+              {isMetamaskConnected ? (
+                <p className='text-green-500 mt-4'></p>
+              ) : (
+                user === 'artiste' && (
+                  <button
+                  className='mt-2 w-full bg-black hover:bg-transparent hover:text-black border-black text-white py-1.5 px-4 rounded'
+                  onClick={connectToMetamask}
+                >
+                  Connect
+                </button>
+                )
+              ) }
               <div className='flex justify-end mt-4'>
                 <button
                   className='text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
