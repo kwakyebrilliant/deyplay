@@ -154,6 +154,12 @@ function Dashboard() {
 
 
                     <div className='flex mt-12 justify-center m-3 pt-4'>
+                    
+                
+                    </div>
+
+
+                    <div className='flex mt-4 justify-center m-3 pt-4'>
                     <h2 className='text-white font-bold'>
                         What next?
                     </h2>
