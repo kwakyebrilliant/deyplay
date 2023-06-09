@@ -190,6 +190,11 @@ contract Deyplay{
         return userPurchasedTracks[_user];
     }
 
+    //Gets a user purchased albums
+    function getUserPurchasedAlbums(address _user) public view returns (uint[] memory) {
+        return userPurchasedAlbums[_user];
+    }
+
 
     
 }
