@@ -195,6 +195,11 @@ contract Deyplay{
         return userPurchasedAlbums[_user];
     }
 
+    //Gets balance of an artiste
+    function getArtistBalance(address _artist) public view returns (uint) {
+        return artistBalances[_artist];
+    }
+
 
     
 }
