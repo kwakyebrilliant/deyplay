@@ -14,8 +14,6 @@ const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2";
 
 function Dashboard() {
 
-    const [balance, setBalance] = useState(0);
-
     var myDate = new Date();
     var hours= myDate.getHours();
     var greet;
@@ -27,6 +25,38 @@ function Dashboard() {
     else if (hours >= 17 && hours <= 24)
         greet = "evening";
 
+
+    const [balance, setBalance] = useState(0);
+
+    useEffect(() => {
+        // Check if Ethereum is available in the browser
+        if (typeof window.ethereum !== 'undefined') {
+            loadBalance();
+        } else {
+            console.log('Please install MetaMask to use this application.');
+        }
+        }, []);
+
+    // Load the artist's balance from the smart contract
+  const loadBalance = async () => {
+    try {
+      // Connect to the Ethereum network
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+
+      // Create a contract instance
+      const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
+
+      // Call the getArtistBalance function
+      const artistBalance = await contract.getArtistBalance();
+
+      // Update the state with the artist's balance
+      setBalance(artistBalance.toString());
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
 
   return (
     <div>
@@ -71,7 +101,7 @@ function Dashboard() {
                     <div className="flex items-center">
                     <FaMoneyBill className=' text-white w-6 h-6 lg:w-12 lg:h-12 pr-1' />
                     <h3 className="text-xl ml-2 font-bold text-white">
-                        $17, 259
+                        {balance} ETH
                     </h3>
                     </div>
 
