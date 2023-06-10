@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musicstream from '../../component/assets/musicstream.jpg';
@@ -8,7 +8,13 @@ import musics from '../../component/assets/musics.jpg'
 import albums from '../../component/assets/albums.jpg';
 import { FaEye, FaMoneyBill } from 'react-icons/fa'
 
+import { ethers } from 'ethers';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2";
+
 function Dashboard() {
+
+    const [balance, setBalance] = useState(0);
 
     var myDate = new Date();
     var hours= myDate.getHours();

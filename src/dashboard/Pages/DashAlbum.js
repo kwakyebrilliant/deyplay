@@ -1,17 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import albums from '../../component/assets/albums.jpg';
 import { FaUpload } from 'react-icons/fa';
 
-import { ethers } from 'ethers';
-import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2"
-
 function DashAlbum() {
-
-  const [balance, setBalance] = useState(0);
 
   const [inputs, setInputs] = useState(['', '']);
 
