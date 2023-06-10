@@ -48,7 +48,7 @@ const PartialNavbar = () => {
             </li>
             <li className="border-zinc-900 w-fit text-white">
               {address ? (
-                <span className="text-sm text-white font-medium">{address.slice(0, 6)}…{address.slice(address.length - 6)}</span>
+                <span className="text-sm text-black rounded-lg p-3 bg-white font-medium">{address.slice(0, 6)}…{address.slice(address.length - 6)}</span>
               ) : (
                 <a
                   className="text-center cursor-pointer items-center px-8 py-2 text-black-600 bg-black border border-white rounded hover:bg-transparent hover:text-white active:text-white focus:outline-none focus:ring"
@@ -65,7 +65,7 @@ const PartialNavbar = () => {
         <div className="flex justify-end py-2">
           <div className="hidden md:flex pr-4">
             {address ? (
-              <span className="text-sm text-white font-medium">{address.slice(0, 6)}…{address.slice(address.length - 6)}</span>
+              <span className="text-sm text-black rounded-lg p-3 bg-white font-medium">{address.slice(0, 6)}…{address.slice(address.length - 6)}</span>
             ) : (
               <a
                 className="text-center cursor-pointer items-center px-8 py-2 mx-2 text-black-600 bg-white border border-white rounded hover:bg-transparent hover:text-white active:text-white focus:outline-none focus:ring"
