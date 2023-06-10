@@ -5,6 +5,8 @@ import PartialNavbar from '../Partials/PartialNavbar';
 import albums from '../../component/assets/albums.jpg';
 import { FaUpload } from 'react-icons/fa';
 
+import { ethers } from 'ethers';
+
 function DashAlbum() {
 
   const [inputs, setInputs] = useState(['', '']);
