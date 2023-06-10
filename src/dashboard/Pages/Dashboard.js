@@ -26,22 +26,37 @@ function Dashboard() {
         greet = "evening";
 
 
+    const [address, setAddress] = useState('');
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
         // Check if Ethereum is available in the browser
         if (typeof window.ethereum !== 'undefined') {
-            loadBalance();
+          loadAccountData();
+          loadBalance();
         } else {
-            console.log('Please install MetaMask to use this application.');
+          console.log('Please install MetaMask to use this application.');
         }
-        }, []);
+      }, []);
 
-    // Load the artist's balance from the smart contract
-  const loadBalance = async () => {
+    // Load the connected address
+  const loadAccountData = async () => {
     try {
       // Connect to the Ethereum network
       await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+      // Get the connected address
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      setAddress(accounts[0]);
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
+  // Load the artist's balance from the smart contract
+  const loadBalance = async () => {
+    try {
+      // Connect to the Ethereum network
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
 
@@ -75,7 +90,7 @@ function Dashboard() {
                         <div className="sm:justify-between sm:items-center sm:flex">
                         <div className="text-center sm:text-left">
                             <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-                            Good {greet}, 0xgt...4bxe
+                            Good {greet}, {address.slice(0, 6)}…{address.slice(address.length - 6)}
                             </h1>
 
                             <p className="mt-1.5 text-sm text-gray-900">
