@@ -16,7 +16,7 @@ const PartialNavbar = () => {
 
 
   return (
-    <nav className='bg-black/80 shadow-sm border-gray-200 lg:mx-2 px-2 py-2.5 rounded'>
+    <nav className="bg-black/80 shadow-sm border-gray-200 lg:mx-2 px-2 py-2.5 rounded relative z-10">
             <div className='container flex justify-between items-center mx-auto'>
 
             <div className='md:hidden' onClick={handleClick}>
