@@ -1,27 +1,61 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musics from '../../component/assets/musics.jpg';
 import { FaUpload } from 'react-icons/fa';
 
+import { ethers } from 'ethers';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0xeC2F72061d5eD5bf9ca2a2c39439C038271928A4";
+
 function DashMusic() {
 
-  const [inputs, setInputs] = useState(['', '']);
-
-  const handleAddInput = () => {
-    setInputs((prevInputs) => [...prevInputs, '', '']);
-  };
-
-  const handleInputChange = (e, index) => {
-    const newInputs = [...inputs];
-    newInputs[index] = e.target.value;
-    setInputs(newInputs);
-  };
-
-
-  const [audioFile, setAudioFile] = useState(null);
   const [imageFile, setImageFile] = useState(null);
+  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+  const [audioFile, setAudioFile] = useState('');
+  const [price, setPrice] = useState('');
+  const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
+  const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
+
+  const handleAddTrack = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
+
+      const royaltiesOwnersAddresses = royaltiesOwners.map(owner => ethers.utils.getAddress(owner));
+      const royaltiesPercents = royaltiesPercentages.map(percent => Number(percent));
+
+      const tx = await contract.addTrack(
+        title,
+        artist,
+        imageFile,
+        audioFile,
+        ethers.utils.parseEther(price),
+        royaltiesOwnersAddresses,
+        royaltiesPercents
+      );
+
+      await tx.wait();
+
+      // Clear form inputs
+      setTitle('');
+      setArtist('');
+      setImageFile('');
+      setAudioFile('');
+      setPrice('');
+      setRoyaltiesOwners([]);
+      setRoyaltiesPercentages([]);
+
+      // Show success message or trigger any other desired action
+      console.log('Track added successfully!');
+    } catch (error) {
+      // Handle error
+      console.error('Error adding track:', error);
+    }
+  };
 
   const handleAudioFileChange = (event) => {
     const file = event.target.files[0];
@@ -84,6 +118,8 @@ function DashMusic() {
                               id="title"
                               name="natitleme"
                               placeholder="Song Title"
+                              value={title} 
+                              onChange={e => setTitle(e.target.value)}
                               required
                             />
                           </div>
@@ -97,6 +133,8 @@ function DashMusic() {
                               id="address"
                               name="address"
                               placeholder="Artiste Address"
+                              value={artist} 
+                              onChange={e => setArtist(e.target.value)}
                               required
                             />
                           </div>
@@ -110,18 +148,15 @@ function DashMusic() {
                               id="price"
                               name="price"
                               placeholder="Song Price"
+                              value={price} 
+                              onChange={e => setPrice(e.target.value)}
                               required
                             />
                           </div>
 
                           <div className="container mx-auto p-4">
                             <h1 className="text-sm font-bold text-white">
-                              Add Royalties
-                              <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
-                                onClick={handleAddInput}>
-                                Add Royalties
-                              </button> 
-                              
+                              Add Royalties       
                             </h1>
                             <p class="text-xs mt-6 text-white mb-8">
                             You have the opportunity to list all individuals entitled to royalties.
@@ -130,19 +165,38 @@ function DashMusic() {
                             Use the "Add Royalties" button to add other royalty owners.
                             </p>
 
-                            {inputs.map((input, index) => (
-                              <div key={index} className="mb-6">
-                                <label className="block mb-2 text-lg font-medium text-white">
-                                  Input {index + 1}
-                                </label>
-                                <input
-                                  type="text"
-                                  value={input}
-                                  onChange={(e) => handleInputChange(e, index)}
-                                  className="w-full mb-3 px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
-                                />
-                              </div>
-                            ))}
+                            <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="owners">
+                              Royalty Owners
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="owners"
+                              name="owners"
+                              placeholder="Royalties Owners (comma-separated addresses)"
+                              value={royaltiesOwners}
+                              onChange={e => setRoyaltiesOwners(e.target.value.split(','))}
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="percentage">
+                              Royalty Owners Percentage
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="number"
+                              id="percentage"
+                              name="percentage"
+                              placeholder="Royalties Percentages (comma-separated)"
+                              value={royaltiesPercentages}
+                              onChange={e => setRoyaltiesPercentages(e.target.value.split(','))}
+                              required
+                            />
+                          </div>
+                           
                           </div>
 
 
@@ -208,6 +262,7 @@ function DashMusic() {
                             <label
                               htmlFor="file-input"
                               className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
+                              onClick={handleAddTrack}
                             >
                               <FaUpload className="mr-2" />
                               Upload Music
