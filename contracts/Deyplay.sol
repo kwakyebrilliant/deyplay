@@ -9,6 +9,7 @@ contract Deyplay{
         string title;
         address artist;
         string imageUrl;
+        string audioFile;
         uint price;
         uint totalStreams;
         uint totalPurchases;
@@ -18,7 +19,7 @@ contract Deyplay{
 
 
     //Album struct
-    struct Album {
+     struct Album {
         uint id;
         string title;
         address artist;
@@ -46,7 +47,7 @@ contract Deyplay{
 
 
     //Events
-    event TrackCreated(uint id, string title, address artist, string imageUrl, uint price);
+    event TrackCreated(uint id, string title, address artist, string imageUrl, string audioFile, uint price);
     event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price);
     event TrackStreamed(uint trackId, address listener, uint amount);
     event AlbumStreamed(uint albumId, address listener, uint amount);
@@ -67,11 +68,11 @@ contract Deyplay{
 
 
     //Add track function
-      function addTrack(string memory _title, address _artist, string memory _imageUrl, uint _price) public {
+    function addTrack(string memory _title, address _artist, string memory _imageUrl, string memory _audioFile, uint _price) public {
         trackCount++;
-        tracks[trackCount] = Track(trackCount, _title, _artist, _imageUrl, _price, 0, 0, new address[](0), new uint[](0));
+        tracks[trackCount] = Track(trackCount, _title, _artist, _imageUrl, _audioFile, _price, 0, 0, new address[](0), new uint[](0));
 
-        emit TrackCreated(trackCount, _title, _artist, _imageUrl, _price);
+        emit TrackCreated(trackCount, _title, _artist, _imageUrl, _audioFile, _price);
     }
 
 
@@ -92,7 +93,7 @@ contract Deyplay{
     }
 
     //List all tracks by an artiste
-    function listTracksByArtist(address _artist) public view returns (uint[] memory) {
+     function listTracksByArtist(address _artist) public view returns (uint[] memory) {
         uint[] memory artistTracks = new uint[](trackCount);
         uint counter = 0;
         for (uint i = 1; i <= trackCount; i++) {
@@ -150,26 +151,6 @@ contract Deyplay{
     }
 
 
-    //Gets total track streams
-    function getTotalTrackStreams() public view returns (uint) {
-        uint totalStreams = 0;
-        for (uint i = 1; i <= trackCount; i++) {
-            totalStreams += tracks[i].totalStreams;
-        }
-        return totalStreams;
-    }
-
-
-    //Gets total album streams
-    function getTotalAlbumStreams() public view returns (uint) {
-        uint totalStreams = 0;
-        for (uint i = 1; i <= albumCount; i++) {
-            totalStreams += albums[i].totalStreams;
-        }
-        return totalStreams;
-    }
-
-
     //Purchase track function
     function purchaseTrack(uint _trackId) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
@@ -217,7 +198,7 @@ contract Deyplay{
     }
 
     //Gets total amount an artiste has made on all tracks
-    function getTotalTrackAmount(address _artist) public view returns (uint) {
+   function getTotalTrackAmount(address _artist) public view returns (uint) {
         uint totalAmount = 0;
         for (uint i = 1; i <= trackCount; i++) {
             if (tracks[i].artist == _artist) {
@@ -229,7 +210,7 @@ contract Deyplay{
 
 
     //Gets total amount an artiste has made on all albums
-    function getTotalAlbumAmount(address _artist) public view returns (uint) {
+     function getTotalAlbumAmount(address _artist) public view returns (uint) {
         uint totalAmount = 0;
         for (uint i = 1; i <= albumCount; i++) {
             if (albums[i].artist == _artist) {
@@ -241,7 +222,7 @@ contract Deyplay{
 
 
     //Gets total streams from all tracks by an artiste
-    function getTotalTrackStreams(address _artist) public view returns (uint) {
+     function getTotalTrackStreams(address _artist) public view returns (uint) {
         uint totalStreams = 0;
         for (uint i = 1; i <= trackCount; i++) {
             if (tracks[i].artist == _artist) {
