@@ -1,16 +1,9 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musics from '../../component/assets/musics.jpg';
 import { FaUpload } from 'react-icons/fa';
-
-import { Web3Storage } from 'web3.storage';
-
-import { ethers } from 'ethers';
-import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-// const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2";
-
 
 function DashMusic() {
 
@@ -29,11 +22,6 @@ function DashMusic() {
 
   const [audioFile, setAudioFile] = useState(null);
   const [imageFile, setImageFile] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [title, setTitle] = useState('');
-  const [artist, setArtist] = useState('');
-  const [price, setPrice] = useState('');
 
   const handleAudioFileChange = (event) => {
     const file = event.target.files[0];
@@ -44,32 +32,6 @@ function DashMusic() {
     const file = event.target.files[0];
     setImageFile(file);
   };
-
-  useEffect(() => {
-    // Connect to Ethereum provider
-    const connectProvider = async () => {
-      if (window.ethereum) {
-        try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          setProvider(provider);
-
-          // Initialize contract instance
-          const signer = provider.getSigner();
-          const deyplayAddress = '0x7b06D17d015500968AA413611f763F5e10F17Df2'; // Replace with your actual contract address
-          const contractAbi = Deyplay.abi;
-          const contract = new ethers.Contract(deyplayAddress, contractAbi, signer);
-          setContract(contract);
-        } catch (error) {
-          console.error('Failed to connect to Ethereum provider:', error);
-        }
-      } else {
-        console.error('Please install MetaMask or another Ethereum-compatible browser extension');
-      }
-    };
-
-    connectProvider();
-  }, []);
 
 
   return (
