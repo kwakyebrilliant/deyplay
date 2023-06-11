@@ -3,7 +3,7 @@ pragma solidity ^0.8.4;
 
 contract Deyplay{
 
-    //Track struct
+ //Track struct
   struct Track {
         uint id;
         string title;
@@ -77,7 +77,7 @@ contract Deyplay{
 
 
     //Add album function
-     function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles) public {
+    function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles) public {
         require(_audioFiles.length > 0, "Album must have at least one audio file");
 
         albumCount++;
@@ -87,13 +87,35 @@ contract Deyplay{
     }
 
     //Add track to album function
-    function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
+     function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
         Album storage album = albums[_albumId];
         album.audioFiles.push(_trackId);
     }
 
+
+    //List all tracks on the platform
+    function listAllTracks() public view returns (uint[] memory) {
+        uint[] memory allTracks = new uint[](trackCount);
+        for (uint i = 1; i <= trackCount; i++) {
+            allTracks[i - 1] = tracks[i].id;
+        }
+        return allTracks;
+    }
+
+
+    //List all albums on the platform
+    function listAllAlbums() public view returns (uint[] memory) {
+        uint[] memory allAlbums = new uint[](albumCount);
+        for (uint i = 1; i <= albumCount; i++) {
+            allAlbums[i - 1] = albums[i].id;
+        }
+        return allAlbums;
+    }
+
+
+
     //List all tracks by an artiste
-     function listTracksByArtist(address _artist) public view returns (uint[] memory) {
+    function listTracksByArtist(address _artist) public view returns (uint[] memory) {
         uint[] memory artistTracks = new uint[](trackCount);
         uint counter = 0;
         for (uint i = 1; i <= trackCount; i++) {
@@ -120,7 +142,7 @@ contract Deyplay{
     }
 
     //Allow a user to stream a track
-     function streamTrack(uint _trackId) public payable trackExists(_trackId) {
+    function streamTrack(uint _trackId) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
         require(msg.value >= track.price, "Insufficient payment to stream the track");
 
@@ -136,7 +158,7 @@ contract Deyplay{
 
 
      //Allow a user to stream an album
-      function streamAlbum(uint _albumId) public payable albumExists(_albumId) {
+     function streamAlbum(uint _albumId) public payable albumExists(_albumId) {
         Album storage album = albums[_albumId];
         require(msg.value >= album.price, "Insufficient payment to stream the album");
 
@@ -170,7 +192,7 @@ contract Deyplay{
 
 
     //Purchase album function
-     function purchaseAlbum(uint _albumId) public payable albumExists(_albumId) {
+    function purchaseAlbum(uint _albumId) public payable albumExists(_albumId) {
         Album storage album = albums[_albumId];
         require(msg.value >= album.price, "Insufficient payment to purchase the album");
 
@@ -188,12 +210,12 @@ contract Deyplay{
 
 
     //Gets a user purchased track
-     function getUserPurchasedTracks(address _user) public view returns (uint[] memory) {
+    function getUserPurchasedTracks(address _user) public view returns (uint[] memory) {
         return userPurchasedTracks[_user];
     }
 
     //Gets a user purchased albums
-    function getUserPurchasedAlbums(address _user) public view returns (uint[] memory) {
+   function getUserPurchasedAlbums(address _user) public view returns (uint[] memory) {
         return userPurchasedAlbums[_user];
     }
 
@@ -210,7 +232,7 @@ contract Deyplay{
 
 
     //Gets total amount an artiste has made on all albums
-     function getTotalAlbumAmount(address _artist) public view returns (uint) {
+   function getTotalAlbumAmount(address _artist) public view returns (uint) {
         uint totalAmount = 0;
         for (uint i = 1; i <= albumCount; i++) {
             if (albums[i].artist == _artist) {
@@ -222,7 +244,7 @@ contract Deyplay{
 
 
     //Gets total streams from all tracks by an artiste
-     function getTotalTrackStreams(address _artist) public view returns (uint) {
+    function getTotalTrackStreams(address _artist) public view returns (uint) {
         uint totalStreams = 0;
         for (uint i = 1; i <= trackCount; i++) {
             if (tracks[i].artist == _artist) {
@@ -253,7 +275,7 @@ contract Deyplay{
 
 
     //Calculates royalties
-    function calculateRoyalties(uint _price, address[] memory _owners, uint[] memory _percentages) private pure returns (uint) {
+     function calculateRoyalties(uint _price, address[] memory _owners, uint[] memory _percentages) private pure returns (uint) {
         uint totalRoyalties = 0;
         for (uint i = 0; i < _owners.length; i++) {
             totalRoyalties += (_price * _percentages[i]) / 100;
