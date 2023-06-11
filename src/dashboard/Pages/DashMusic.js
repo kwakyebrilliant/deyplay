@@ -9,7 +9,7 @@ import { Web3Storage } from 'web3.storage';
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2";
+// const deyplayAddress = "0x7b06D17d015500968AA413611f763F5e10F17Df2";
 
 
 function DashMusic() {
