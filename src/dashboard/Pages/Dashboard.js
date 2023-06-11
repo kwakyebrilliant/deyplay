@@ -180,7 +180,7 @@ function Dashboard() {
                             alt="Office"
                             src={musics}
                             className="w-full h-40 p-4 object-cover"
-                        />
+                        /> 
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
