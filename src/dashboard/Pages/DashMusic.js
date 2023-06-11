@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
@@ -6,8 +7,18 @@ import musics from '../../component/assets/musics.jpg';
 import { FaUpload } from 'react-icons/fa';
 
 import { ethers } from 'ethers';
+import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0xeC2F72061d5eD5bf9ca2a2c39439C038271928A4";
+
+function getAccessToken () {
+   
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE0ZGU4NTUwMjAxMTdENDIyY0IxOTRBREJiZERlOTJGZjBkYzkxNzciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODY0ODYwNjYyNjksIm5hbWUiOiJEZXlwbGF5In0.7IJOEuXqeiau_nue9GSlHWWcpnROnPE6TP24oy4e9No'
+}
+
+function makeStorageClient () {
+  return new Web3Storage({ token: getAccessToken() })
+}
 
 function DashMusic() {
 
@@ -18,6 +29,58 @@ function DashMusic() {
   const [price, setPrice] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
+
+
+  async function handleAudioFileChange(event) {
+    const audiofileUploaded = event.target.files[0];
+    setAudioFile(URL.createObjectURL(event.target.files[0]));
+    const client = makeStorageClient()
+    const cid = await client.put([audiofileUploaded])
+    console.log('stored files with cid:', cid)
+
+    const res = await client.get(cid)
+    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+
+
+    const filess = await res.files();
+    setAudioFile(`https://${cid}.ipfs.dweb.link/${audiofileUploaded.name}`);
+    console.log(audioFile)
+    console.log(audiofileUploaded)
+    for (const file of filess) {
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+    }
+    return cid
+
+  };
+
+
+  async function handleImageFileChange(event) {
+    const imagefileUploaded = event.target.files[0];
+    setImageFile(URL.createObjectURL(event.target.files[0]));
+    const client = makeStorageClient()
+    const cid = await client.put([imagefileUploaded])
+    console.log('stored files with cid:', cid)
+
+    const res = await client.get(cid)
+    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+
+
+    const filess = await res.files();
+    setImageFile(`https://${cid}.ipfs.dweb.link/${imagefileUploaded.name}`);
+    console.log(imageFile)
+    console.log(imagefileUploaded)
+    for (const file of filess) {
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+    }
+    return cid
+
+  };
 
   const handleAddTrack = async () => {
     try {
@@ -55,16 +118,6 @@ function DashMusic() {
       // Handle error
       console.error('Error adding track:', error);
     }
-  };
-
-  const handleAudioFileChange = (event) => {
-    const file = event.target.files[0];
-    setAudioFile(file);
-  };
-
-  const handleImageFileChange = (event) => {
-    const file = event.target.files[0];
-    setImageFile(file);
   };
 
 
@@ -224,7 +277,7 @@ function DashMusic() {
                                 </div>
                                 {audioFile && (
                                   <audio controls className="my-4 w-full">
-                                    <source src={URL.createObjectURL(audioFile)} />
+                                    <source src={audioFile} />
                                   </audio>
                                 )}
                               </div>
@@ -249,7 +302,7 @@ function DashMusic() {
                                 </div>
                                 {imageFile && (
                                   <img
-                                    src={URL.createObjectURL(imageFile)}
+                                    src={imageFile}
                                     alt="Image Preview"
                                     className="my-4 sm:w-24 sm:h-24 lg:w-full lg:h-96 object-cover rounded"
                                   />
@@ -266,11 +319,6 @@ function DashMusic() {
                             >
                               <FaUpload className="mr-2" />
                               Upload Music
-                              <input
-                                id="file-input"
-                                type="file"
-                                className="hidden"
-                              />
                             </label>
                           </div>
 
