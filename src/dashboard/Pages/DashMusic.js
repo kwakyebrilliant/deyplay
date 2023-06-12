@@ -22,13 +22,13 @@ function makeStorageClient () {
 
 function DashMusic() {
 
-  const [imageFile, setImageFile] = useState(null);
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
+  const [imageFile, setImageFile] = useState('');
   const [audioFile, setAudioFile] = useState('');
   const [price, setPrice] = useState('');
-  const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
-  const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
+  const [royaltiesOwners, setRoyaltiesOwners] = useState('');
+  const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
 
 
   async function handleAudioFileChange(event) {
@@ -82,41 +82,53 @@ function DashMusic() {
 
   };
 
-  const handleAddTrack = async () => {
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Connect to the Ethereum provider
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    // Get the signer
+    const signer = provider.getSigner();
+
+    // Instantiate the contract with the signer
+    const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
+
+    // Prepare the royalties owners and percentages arrays
+    const owners = royaltiesOwners.split(',');
+    const percentages = royaltiesPercentages.split(',').map(Number);
+
+    // Call the addTrack function on the smart contract
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
-
-      const royaltiesOwnersAddresses = royaltiesOwners.map(owner => ethers.utils.getAddress(owner));
-      const royaltiesPercents = royaltiesPercentages.map(percent => Number(percent));
-
-      const tx = await contract.addTrack(
+      const transaction = await contract.addTrack(
         title,
         artist,
         imageFile,
         audioFile,
         ethers.utils.parseEther(price),
-        royaltiesOwnersAddresses,
-        royaltiesPercents
+        0, // Initialize totalStreams to 0
+        0, // Initialize totalPurchases to 0
+        owners,
+        percentages
       );
 
-      await tx.wait();
+      // Wait for the transaction to be mined
+      await transaction.wait();
 
-      // Clear form inputs
+      // Reset the form fields
       setTitle('');
       setArtist('');
       setImageFile('');
       setAudioFile('');
       setPrice('');
-      setRoyaltiesOwners([]);
-      setRoyaltiesPercentages([]);
+      setRoyaltiesOwners('');
+      setRoyaltiesPercentages('');
 
-      // Show success message or trigger any other desired action
+      // Display a success message or perform any other actions
       console.log('Track added successfully!');
     } catch (error) {
-      // Handle error
-      console.error('Error adding track:', error);
+      // Handle the error appropriately
+      console.error('Failed to add track:', error);
     }
   };
 
@@ -172,7 +184,7 @@ function DashMusic() {
                               name="natitleme"
                               placeholder="Song Title"
                               value={title} 
-                              onChange={e => setTitle(e.target.value)}
+                              onChange={(e) => setTitle(e.target.value)}
                               required
                             />
                           </div>
@@ -187,7 +199,7 @@ function DashMusic() {
                               name="address"
                               placeholder="Artiste Address"
                               value={artist} 
-                              onChange={e => setArtist(e.target.value)}
+                              onChange={(e) => setArtist(e.target.value)}
                               required
                             />
                           </div>
@@ -202,7 +214,7 @@ function DashMusic() {
                               name="price"
                               placeholder="Song Price"
                               value={price} 
-                              onChange={e => setPrice(e.target.value)}
+                              onChange={(e) => setPrice(e.target.value)}
                               required
                             />
                           </div>
@@ -229,7 +241,7 @@ function DashMusic() {
                               name="owners"
                               placeholder="Royalties Owners (comma-separated addresses)"
                               value={royaltiesOwners}
-                              onChange={e => setRoyaltiesOwners(e.target.value.split(','))}
+                              onChange={(e) => setRoyaltiesOwners(e.target.value)}
                               required
                             />
                           </div>
@@ -245,7 +257,7 @@ function DashMusic() {
                               name="percentage"
                               placeholder="Royalties Percentages (comma-separated)"
                               value={royaltiesPercentages}
-                              onChange={e => setRoyaltiesPercentages(e.target.value.split(','))}
+                              onChange={(e) => setRoyaltiesPercentages(e.target.value)}
                               required
                             />
                           </div>
@@ -315,7 +327,7 @@ function DashMusic() {
                             <label
                               htmlFor="file-input"
                               className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
-                              onClick={handleAddTrack}
+                              onClick={handleFormSubmit}
                             >
                               <FaUpload className="mr-2" />
                               Upload Music
