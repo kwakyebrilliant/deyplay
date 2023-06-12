@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
