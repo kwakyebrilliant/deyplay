@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/brilliantkwakye/Documents/web3/deyplay/contracts/Deyplay.sol": {
-      "lastModificationDate": 1686508763492,
-      "contentHash": "0a0106c6d3506e9a43a7eea5194aadc8",
+      "lastModificationDate": 1686564433984,
+      "contentHash": "9adc991b6675fb224f0cd46792e57ec9",
       "sourceName": "contracts/Deyplay.sol",
       "solcConfig": {
         "version": "0.8.4",
