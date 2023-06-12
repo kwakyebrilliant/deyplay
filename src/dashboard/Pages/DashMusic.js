@@ -91,7 +91,7 @@ function DashMusic() {
     const signer = provider.getSigner();
 
     // Instantiate the contract with the signer
-    const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
+    const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
 
     // Prepare the royalties owners and percentages arrays
     const owners = royaltiesOwners.split(',');
@@ -105,8 +105,6 @@ function DashMusic() {
         imageFile,
         audioFile,
         ethers.utils.parseEther(price),
-        0, // Initialize totalStreams to 0
-        0, // Initialize totalPurchases to 0
         owners,
         percentages
       );
@@ -120,8 +118,8 @@ function DashMusic() {
       setImageFile('');
       setAudioFile('');
       setPrice('');
-      setRoyaltiesOwners('');
-      setRoyaltiesPercentages('');
+      // setRoyaltiesOwners('');
+      // setRoyaltiesPercentages('');
 
       // Display a success message or perform any other actions
       console.log('Track added successfully!');
