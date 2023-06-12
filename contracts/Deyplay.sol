@@ -40,7 +40,7 @@ contract Deyplay{
 
     mapping(uint => Track) private tracks;
     mapping(uint => Album) private albums;
-    mapping(address => uint[]) private userPurchasedTracks;
+     mapping(address => uint[]) private userPurchasedTracks;
     mapping(address => uint[]) private userPurchasedAlbums;
 
     mapping(address => uint) private artistBalances;
@@ -48,7 +48,7 @@ contract Deyplay{
 
     //Events
     event TrackCreated(uint id, string title, address artist, string imageUrl, string audioFile, uint price, address[] royaltiesOwners, uint[] royaltiesPercentages);
-    event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price, address[] royaltiesOwners, uint[] royaltiesPercentages);
+    event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price, uint[] audioFiles, address[] royaltiesOwners, uint[] royaltiesPercentages);
     event TrackStreamed(uint trackId, address listener, uint amount);
     event AlbumStreamed(uint albumId, address listener, uint amount);
     event TrackPurchased(uint trackId, address buyer, uint amount);
@@ -83,11 +83,11 @@ contract Deyplay{
         albumCount++;
         albums[albumCount] = Album(albumCount, _title, _artist, _imageUrl, _description, _price, 0, 0, _audioFiles, _royaltiesOwners, _royaltiesPercentages);
 
-        emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price, _royaltiesOwners, _royaltiesPercentages);
+        emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price, _audioFiles, _royaltiesOwners, _royaltiesPercentages);
     }
 
     //Add track to album function
-     function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
+    function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
         Album storage album = albums[_albumId];
         album.audioFiles.push(_trackId);
     }
