@@ -37,24 +37,6 @@ function DashAlbum() {
   const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
 
-  const handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    // Handle input fields except audio files
-    if (name === "title") setTitle(value);
-    else if (name === "artist") setArtist(value);
-    else if (name === "imageFile") setImageFile(value);
-    else if (name === "price") setPrice(parseFloat(value));
-    else if (name === "royaltiesOwners") {
-      const owners = value.split(",");
-      setRoyaltiesOwners(owners);
-    } else if (name === "royaltiesPercentages") {
-      const percentages = value.split(",").map(Number);
-      setRoyaltiesPercentages(percentages);
-    }
-  };
 
   const handleAudioFileChange = (e, index) => {
     const file = e.target.files[0];
@@ -96,6 +78,53 @@ function DashAlbum() {
     }
     return cid
 
+  };
+
+
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    // Handle input fields except audio files
+    if (name === "title") setTitle(value);
+    else if (name === "artist") setArtist(value);
+    else if (name === "imageFile") setImageFile(value);
+    else if (name === "price") setPrice(parseFloat(value));
+    else if (name === "royaltiesOwners") {
+      const owners = value.split(",");
+      setRoyaltiesOwners(owners);
+    } else if (name === "royaltiesPercentages") {
+      const percentages = value.split(",").map(Number);
+      setRoyaltiesPercentages(percentages);
+    }
+  };
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Convert the royalties percentages to integers (e.g., 10% => 10)
+      const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
+
+      // Call the smart contract's addAlbum function
+      await contract.addAlbum(title, artist, imageFile, audioFiles, price, royaltiesOwners, royalties);
+
+      // Clear the form fields
+      setTitle("");
+      setArtist("");
+      setImageFile("");
+      setAudioFiles([]);
+      setPrice(0);
+      setRoyaltiesOwners([]);
+      setRoyaltiesPercentages([]);
+
+      alert("Album added successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add the album. Please try again.");
+    }
   };
 
 
