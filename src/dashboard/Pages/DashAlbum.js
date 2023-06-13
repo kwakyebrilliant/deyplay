@@ -176,6 +176,8 @@ function DashAlbum() {
                               id="title"
                               name="natitleme"
                               placeholder="Album Title"
+                              value={title} 
+                              onChange={handleInputChange}
                               required
                             />
                           </div>
