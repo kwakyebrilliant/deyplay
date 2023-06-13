@@ -53,10 +53,6 @@ function DashAlbum() {
     }
   };
 
-  const handleAddAudioFiles = () => {
-    setAudioFiles((prevFiles) => [...prevFiles, null]);
-  };
-
 
   async function handleImageFileChange(event) {
     const imagefileUploaded = event.target.files[0];
@@ -314,7 +310,8 @@ function DashAlbum() {
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="royalties">
                               Audio File
                               <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
-                              onClick={handleAddAudioFiles}>
+                              onClick={() => setAudioFiles([...audioFiles, ""])}
+                              >
                               Add Audio File
                             </button> 
                             </label>
@@ -333,10 +330,12 @@ function DashAlbum() {
                                   >
                                     Choose Audio
                                     <input
+                                      key={index}
                                       id={`audio-file-input-${index}`}
                                       type="file"
                                       accept="audio/*"
-                                      onChange={(e) => handleAudioFileChange(e, index)}
+                                      onChange={(event) => handleAudioFileChange(event, index)}
+                                      value={file}
                                       className="hidden"
                                     />
                                   </label>
