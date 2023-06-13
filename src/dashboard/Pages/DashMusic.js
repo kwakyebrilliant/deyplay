@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musics from '../../component/assets/musics.jpg';
@@ -28,6 +28,8 @@ function DashMusic() {
   const [price, setPrice] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState('');
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
+  const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
+  const [connectedAddress, setConnectedAddress] = useState('');
 
 
   async function handleAudioFileChange(event) {
@@ -80,6 +82,28 @@ function DashMusic() {
     return cid
 
   };
+
+  useEffect(() => {
+    // Check if MetaMask is connected
+    if (typeof window.ethereum !== 'undefined') {
+      setIsMetamaskConnected(true);
+
+      // Get the connected address
+      window.ethereum
+        .request({ method: 'eth_accounts' })
+        .then((accounts) => {
+          if (accounts.length > 0) {
+            setConnectedAddress(accounts[0]);
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to get connected address:', error);
+        });
+    } else {
+      setIsMetamaskConnected(false);
+      setConnectedAddress('');
+    }
+  }, []);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -146,10 +170,15 @@ function DashMusic() {
                         <img src={musics} alt="Background" className="w-full rounded object-cover h-96" />
 
                         <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
-                        
+                        {isMetamaskConnected ? (
                         <h3 className="text-xl font-medium text-white">
-                          0xgt...4bxe
+                          {connectedAddress.slice(0, 6)}…{connectedAddress.slice(connectedAddress.length - 6)}
                         </h3>
+                        ) : (
+                          <h3 className="text-xl font-medium text-white">
+                          Please connect your MetaMask
+                        </h3>
+                        )}
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
                         dicta impedit aperiam ipsum!
