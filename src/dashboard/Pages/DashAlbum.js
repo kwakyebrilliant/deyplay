@@ -10,6 +10,13 @@ import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x2725086017dEA86B54f99C904366921E4603a484";
 
+// Connect to the Ethereum network using ethers.js
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const signer = provider.getSigner();
+
+// Instantiate the smart contract
+const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+
 function DashAlbum() {
 
   const [inputs, setInputs] = useState(['', '']);
