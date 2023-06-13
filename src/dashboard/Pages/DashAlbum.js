@@ -28,11 +28,14 @@ function makeStorageClient () {
 
 function DashAlbum() {
 
-
   
-
+  const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
   const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
+  const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
 
   const handleAudioFileChange = (e, index) => {
     const file = e.target.files[0];
