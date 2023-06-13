@@ -43,35 +43,33 @@ function DashAlbum() {
 
   async function handleAudioFileChange(e, index) {
     const audioFileUploaded = e.target.files[0];
-    setAudioFiles(URL.createObjectURL(e.target.files[0]))
-    const client = makeStorageClient()
-    const cid = await client.put([audioFileUploaded])
-    console.log('stored files with cid:', cid)
-
-    const res = await client.get(cid)
-    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    const client = makeStorageClient();
+    const cid = await client.put([audioFileUploaded]);
+    console.log('stored files with cid:', cid);
+  
+    const res = await client.get(cid);
+    console.log(`Got a response! [${res.status}] ${res.statusText}`);
     if (!res.ok) {
-      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`);
     }
-
+  
     const filess = await res.files();
-    setAudioFiles(`https://${cid}.ipfs.dweb.link/${audioFileUploaded.name}`);
-    console.log(audioFiles)
-    console.log(audioFileUploaded)
+    const audioFileUrl = `https://${cid}.ipfs.dweb.link/${audioFileUploaded.name}`;
+    console.log(audioFileUrl);
+    console.log(audioFileUploaded);
     for (const file of filess) {
-      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`);
     }
-    
-
-    if (audioFileUploaded && audioFileUploaded.type.includes('audio')) {
-      setAudioFiles((prevFiles) => {
-        const newFiles = [...prevFiles];
-        newFiles[index] = audioFileUploaded;
-        return newFiles;
-      });
-    }
-    return cid
-  };
+  
+    setAudioFiles((prevFiles) => {
+      const newFiles = [...prevFiles];
+      newFiles[index] = audioFileUrl;
+      return newFiles;
+    });
+  
+    return cid;
+  }
+  
 
 
   async function handleImageFileChange(event) {
@@ -338,7 +336,7 @@ function DashAlbum() {
 
                            
 
-                            {audioFiles.map((file, index) => (
+                            {audioFiles.map((audioFile, index) => (
                               <div key={index} className="mb-6">
                                 <label className="block mb-2 text-lg font-medium text-white">
                                   Audio File {index + 1}
@@ -350,18 +348,16 @@ function DashAlbum() {
                                   >
                                     Choose Audio
                                     <input
-                                      key={index}
                                       id={`audio-file-input-${index}`}
                                       type="file"
                                       accept="audio/*"
                                       onChange={(event) => handleAudioFileChange(event, index)}
-                                      value={audioFiles}
                                       className="hidden"
                                     />
                                   </label>
-                                  {audioFiles && (
+                                  {audioFile && (
                                     <audio controls className="ml-4 w-full">
-                                      <source src={audioFiles} />
+                                      <source src={audioFile} />
                                     </audio>
                                   )}
                                 </div>
