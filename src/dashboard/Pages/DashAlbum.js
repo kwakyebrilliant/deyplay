@@ -17,19 +17,19 @@ const signer = provider.getSigner();
 // Instantiate the smart contract
 const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
 
+function getAccessToken () {
+   
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE0ZGU4NTUwMjAxMTdENDIyY0IxOTRBREJiZERlOTJGZjBkYzkxNzciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODY0ODYwNjYyNjksIm5hbWUiOiJEZXlwbGF5In0.7IJOEuXqeiau_nue9GSlHWWcpnROnPE6TP24oy4e9No'
+}
+
+function makeStorageClient () {
+  return new Web3Storage({ token: getAccessToken() })
+}
+
 function DashAlbum() {
 
-  const [inputs, setInputs] = useState(['', '']);
 
-  const handleAddInput = () => {
-    setInputs((prevInputs) => [...prevInputs, '', '']);
-  };
-
-  const handleInputChange = (e, index) => {
-    const newInputs = [...inputs];
-    newInputs[index] = e.target.value;
-    setInputs(newInputs);
-  };
+  
 
   const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
@@ -49,10 +49,31 @@ function DashAlbum() {
   const handleAddAudioFiles = () => {
     setAudioFiles((prevFiles) => [...prevFiles, null]);
   };
+  
 
-  const handleImageFileChange = (event) => {
-    const file = event.target.files[0];
-    setImageFile(file);
+  async function handleImageFileChange(event) {
+    const imagefileUploaded = event.target.files[0];
+    setImageFile(URL.createObjectURL(event.target.files[0]));
+    const client = makeStorageClient()
+    const cid = await client.put([imagefileUploaded])
+    console.log('stored files with cid:', cid)
+
+    const res = await client.get(cid)
+    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+
+
+    const filess = await res.files();
+    setImageFile(`https://${cid}.ipfs.dweb.link/${imagefileUploaded.name}`);
+    console.log(imageFile)
+    console.log(imagefileUploaded)
+    for (const file of filess) {
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+    }
+    return cid
+
   };
 
 
