@@ -37,6 +37,25 @@ function DashAlbum() {
   const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
 
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    // Handle input fields except audio files
+    if (name === "title") setTitle(value);
+    else if (name === "artist") setArtist(value);
+    else if (name === "imageFile") setImageFile(value);
+    else if (name === "price") setPrice(parseFloat(value));
+    else if (name === "royaltiesOwners") {
+      const owners = value.split(",");
+      setRoyaltiesOwners(owners);
+    } else if (name === "royaltiesPercentages") {
+      const percentages = value.split(",").map(Number);
+      setRoyaltiesPercentages(percentages);
+    }
+  };
+
   const handleAudioFileChange = (e, index) => {
     const file = e.target.files[0];
 
