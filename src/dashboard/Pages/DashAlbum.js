@@ -49,7 +49,7 @@ function DashAlbum() {
   const handleAddAudioFiles = () => {
     setAudioFiles((prevFiles) => [...prevFiles, null]);
   };
-  
+
 
   async function handleImageFileChange(event) {
     const imagefileUploaded = event.target.files[0];
@@ -277,7 +277,7 @@ function DashAlbum() {
                                 </div>
                                 {imageFile && (
                                   <img
-                                    src={URL.createObjectURL(imageFile)}
+                                    src={imageFile}
                                     alt="Image Preview"
                                     className="my-4 sm:w-24 sm:h-24 lg:w-full lg:h-96 object-cover rounded"
                                   />
