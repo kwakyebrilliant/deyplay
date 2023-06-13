@@ -71,7 +71,6 @@ function DashAlbum() {
   }
   
 
-
   async function handleImageFileChange(event) {
     const imagefileUploaded = event.target.files[0];
     setImageFile(URL.createObjectURL(event.target.files[0]));
