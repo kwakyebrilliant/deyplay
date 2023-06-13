@@ -1,5 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
-const privateKey = 'f7b493fe5b4d0fde05524a0901c321bb65fb0177ebe07ccde9f99bc25ea1ebe6';
+const privateKey = '';
 
 module.exports = {
   defaultNetwork: 'hardhat',
