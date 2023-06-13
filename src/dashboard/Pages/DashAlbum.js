@@ -385,6 +385,7 @@ function DashAlbum() {
                             <label
                               htmlFor="file-input"
                               className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
+                              onClick={handleSubmit}
                             >
                               <FaUpload className="mr-2" />
                               Upload Album
