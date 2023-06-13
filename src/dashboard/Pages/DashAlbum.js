@@ -34,6 +34,7 @@ function DashAlbum() {
   const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
   const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
@@ -91,7 +92,7 @@ function DashAlbum() {
     // Handle input fields except audio files
     if (name === "title") setTitle(value);
     else if (name === "artist") setArtist(value);
-    else if (name === "imageFile") setImageFile(value);
+    else if (name === "description") setDescription(value);
     else if (name === "price") setPrice(parseFloat(value));
     else if (name === "royaltiesOwners") {
       const owners = value.split(",");
@@ -133,14 +134,15 @@ function DashAlbum() {
       const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
 
       // Call the smart contract's addAlbum function
-      await contract.addAlbum(title, artist, imageFile, audioFiles, price, royaltiesOwners, royalties);
+      await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
 
       // Clear the form fields
       setTitle("");
       setArtist("");
       setImageFile("");
-      setAudioFiles([]);
+      setDescription("");
       setPrice(0);
+      setAudioFiles([]);
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
 
@@ -221,6 +223,8 @@ function DashAlbum() {
                               id="address"
                               name="address"
                               placeholder="Artiste Address"
+                              value={artist} 
+                              onChange={handleInputChange} 
                               required
                             />
                           </div>
@@ -235,6 +239,8 @@ function DashAlbum() {
                               id="price"
                               name="price"
                               placeholder="Album Price"
+                              value={price} 
+                              onChange={handleInputChange} 
                               required
                             />
                           </div>
@@ -249,6 +255,8 @@ function DashAlbum() {
                               id="description"
                               name="description"
                               placeholder="Album Description"
+                              value={description}
+                              onChange={handleInputChange}
                               required
                               rows='4'
                             >
@@ -276,6 +284,8 @@ function DashAlbum() {
                               id="owners"
                               name="owners"
                               placeholder="Royalties Owners (comma-separated addresses)"
+                              value={royaltiesOwners}
+                              onChange={handleInputChange}
                               required
                             />
                           </div>
@@ -290,6 +300,8 @@ function DashAlbum() {
                               id="percentage"
                               name="percentage"
                               placeholder="Royalties Percentages (comma-separated)"
+                              value={royaltiesPercentages}
+                              onChange={handleInputChange}
                               required
                             />
                           </div>
