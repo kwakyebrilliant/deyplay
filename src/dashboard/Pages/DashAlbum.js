@@ -41,16 +41,36 @@ function DashAlbum() {
   const [connectedAddress, setConnectedAddress] = useState('');
 
 
-  const handleAudioFileChange = (e, index) => {
-    const file = e.target.files[0];
+  async function handleAudioFileChange(e, index) {
+    const audioFileUploaded = e.target.files[0];
+    setAudioFiles(URL.createObjectURL(e.target.files[0]))
+    const client = makeStorageClient()
+    const cid = await client.put([audioFileUploaded])
+    console.log('stored files with cid:', cid)
 
-    if (file && file.type.includes('audio')) {
+    const res = await client.get(cid)
+    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+
+    const filess = await res.files();
+    setAudioFiles(`https://${cid}.ipfs.dweb.link/${audioFileUploaded.name}`);
+    console.log(audioFiles)
+    console.log(audioFileUploaded)
+    for (const file of filess) {
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+    }
+    
+
+    if (audioFileUploaded && audioFileUploaded.type.includes('audio')) {
       setAudioFiles((prevFiles) => {
         const newFiles = [...prevFiles];
-        newFiles[index] = file;
+        newFiles[index] = audioFileUploaded;
         return newFiles;
       });
     }
+    return cid
   };
 
 
@@ -335,13 +355,13 @@ function DashAlbum() {
                                       type="file"
                                       accept="audio/*"
                                       onChange={(event) => handleAudioFileChange(event, index)}
-                                      value={file}
+                                      value={audioFiles}
                                       className="hidden"
                                     />
                                   </label>
-                                  {file && (
+                                  {audioFiles && (
                                     <audio controls className="ml-4 w-full">
-                                      <source src={URL.createObjectURL(file)} />
+                                      <source src={audioFiles} />
                                     </audio>
                                   )}
                                 </div>
