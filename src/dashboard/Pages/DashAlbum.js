@@ -69,7 +69,6 @@ function DashAlbum() {
   
     return cid;
   }
-  
 
   async function handleImageFileChange(event) {
     const imagefileUploaded = event.target.files[0];
