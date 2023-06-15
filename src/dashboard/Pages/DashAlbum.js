@@ -291,7 +291,7 @@ function DashAlbum() {
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
-                              type="number"
+                              type="text"
                               id="royaltiesPercentages"
                               name="royaltiesPercentages"
                               placeholder="Royalties Percentages (comma-separated)"
