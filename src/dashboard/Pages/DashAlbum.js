@@ -23,8 +23,8 @@ function makeStorageClient () {
 function DashAlbum() {
 
   
-  const [title, setTitle] = useState("");
-  const [artist, setArtist] = useState("");
+  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
   const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [price, setPrice] = useState('');
@@ -90,81 +90,62 @@ function DashAlbum() {
   };
 
 
-  const handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    // Handle input fields except audio files
-    if (name === "title") setTitle(value);
-    else if (name === "artist") setArtist(value);
-    else if (name === "description") setDescription(value);
-    else if (name === "price") setPrice(value >= 0 ? parseFloat(value) : 0);
-    else if (name === "royaltiesOwners") {
-      const owners = value.split(",");
-      setRoyaltiesOwners(owners);
-    } else if (name === "royaltiesPercentages") {
-      const percentages = value.split(",").map((percentage) => parseInt(percentage));
-      setRoyaltiesPercentages(percentages);
-    }
-  };
-
-  useEffect(() => {
-    // Check if MetaMask is connected
-    if (typeof window.ethereum !== 'undefined') {
-      setIsMetamaskConnected(true);
-
-      // Get the connected address
-      window.ethereum
-        .request({ method: 'eth_accounts' })
-        .then((accounts) => {
-          if (accounts.length > 0) {
-            setConnectedAddress(accounts[0]);
-          }
-        })
-        .catch((error) => {
-          console.error('Failed to get connected address:', error);
-        });
-    } else {
-      setIsMetamaskConnected(false);
-      setConnectedAddress('');
-    }
-  }, []);
-
-
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-  
-    // Connect to the Ethereum network using ethers.js
+    if (!isMetamaskConnected) {
+      alert('Please connect to MetaMask');
+      return;
+    }
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-  
-    // Instantiate the smart contract
     const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-  
+
     try {
-      // Convert the royalties percentages to integers (e.g., 10% => 10)
-      const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
-  
-      // Call the smart contract's addAlbum function
-      await contract.addAlbum(title, artist, imageFile, description, ethers.utils.parseEther(price), audioFiles, royaltiesOwners, royalties);
-  
-      // Clear the form fields
-      setTitle("");
-      setArtist("");
-      setImageFile("");
-      setDescription("");
-      setPrice("");
+      const royaltyOwnersAddresses = royaltiesOwners.map((address) => ethers.utils.getAddress(address));
+      const royaltyPercentages = royaltiesPercentages.map((percentage) => ethers.BigNumber.from(percentage));
+
+      const tx = await contract.createAlbum(
+        title,
+        artist,
+        audioFiles,
+        imageFile,
+        ethers.utils.parseEther(price),
+        description,
+        royaltyOwnersAddresses,
+        royaltyPercentages
+      );
+
+      await tx.wait();
+
+      alert('Album created successfully');
+      setTitle('');
+      setArtist('');
       setAudioFiles([]);
+      setImageFile(null);
+      setPrice('');
+      setDescription('');
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
-  
-      alert("Album added successfully!");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to add the album. Please try again.");
+    } catch (err) {
+      console.error('Error creating album:', err);
+      alert('Failed to create album. Please check the console for error details.');
     }
-  };
+  }
+
+  useEffect(() => {
+    async function checkMetamaskConnection() {
+      if (typeof window.ethereum !== 'undefined') {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length > 0) {
+          setIsMetamaskConnected(true);
+          setConnectedAddress(accounts[0]);
+        }
+      }
+    }
+
+    checkMetamaskConnection();
+  }, []);
 
 
 
@@ -222,7 +203,7 @@ function DashAlbum() {
                               name="title"
                               placeholder="Album Title"
                               value={title} 
-                              onChange={handleInputChange}
+                              onChange={(e) => setTitle(e.target.value)}
                               required
                             />
                           </div>
@@ -238,7 +219,7 @@ function DashAlbum() {
                               name="artist"
                               placeholder="Artiste Address"
                               value={artist} 
-                              onChange={handleInputChange} 
+                              onChange={(e) => setArtist(e.target.value)}
                               required
                             />
                           </div>
@@ -254,7 +235,7 @@ function DashAlbum() {
                               name="price"
                               placeholder="Album Price"
                               value={price} 
-                              onChange={handleInputChange} 
+                              onChange={(e) => setPrice(e.target.value)}
                               required
                             />
                           </div>
@@ -270,7 +251,7 @@ function DashAlbum() {
                               name="description"
                               placeholder="Album Description"
                               value={description}
-                              onChange={handleInputChange}
+                              onChange={(e) => setDescription(e.target.value)}
                               required
                               rows='4'
                             >
@@ -299,7 +280,7 @@ function DashAlbum() {
                               name="royaltiesOwners"
                               placeholder="Royalties Owners (comma-separated addresses)"
                               value={royaltiesOwners}
-                              onChange={handleInputChange}
+                              onChange={(e) => setRoyaltiesOwners(e.target.value.split(','))}
                               required
                             />
                           </div>
@@ -315,7 +296,7 @@ function DashAlbum() {
                               name="royaltiesPercentages"
                               placeholder="Royalties Percentages (comma-separated)"
                               value={royaltiesPercentages}
-                              onChange={handleInputChange}
+                              onChange={(e) => setRoyaltiesPercentages(e.target.value.split(','))}
                               required
                             />
                           </div>
