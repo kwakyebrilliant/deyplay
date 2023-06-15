@@ -217,7 +217,7 @@ function DashAlbum() {
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
                               id="title"
-                              name="natitleme"
+                              name="title"
                               placeholder="Album Title"
                               value={title} 
                               onChange={handleInputChange}
@@ -226,14 +226,14 @@ function DashAlbum() {
                           </div>
 
                           <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="address">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="artist">
                               Your Address
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
-                              id="address"
-                              name="address"
+                              id="artist"
+                              name="artist"
                               placeholder="Artiste Address"
                               value={artist} 
                               onChange={handleInputChange} 
@@ -287,14 +287,14 @@ function DashAlbum() {
                             </p>
 
                             <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="owners">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="royaltiesOwners">
                               Royalty Owners
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
-                              id="owners"
-                              name="owners"
+                              id="royaltiesOwners"
+                              name="royaltiesOwners"
                               placeholder="Royalties Owners (comma-separated addresses)"
                               value={royaltiesOwners}
                               onChange={handleInputChange}
@@ -303,14 +303,14 @@ function DashAlbum() {
                           </div>
 
                           <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="percentage">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="royaltiesPercentages">
                               Royalty Owners Percentage
                             </label>
                             <input
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="number"
-                              id="percentage"
-                              name="percentage"
+                              id="royaltiesPercentages"
+                              name="royaltiesPercentages"
                               placeholder="Royalties Percentages (comma-separated)"
                               value={royaltiesPercentages}
                               onChange={handleInputChange}
