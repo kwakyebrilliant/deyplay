@@ -10,12 +10,6 @@ import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x2725086017dEA86B54f99C904366921E4603a484";
 
-// Connect to the Ethereum network using ethers.js
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-
-// Instantiate the smart contract
-const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
 
 function getAccessToken () {
    
@@ -110,7 +104,7 @@ function DashAlbum() {
       const owners = value.split(",");
       setRoyaltiesOwners(owners);
     } else if (name === "royaltiesPercentages") {
-      const percentages = value.split(",").map(Number);
+      const percentages = value.split(",").map((percentage) => parseInt(percentage));
       setRoyaltiesPercentages(percentages);
     }
   };
@@ -138,46 +132,39 @@ function DashAlbum() {
   }, []);
 
 
- const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  try {
-    console.log('Submitting form...');
-
-    // Convert the royalties percentages to integers (e.g., 10% => 10)
-    const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
-
-    console.log('Calling addAlbum function...');
-    console.log('Title:', title);
-    console.log('Artist:', artist);
-    console.log('Image File:', imageFile);
-    console.log('Description:', description);
-    console.log('Price:', price);
-    console.log('Audio Files:', audioFiles);
-    console.log('Royalties Owners:', royaltiesOwners);
-    console.log('Royalties Percentages:', royaltiesPercentages);
-
-    // Call the smart contract's addAlbum function
-    await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
-
-    console.log('Album added successfully!');
-
-    // Clear the form fields
-    setTitle("");
-    setArtist("");
-    setImageFile("");
-    setDescription("");
-    setPrice(0);
-    setAudioFiles([]);
-    setRoyaltiesOwners([]);
-    setRoyaltiesPercentages([]);
-
-    alert("Album added successfully!");
-  } catch (error) {
-    console.error(error);
-    alert("Failed to add the album. Please try again.");
-  }
-};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    // Connect to the Ethereum network using ethers.js
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+  
+    // Instantiate the smart contract
+    const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+  
+    try {
+      // Convert the royalties percentages to integers (e.g., 10% => 10)
+      const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
+  
+      // Call the smart contract's addAlbum function
+      await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
+  
+      // Clear the form fields
+      setTitle("");
+      setArtist("");
+      setImageFile("");
+      setDescription("");
+      setPrice(0);
+      setAudioFiles([]);
+      setRoyaltiesOwners([]);
+      setRoyaltiesPercentages([]);
+  
+      alert("Album added successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add the album. Please try again.");
+    }
+  };
 
 
 
