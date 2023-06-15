@@ -27,7 +27,7 @@ function DashAlbum() {
   const [artist, setArtist] = useState("");
   const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
@@ -147,14 +147,14 @@ function DashAlbum() {
       const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
   
       // Call the smart contract's addAlbum function
-      await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
+      await contract.addAlbum(title, artist, imageFile, description, ethers.utils.parseEther(price), audioFiles, royaltiesOwners, royalties);
   
       // Clear the form fields
       setTitle("");
       setArtist("");
       setImageFile("");
       setDescription("");
-      setPrice(0);
+      setPrice("");
       setAudioFiles([]);
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
