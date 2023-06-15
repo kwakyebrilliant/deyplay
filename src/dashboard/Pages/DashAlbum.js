@@ -105,7 +105,7 @@ function DashAlbum() {
     if (name === "title") setTitle(value);
     else if (name === "artist") setArtist(value);
     else if (name === "description") setDescription(value);
-    else if (name === "price") setPrice(parseFloat(value));
+    else if (name === "price") setPrice(value >= 0 ? parseFloat(value) : 0);
     else if (name === "royaltiesOwners") {
       const owners = value.split(",");
       setRoyaltiesOwners(owners);
@@ -138,32 +138,47 @@ function DashAlbum() {
   }, []);
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+ const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    try {
-      // Convert the royalties percentages to integers (e.g., 10% => 10)
-      const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
+  try {
+    console.log('Submitting form...');
 
-      // Call the smart contract's addAlbum function
-      await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
+    // Convert the royalties percentages to integers (e.g., 10% => 10)
+    const royalties = royaltiesPercentages.map((percentage) => parseInt(percentage));
 
-      // Clear the form fields
-      setTitle("");
-      setArtist("");
-      setImageFile("");
-      setDescription("");
-      setPrice(0);
-      setAudioFiles([]);
-      setRoyaltiesOwners([]);
-      setRoyaltiesPercentages([]);
+    console.log('Calling addAlbum function...');
+    console.log('Title:', title);
+    console.log('Artist:', artist);
+    console.log('Image File:', imageFile);
+    console.log('Description:', description);
+    console.log('Price:', price);
+    console.log('Audio Files:', audioFiles);
+    console.log('Royalties Owners:', royaltiesOwners);
+    console.log('Royalties Percentages:', royaltiesPercentages);
 
-      alert("Album added successfully!");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to add the album. Please try again.");
-    }
-  };
+    // Call the smart contract's addAlbum function
+    await contract.addAlbum(title, artist, imageFile, description, price, audioFiles, royaltiesOwners, royalties);
+
+    console.log('Album added successfully!');
+
+    // Clear the form fields
+    setTitle("");
+    setArtist("");
+    setImageFile("");
+    setDescription("");
+    setPrice(0);
+    setAudioFiles([]);
+    setRoyaltiesOwners([]);
+    setRoyaltiesPercentages([]);
+
+    alert("Album added successfully!");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to add the album. Please try again.");
+  }
+};
+
 
 
   return (
