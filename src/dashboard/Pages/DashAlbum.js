@@ -105,7 +105,7 @@ function DashAlbum() {
       const royaltyOwnersAddresses = royaltiesOwners.map((address) => ethers.utils.getAddress(address));
       const royaltyPercentages = royaltiesPercentages.map((percentage) => ethers.BigNumber.from(percentage));
 
-      const tx = await contract.createAlbum(
+      const tx = await contract.addAlbum(
         title,
         artist,
         audioFiles,
