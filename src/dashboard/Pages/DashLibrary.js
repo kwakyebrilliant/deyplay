@@ -9,38 +9,59 @@ import kl from '../../component/assets/kl.jpeg';
 import { FiSearch } from 'react-icons/fi';
 
 import { ethers } from 'ethers';
-import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
 
+
 function DashLibrary() {
 
-    const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
     const [connectedAddress, setConnectedAddress] = useState('');
+    const [tracks, setTracks] = useState([]);
 
 
     useEffect(() => {
-        // Check if MetaMask is connected
-        if (typeof window.ethereum !== 'undefined') {
-          setIsMetamaskConnected(true);
+        // Check if MetaMask is installed
+        if (window.ethereum) {
+          window.ethereum.enable().then(accounts => {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            setConnectedAddress(accounts[0]);
     
-          // Get the connected address
-          window.ethereum
-            .request({ method: 'eth_accounts' })
-            .then((accounts) => {
-              if (accounts.length > 0) {
-                setConnectedAddress(accounts[0]);
-              }
-            })
-            .catch((error) => {
-              console.error('Failed to get connected address:', error);
-            });
+            // Connect to the smart contract
+            const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+    
+            // Call the listTracksByArtist function with the connected address
+            contract.listTracksByArtist(connectedAddress)
+              .then(result => {
+                // Convert the returned result to an array of track IDs
+                const trackIds = result.map(ethers.BigNumber.from);
+    
+                // Retrieve the track details for each ID
+                Promise.all(trackIds.map(id => contract.tracks(id)))
+                  .then(trackData => {
+                    // Process the track data and update the state
+                    const formattedTracks = trackData.map(data => ({
+                      id: data.id.toNumber(),
+                      title: data.title,
+                      artist: data.artist,
+                      imageUrl: data.imageUrl,
+                      // Add more properties as needed
+                    }));
+                    setTracks(formattedTracks);
+                  })
+                  .catch(error => {
+                    console.error('Error retrieving track details:', error);
+                  });
+              })
+              .catch(error => {
+                console.error('Error calling listTracksByArtist:', error);
+              });
+          });
         } else {
-          setIsMetamaskConnected(false);
-          setConnectedAddress('');
+          console.error('MetaMask is not installed');
         }
       }, []);
-
+    
 
 
   return (
@@ -71,17 +92,12 @@ function DashLibrary() {
                         </div>
                         
                         <h3 className="text-xl font-medium text-white">
-                        {isMetamaskConnected ? (
+                        
                         <h3 className="text-xl font-medium text-white">
                           {connectedAddress.slice(0, 6)}…{connectedAddress.slice(connectedAddress.length - 6)}
                         </h3>
-                        ) : (
-                          <h3 className="text-xl font-medium text-white">
-                          Please connect your MetaMask
                         </h3>
-                        )}
-                        </h3>
-                        <p class="mt-1.5 max-w-[40ch] text-xs text-white">
+                        <p className="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
                         dicta impedit aperiam ipsum!
                         </p>
