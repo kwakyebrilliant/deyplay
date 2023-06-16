@@ -109,10 +109,10 @@ function DashAlbum() {
       const tx = await contract.addAlbum(
         title,
         artist,
-        audioFiles,
         imageFile,
-        ethers.utils.parseEther(price),
         description,
+        ethers.utils.parseEther(price),
+        audioFiles,
         owners,
         percentages
       );
@@ -122,10 +122,10 @@ function DashAlbum() {
       alert('Album created successfully');
       setTitle('');
       setArtist('');
-      setAudioFiles([]);
       setImageFile(null);
-      setPrice('');
       setDescription('');
+      setPrice('');
+      setAudioFiles([]);
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
     } catch (err) {
