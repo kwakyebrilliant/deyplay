@@ -10,7 +10,7 @@ import { FaEye, FaMoneyBill } from 'react-icons/fa'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x2725086017dEA86B54f99C904366921E4603a484";
+const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
 
 function Dashboard() {
 
