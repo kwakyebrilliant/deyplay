@@ -25,7 +25,6 @@ function DashAlbum() {
   
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
-  const [audioFiles, setAudioFiles] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
@@ -83,7 +82,6 @@ function DashAlbum() {
         imageFile,
         description,
         ethers.utils.parseEther(price),
-        audioFiles,
         owners,
         percentages
       );
@@ -96,7 +94,6 @@ function DashAlbum() {
       setImageFile(null);
       setDescription('');
       setPrice('');
-      setAudioFiles([]);
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
     } catch (err) {

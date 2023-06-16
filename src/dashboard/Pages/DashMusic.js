@@ -142,8 +142,8 @@ function DashMusic() {
       setImageFile('');
       setAudioFile('');
       setPrice('');
-      // setRoyaltiesOwners('');
-      // setRoyaltiesPercentages('');
+      setRoyaltiesOwners([]);
+      setRoyaltiesPercentages([]);
 
       // Display a success message or perform any other actions
       console.log('Track added successfully!');
