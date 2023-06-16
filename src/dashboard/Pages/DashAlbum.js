@@ -29,8 +29,8 @@ function DashAlbum() {
   const [imageFile, setImageFile] = useState(null);
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-  const [royaltiesOwners, setRoyaltiesOwners] = useState([]);
-  const [royaltiesPercentages, setRoyaltiesPercentages] = useState([]);
+  const [royaltiesOwners, setRoyaltiesOwners] = useState('');
+  const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
   const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
   const [connectedAddress, setConnectedAddress] = useState('');
 
@@ -102,8 +102,9 @@ function DashAlbum() {
     const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
 
     try {
-      const royaltyOwnersAddresses = royaltiesOwners.map((address) => ethers.utils.getAddress(address));
-      const royaltyPercentages = royaltiesPercentages.map((percentage) => ethers.BigNumber.from(percentage));
+      // Prepare the royalties owners and percentages arrays
+    const owners = royaltiesOwners.split(',');
+    const percentages = royaltiesPercentages.split(',').map(Number);
 
       const tx = await contract.addAlbum(
         title,
@@ -112,8 +113,8 @@ function DashAlbum() {
         imageFile,
         ethers.utils.parseEther(price),
         description,
-        royaltyOwnersAddresses,
-        royaltyPercentages
+        owners,
+        percentages
       );
 
       await tx.wait();
