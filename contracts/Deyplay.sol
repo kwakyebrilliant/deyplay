@@ -40,7 +40,7 @@ contract Deyplay{
 
     mapping(uint => Track) private tracks;
     mapping(uint => Album) private albums;
-     mapping(address => uint[]) private userPurchasedTracks;
+    mapping(address => uint[]) private userPurchasedTracks;
     mapping(address => uint[]) private userPurchasedAlbums;
 
     mapping(address => uint) private artistBalances;
@@ -48,7 +48,7 @@ contract Deyplay{
 
     //Events
     event TrackCreated(uint id, string title, address artist, string imageUrl, string audioFile, uint price, address[] royaltiesOwners, uint[] royaltiesPercentages);
-    event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price, uint[] audioFiles, address[] royaltiesOwners, uint[] royaltiesPercentages);
+    event AlbumCreated(uint id, string title, address artist, string imageUrl, string description, uint price, address[] royaltiesOwners, uint[] royaltiesPercentages);
     event TrackStreamed(uint trackId, address listener, uint amount);
     event AlbumStreamed(uint albumId, address listener, uint amount);
     event TrackPurchased(uint trackId, address buyer, uint amount);
@@ -56,7 +56,7 @@ contract Deyplay{
 
 
     //Modiefiers
-    modifier trackExists(uint _trackId) {
+     modifier trackExists(uint _trackId) {
         require(_trackId > 0 && _trackId <= trackCount, "Track does not exist");
         _;
     }
@@ -77,13 +77,11 @@ contract Deyplay{
 
 
     //Add album function
-    function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, uint[] memory _audioFiles, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
-        require(_audioFiles.length > 0, "Album must have at least one audio file");
-
+    function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
         albumCount++;
-        albums[albumCount] = Album(albumCount, _title, _artist, _imageUrl, _description, _price, 0, 0, _audioFiles, _royaltiesOwners, _royaltiesPercentages);
+        albums[albumCount] = Album(albumCount, _title, _artist, _imageUrl, _description, _price, 0, 0, new uint[](0), _royaltiesOwners, _royaltiesPercentages);
 
-        emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price, _audioFiles, _royaltiesOwners, _royaltiesPercentages);
+        emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price, _royaltiesOwners, _royaltiesPercentages);
     }
 
     //Add track to album function
