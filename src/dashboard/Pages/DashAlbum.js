@@ -281,7 +281,7 @@ function DashAlbum() {
                               name="royaltiesOwners"
                               placeholder="Royalties Owners (comma-separated addresses)"
                               value={royaltiesOwners}
-                              onChange={(e) => setRoyaltiesOwners(e.target.value.split(','))}
+                              onChange={(e) => setRoyaltiesOwners(e.target.value)}
                               required
                             />
                           </div>
@@ -297,7 +297,7 @@ function DashAlbum() {
                               name="royaltiesPercentages"
                               placeholder="Royalties Percentages (comma-separated)"
                               value={royaltiesPercentages}
-                              onChange={(e) => setRoyaltiesPercentages(e.target.value.split(','))}
+                              onChange={(e) => setRoyaltiesPercentages(e.target.value)}
                               required
                             />
                           </div>
