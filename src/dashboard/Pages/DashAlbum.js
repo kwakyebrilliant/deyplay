@@ -22,12 +22,11 @@ function makeStorageClient () {
 
 function DashAlbum() {
 
-  
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
-  const [imageFile, setImageFile] = useState(null);
-  const [price, setPrice] = useState('');
+  const [imageFile, setImageFile] = useState('');
   const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState('');
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
   const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
@@ -60,23 +59,48 @@ function DashAlbum() {
   };
 
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    if (!isMetamaskConnected) {
-      alert('Please connect to MetaMask');
-      return;
-    }
+  useEffect(() => {
+    // Check if MetaMask is connected
+    if (typeof window.ethereum !== 'undefined') {
+      setIsMetamaskConnected(true);
 
+      // Get the connected address
+      window.ethereum
+        .request({ method: 'eth_accounts' })
+        .then((accounts) => {
+          if (accounts.length > 0) {
+            setConnectedAddress(accounts[0]);
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to get connected address:', error);
+        });
+    } else {
+      setIsMetamaskConnected(false);
+      setConnectedAddress('');
+    }
+  }, []);
+
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Connect to the Ethereum provider
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    // Get the signer
     const signer = provider.getSigner();
+
+    // Instantiate the contract with the signer
     const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
 
-    try {
-      // Prepare the royalties owners and percentages arrays
+    // Prepare the royalties owners and percentages arrays
     const owners = royaltiesOwners.split(',');
     const percentages = royaltiesPercentages.split(',').map(Number);
 
-      const tx = await contract.addAlbum(
+    // Call the addAlbum function on the smart contract
+    try {
+      const transaction = await contract.addAlbum(
         title,
         artist,
         imageFile,
@@ -86,36 +110,27 @@ function DashAlbum() {
         percentages
       );
 
-      await tx.wait();
+      // Wait for the transaction to be mined
+      await transaction.wait();
 
-      alert('Album created successfully');
+      // Reset the form fields
       setTitle('');
       setArtist('');
-      setImageFile(null);
+      setImageFile('');
       setDescription('');
       setPrice('');
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
-    } catch (err) {
-      console.error('Error creating album:', err);
-      alert('Failed to create album. Please check the console for error details.');
+
+      // Display a success message or perform any other actions
+      console.log('Album added successfully!');
+    } catch (error) {
+      // Handle the error appropriately
+      console.error('Failed to add album:', error);
     }
-  }
+  };
 
-  useEffect(() => {
-    async function checkMetamaskConnection() {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length > 0) {
-          setIsMetamaskConnected(true);
-          setConnectedAddress(accounts[0]);
-        }
-      }
-    }
-
-    checkMetamaskConnection();
-  }, []);
-
+ 
 
 
   return (
@@ -311,7 +326,7 @@ function DashAlbum() {
                             <label
                               htmlFor="file-input"
                               className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
-                              onClick={handleSubmit}
+                              onClick={handleFormSubmit}
                             >
                               <FaUpload className="mr-2" />
                               Upload Album
