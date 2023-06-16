@@ -35,35 +35,6 @@ function DashAlbum() {
   const [connectedAddress, setConnectedAddress] = useState('');
 
 
-  async function handleAudioFileChange(e, index) {
-    const audioFileUploaded = e.target.files[0];
-    const client = makeStorageClient();
-    const cid = await client.put([audioFileUploaded]);
-    console.log('stored files with cid:', cid);
-  
-    const res = await client.get(cid);
-    console.log(`Got a response! [${res.status}] ${res.statusText}`);
-    if (!res.ok) {
-      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`);
-    }
-  
-    const filess = await res.files();
-    const audioFileUrl = `https://${cid}.ipfs.dweb.link/${audioFileUploaded.name}`;
-    console.log(audioFileUrl);
-    console.log(audioFileUploaded);
-    for (const file of filess) {
-      console.log(`${file.cid} -- ${file.path} -- ${file.size}`);
-    }
-  
-    setAudioFiles((prevFiles) => {
-      const newFiles = [...prevFiles];
-      newFiles[index] = audioFileUrl;
-      return newFiles;
-    });
-  
-    return cid;
-  }
-
   async function handleImageFileChange(event) {
     const imagefileUploaded = event.target.files[0];
     setImageFile(URL.createObjectURL(event.target.files[0]));
@@ -306,45 +277,6 @@ function DashAlbum() {
                           <div className="container mx-auto px-4">
                             <h1 className="text-3xl font-bold text-white mb-8">File Upload</h1>
                             <div className="grid grid-cols gap-6">
-
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="royalties">
-                              Audio File
-                              <button className="px-3 mx-4 py-1 bg-white border-none text-black font-bold rounded hover:bg-black hover:text-white focus:outline-none"
-                              onClick={() => setAudioFiles([...audioFiles, ""])}
-                              >
-                              Add Audio File
-                            </button> 
-                            </label>
-
-                           
-
-                            {audioFiles.map((audioFile, index) => (
-                              <div key={index} className="mb-6">
-                                <label className="block mb-2 text-lg font-medium text-white">
-                                  Audio File {index + 1}
-                                </label>
-                                <div className="flex items-center">
-                                  <label
-                                    htmlFor={`audio-file-input-${index}`}
-                                    className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white rounded-md cursor-pointer hover:bg-black hover:text-white focus:outline-none"
-                                  >
-                                    Choose Audio
-                                    <input
-                                      id={`audio-file-input-${index}`}
-                                      type="file"
-                                      accept="audio/*"
-                                      onChange={(event) => handleAudioFileChange(event, index)}
-                                      className="hidden"
-                                    />
-                                  </label>
-                                  {audioFile && (
-                                    <audio controls className="ml-4 w-full">
-                                      <source src={audioFile} />
-                                    </audio>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
                             
                               
                               <div className="mb-6">
