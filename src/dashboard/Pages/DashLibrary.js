@@ -14,6 +14,35 @@ import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
 
 function DashLibrary() {
+
+    const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
+    const [connectedAddress, setConnectedAddress] = useState('');
+
+
+    useEffect(() => {
+        // Check if MetaMask is connected
+        if (typeof window.ethereum !== 'undefined') {
+          setIsMetamaskConnected(true);
+    
+          // Get the connected address
+          window.ethereum
+            .request({ method: 'eth_accounts' })
+            .then((accounts) => {
+              if (accounts.length > 0) {
+                setConnectedAddress(accounts[0]);
+              }
+            })
+            .catch((error) => {
+              console.error('Failed to get connected address:', error);
+            });
+        } else {
+          setIsMetamaskConnected(false);
+          setConnectedAddress('');
+        }
+      }, []);
+
+
+
   return (
     <div>
         <div className='bg-black/80'>
@@ -42,7 +71,15 @@ function DashLibrary() {
                         </div>
                         
                         <h3 className="text-xl font-medium text-white">
-                        0xgt...4bxe
+                        {isMetamaskConnected ? (
+                        <h3 className="text-xl font-medium text-white">
+                          {connectedAddress.slice(0, 6)}…{connectedAddress.slice(connectedAddress.length - 6)}
+                        </h3>
+                        ) : (
+                          <h3 className="text-xl font-medium text-white">
+                          Please connect your MetaMask
+                        </h3>
+                        )}
                         </h3>
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
