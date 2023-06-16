@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import library from '../../component/assets/library.jpg';
@@ -7,6 +7,11 @@ import coverimg from '../../component/assets/coverimg.jpeg';
 import gm from '../../component/assets/gm.jpeg';
 import kl from '../../component/assets/kl.jpeg';
 import { FiSearch } from 'react-icons/fi';
+
+import { ethers } from 'ethers';
+import { Web3Storage } from 'web3.storage';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
 
 function DashLibrary() {
   return (
