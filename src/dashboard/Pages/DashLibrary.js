@@ -10,7 +10,7 @@ import { FiSearch } from 'react-icons/fi';
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
+const deyplayAddress = "0xeA74cd9bd65e9D2dA128EF304914ead1122E2796";
 
 
 function DashLibrary() {
