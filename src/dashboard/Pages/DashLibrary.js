@@ -257,47 +257,30 @@ function DashLibrary() {
                 
                 </div>
 
-                <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-4">Tracks by Artist</h1>
-      {currentAccount ? (
-        <p className="text-lg font-semibold mb-4">Connected Account: {currentAccount}</p>
-      ) : (
-        <p className="text-lg font-semibold mb-4">Please connect your MetaMask account</p>
-      )}
-      <div className="grid grid-cols-3 gap-4">
-        {tracks.map((track) => (
-          <div key={track.id} className="bg-gray-100 p-4">
-            <img src={track.imageUrl} alt={track.title} className="mb-4" />
-            <h2 className="text-lg font-semibold">{track.title}</h2>
-            <p>Artist: {track.artist}</p>
-            <audio src={track.audioFile} controls className="mt-4"></audio>
-            <p>Price: {ethers.utils.formatEther(track.price)} ETH</p>
-          </div>
-        ))}
-      </div>
-    </div>
-
                 <div className='mx-3 mb-12'>
-
+                {tracks.length === 0 ? (
+                        <p className="text-lg text-center">No tracks available</p>
+                    ) : (
                   <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
 
+                  {tracks.map((track) => (
 
-                  <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                  <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
                           <a href='dashmusicsingle'>
                       <img
-                          alt="Office"
-                          src={gm}
+                          src={track.imageUrl} 
+                          alt={track.title} 
                           className="w-full h-40 p-4 object-cover"
                       />
 
 
                       <div className="p-4 sm:p-6">
                           <h3 className="font-medium text-white">
-                              John Doe
+                          {track.artist.slice(0, 6)}…{track.artist.slice(track.artist.length - 6)}
                           </h3>
 
                           <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
+                          {track.title}
                           </p>
 
                       </div>
@@ -306,112 +289,9 @@ function DashLibrary() {
                       </a>
                       </article>
 
-                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                      <a href='dashmusicsingle'>
-                      <img
-                          alt="Office"
-                          src={coverimg}
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                              John Doe
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
-                          </p>
-
-                      </div>
-                      </a>
-                      </article>
-
-                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                      <a href='dashmusicsingle'>
-                      <img
-                          alt="Office"
-                          src={gm}
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                              John Doe
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
-                          </p>
-
-                      </div>
-                      </a>
-                      </article>
-
-                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                      <a href='dashmusicsingle'>
-                      <img
-                          alt="Office"
-                          src={kl}
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                              John Doe
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
-                          </p>
-
-                      </div>
-                      </a>
-                      </article>
-
-                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                      <a href='dashmusicsingle'>
-                      <img
-                          alt="Office"
-                          src={coverimg}
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                              John Doe
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
-                          </p>
-
-                      </div>
-                      </a>
-                      </article>
-
-                      <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                      <a href='dashmusicsingle'>
-                      <img
-                          alt="Office"
-                          src={coverimg}
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                              John Doe
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          I can fly
-                          </p>
-
-                      </div>
-                      </a>
-                      </article>
-
+                  ))}
                   </div>
+                  )}
 
 
                   </div>
