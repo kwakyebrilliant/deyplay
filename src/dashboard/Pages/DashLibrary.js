@@ -24,8 +24,7 @@ function DashLibrary() {
   const fetchTracksByArtist = async (address) => {
     try {
       const trackIds = await contract.listTracksByArtist(address);
-      const trackIdsString = trackIds.filter((id) => id !== 0).join(', ');
-      setTracks(trackIdsString);
+      setTracks(trackIds.filter((id) => id !== 0));
     } catch (error) {
       console.error('Error fetching tracks:', error);
     }
@@ -251,7 +250,14 @@ function DashLibrary() {
       <h1 className="text-2xl font-bold mb-4">Tracks by Artist</h1>
       <div>
         {tracks.length > 0 ? (
-          <p>{tracks}</p>
+          <ul className="list-disc pl-4">
+            {tracks.map((trackId) => (
+              <li key={trackId}>
+                <h2 className="text-lg font-bold">Track ID: {trackId.toString()}</h2>
+                {/* Fetch and display individual track details here */}
+              </li>
+            ))}
+          </ul>
         ) : (
           <p>No tracks found for the given artist.</p>
         )}
