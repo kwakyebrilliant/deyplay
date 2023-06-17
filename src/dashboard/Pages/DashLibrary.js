@@ -15,53 +15,42 @@ const deyplayAddress = "0x8E2C526010fB7176dEfa639e17303Be74E21c034";
 
 function DashLibrary() {
 
-    const [connectedAddress, setConnectedAddress] = useState('');
     const [tracks, setTracks] = useState([]);
     const [artistAddress, setArtistAddress] = useState('');
 
 
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, provider);
+  
+    const fetchTracksByArtist = async (address) => {
+      try {
+        const trackIds = await contract.listTracksByArtist(address);
+        setTracks(trackIds.filter((id) => id !== 0));
+      } catch (error) {
+        console.error('Error fetching tracks:', error);
+      }
+    };
+  
     useEffect(() => {
-        // Check if MetaMask is installed
-        if (window.ethereum) {
-          window.ethereum.enable().then(accounts => {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            setConnectedAddress(accounts[0]);
-    
-            // Connect to the smart contract
-            const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-    
-            // Call the listTracksByArtist function with the connected address
-            contract.listTracksByArtist(connectedAddress)
-              .then(result => {
-                // Convert the returned result to an array of track IDs
-                const trackIds = result.map(ethers.BigNumber.from);
-    
-                // Retrieve the track details for each ID
-                Promise.all(trackIds.map(id => contract.tracks(id)))
-                  .then(trackData => {
-                    // Process the track data and update the state
-                    const formattedTracks = trackData.map(data => ({
-                      id: data.id.toNumber(),
-                      title: data.title,
-                      artist: data.artist,
-                      imageUrl: data.imageUrl,
-                      // Add more properties as needed
-                    }));
-                    setTracks(formattedTracks);
-                  })
-                  .catch(error => {
-                    console.error('Error retrieving track details:', error);
-                  });
-              })
-              .catch(error => {
-                console.error('Error calling listTracksByArtist:', error);
-              });
-          });
-        } else {
-          console.error('MetaMask is not installed');
+      const connectToMetaMask = async () => {
+        try {
+          await window.ethereum.enable();
+          const signer = provider.getSigner();
+          const connectedAddress = await signer.getAddress();
+          setArtistAddress(connectedAddress);
+        } catch (error) {
+          console.error('Error connecting to MetaMask:', error);
         }
-      }, []);
+      };
+  
+      connectToMetaMask();
+    }, []);
+  
+    useEffect(() => {
+      if (artistAddress !== '') {
+        fetchTracksByArtist(artistAddress);
+      }
+    }, [artistAddress]);
     
 
 
@@ -95,7 +84,7 @@ function DashLibrary() {
                         <h3 className="text-xl font-medium text-white">
                         
                         <h3 className="text-xl font-medium text-white">
-                          {connectedAddress.slice(0, 6)}…{connectedAddress.slice(connectedAddress.length - 6)}
+                          {artistAddress.slice(0, 6)}…{artistAddress.slice(artistAddress.length - 6)}
                         </h3>
                         </h3>
                         <p className="mt-1.5 max-w-[40ch] text-xs text-white">
@@ -257,6 +246,21 @@ function DashLibrary() {
                   <h2 className="text-2xl text-white font-bold mb-4">Songs Uploaded</h2>
                 
                 </div>
+
+                <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Tracks by Artist</h1>
+      <div>
+        {tracks.length > 0 ? (
+          <ul className="list-disc pl-4">
+            {tracks.map((trackId) => (
+              <li key={trackId}>{trackId}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No tracks found for the given artist.</p>
+        )}
+      </div>
+    </div>
 
                 <div className='mx-3 mb-12'>
 
