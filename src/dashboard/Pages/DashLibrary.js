@@ -10,12 +10,13 @@ import { FiSearch } from 'react-icons/fi';
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0xeA74cd9bd65e9D2dA128EF304914ead1122E2796";
+const deyplayAddress = "0xf3d257D4Ee9AF5B663e1D3543CBe59eC98459B39";
 
 
 function DashLibrary() {
 
     const [tracks, setTracks] = useState([]);
+    const [albums, setAlbums] = useState([]);
     const [currentAccount, setCurrentAccount] = useState('');
   
     useEffect(() => {
@@ -259,7 +260,7 @@ function DashLibrary() {
 
                 <div className='mx-3 mb-12'>
                 {tracks.length === 0 ? (
-                        <p className="text-lg text-center">No tracks available</p>
+                        <h1 className="font-bold text-5xl text-center text-white">No tracks available</h1>
                     ) : (
                   <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
 
