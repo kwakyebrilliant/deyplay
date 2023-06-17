@@ -15,53 +15,52 @@ const deyplayAddress = "0xeA74cd9bd65e9D2dA128EF304914ead1122E2796";
 
 function DashLibrary() {
 
-    const [connectedAddress, setConnectedAddress] = useState('');
     const [tracks, setTracks] = useState([]);
-    const [artistAddress, setArtistAddress] = useState('');
-
-
+    const [currentAccount, setCurrentAccount] = useState('');
+  
     useEffect(() => {
-        // Check if MetaMask is installed
-        if (window.ethereum) {
-          window.ethereum.enable().then(accounts => {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            setConnectedAddress(accounts[0]);
-    
-            // Connect to the smart contract
-            const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-    
-            // Call the listTracksByArtist function with the connected address
-            contract.listTracksByArtist(connectedAddress)
-              .then(result => {
-                // Convert the returned result to an array of track IDs
-                const trackIds = result.map(ethers.BigNumber.from);
-    
-                // Retrieve the track details for each ID
-                Promise.all(trackIds.map(id => contract.tracks(id)))
-                  .then(trackData => {
-                    // Process the track data and update the state
-                    const formattedTracks = trackData.map(data => ({
-                      id: data.id.toNumber(),
-                      title: data.title,
-                      artist: data.artist,
-                      imageUrl: data.imageUrl,
-                      // Add more properties as needed
-                    }));
-                    setTracks(formattedTracks);
-                  })
-                  .catch(error => {
-                    console.error('Error retrieving track details:', error);
-                  });
-              })
-              .catch(error => {
-                console.error('Error calling listTracksByArtist:', error);
-              });
-          });
-        } else {
-          console.error('MetaMask is not installed');
-        }
-      }, []);
+      connectToMetaMask();
+    }, []);
+  
+    async function connectToMetaMask() {
+      try {
+        await window.ethereum.enable();
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+  
+        const accounts = await provider.listAccounts();
+        setCurrentAccount(accounts[0]);
+  
+        fetchTracksByArtist(contract, accounts[0]);
+      } catch (error) {
+        console.error('Error connecting to MetaMask:', error);
+      }
+    }
+  
+    async function fetchTracksByArtist(contract, artistAddress) {
+      try {
+        const trackIds = await contract.listTracksByArtist(artistAddress);
+  
+        const trackDetails = await Promise.all(
+          trackIds.map(async (trackId) => {
+            const track = await contract.getTrack(trackId); // Update to the correct getter function
+            return {
+              id: track.id,
+              title: track.title,
+              artist: track.artist,
+              imageUrl: track.imageUrl,
+              audioFile: track.audioFile,
+              price: track.price,
+            };
+          })
+        );
+  
+        setTracks(trackDetails);
+      } catch (error) {
+        console.error('Error fetching tracks by artist:', error);
+      }
+    }
     
 
 
@@ -95,7 +94,7 @@ function DashLibrary() {
                         <h3 className="text-xl font-medium text-white">
                         
                         <h3 className="text-xl font-medium text-white">
-                          {connectedAddress.slice(0, 6)}…{connectedAddress.slice(connectedAddress.length - 6)}
+                          {currentAccount.slice(0, 6)}…{currentAccount.slice(currentAccount.length - 6)}
                         </h3>
                         </h3>
                         <p className="mt-1.5 max-w-[40ch] text-xs text-white">
@@ -257,6 +256,26 @@ function DashLibrary() {
                   <h2 className="text-2xl text-white font-bold mb-4">Songs Uploaded</h2>
                 
                 </div>
+
+                <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-4">Tracks by Artist</h1>
+      {currentAccount ? (
+        <p className="text-lg font-semibold mb-4">Connected Account: {currentAccount}</p>
+      ) : (
+        <p className="text-lg font-semibold mb-4">Please connect your MetaMask account</p>
+      )}
+      <div className="grid grid-cols-3 gap-4">
+        {tracks.map((track) => (
+          <div key={track.id} className="bg-gray-100 p-4">
+            <img src={track.imageUrl} alt={track.title} className="mb-4" />
+            <h2 className="text-lg font-semibold">{track.title}</h2>
+            <p>Artist: {track.artist}</p>
+            <audio src={track.audioFile} controls className="mt-4"></audio>
+            <p>Price: {ethers.utils.formatEther(track.price)} ETH</p>
+          </div>
+        ))}
+      </div>
+    </div>
 
                 <div className='mx-3 mb-12'>
 
