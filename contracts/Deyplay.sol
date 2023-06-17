@@ -97,6 +97,12 @@ contract Deyplay{
     }
 
 
+    //Fetch album details
+    function getAlbum(uint _albumId) public view albumExists(_albumId) returns (Album memory) {
+        return albums[_albumId];
+    }
+
+
     //List all tracks on the platform
     function listAllTracks() public view returns (uint[] memory) {
         uint[] memory allTracks = new uint[](trackCount);
