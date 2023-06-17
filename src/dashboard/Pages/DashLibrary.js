@@ -17,6 +17,7 @@ function DashLibrary() {
 
     const [connectedAddress, setConnectedAddress] = useState('');
     const [tracks, setTracks] = useState([]);
+    const [artistAddress, setArtistAddress] = useState('');
 
 
     useEffect(() => {
