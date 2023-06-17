@@ -91,6 +91,12 @@ contract Deyplay{
     }
 
 
+    //Fetch track details
+    function getTrack(uint _trackId) public view trackExists(_trackId) returns (Track memory) {
+        return tracks[_trackId];
+    }
+
+
     //List all tracks on the platform
     function listAllTracks() public view returns (uint[] memory) {
         uint[] memory allTracks = new uint[](trackCount);
