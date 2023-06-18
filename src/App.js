@@ -12,6 +12,7 @@ import DashAlbum from './dashboard/Pages/DashAlbum';
 import DashMusic from './dashboard/Pages/DashMusic';
 import DashLibrary from './dashboard/Pages/DashLibrary';
 import DashMusicSingle from './dashboard/Pages/DashMusicSingle';
+import DashAlbumSingle from './dashboard/Pages/DashAlbumSingle';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/dashmusic" exact element={<DashMusic />} />
         <Route path="/dashlibrary" exact element={<DashLibrary />} />
         <Route path="/dashmusicsingle" exact element={<DashMusicSingle />} />
+        <Route path="/dashalbumsingle" exact element={<DashAlbumSingle />} />
         </Routes>
 
       </Router>
