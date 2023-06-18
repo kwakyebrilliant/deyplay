@@ -4,7 +4,16 @@ import PartialNavbar from '../Partials/PartialNavbar';
 import coverimg from '../../component/assets/coverimg.jpeg';
 import { FaUpload } from 'react-icons/fa';
 
+import { ethers } from 'ethers';
+
+import { useLocation } from 'react-router-dom'
+
 function DashMusicSingle() {
+
+    let location = useLocation();
+    const tracks = location.state;
+    console.log(location);
+
   return (
     <div>
         <div className='bg-black/80'>

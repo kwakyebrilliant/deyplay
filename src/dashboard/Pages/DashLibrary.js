@@ -230,7 +230,7 @@ function DashLibrary() {
                   {tracks.map((track) => (
 
                   <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <Link to='dashmusicsingle'
+                          <Link to='/dashmusicsingle'
                             state={{
                                 id: track.id,
                                 title: track.title,
