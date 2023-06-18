@@ -54,6 +54,10 @@ function DashLibrary() {
               imageUrl: track.imageUrl,
               audioFile: track.audioFile,
               price: track.price,
+              totalStreams: track.totalStreams,
+              totalPurchases: track.totalPurchases,
+              royaltiesOwners: track.royaltiesOwners,
+              royaltiesPercentages: track.royaltiesPercentages
             };
           })
         );
@@ -226,7 +230,20 @@ function DashLibrary() {
                   {tracks.map((track) => (
 
                   <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <a href='dashmusicsingle'>
+                          <Link to='dashmusicsingle'
+                            state={{
+                                id: track.id,
+                                title: track.title,
+                                artist: track.artist,
+                                imageUrl: track.imageUrl,
+                                audioFile: track.audioFile,
+                                price: track.price,
+                                totalStreams: track.totalStreams,
+                                totalPurchases: track.totalPurchases,
+                                royaltiesOwners: track.royaltiesOwners,
+                                royaltiesPercentages: track.royaltiesPercentages
+                            }}
+                          >
                       <img
                           src={track.imageUrl} 
                           alt={track.title} 
@@ -246,7 +263,7 @@ function DashLibrary() {
                       </div>
 
 
-                      </a>
+                      </Link>
                       </article>
 
                   ))}
