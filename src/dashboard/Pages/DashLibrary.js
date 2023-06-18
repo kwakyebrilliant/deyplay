@@ -4,6 +4,7 @@ import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import library from '../../component/assets/library.jpg';
 import { FiSearch } from 'react-icons/fi';
+import { Link } from 'react-router-dom'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
@@ -160,7 +161,9 @@ function DashLibrary() {
                 {albums.map((album) => (
 
                   <article key={album.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <a href='dashmusicsingle'>
+                          <Link to='/dashalbumsingle'
+                          
+                          >
                       <img
                           src={album.imageUrl} 
                           alt={album.title} 
@@ -180,7 +183,7 @@ function DashLibrary() {
                       </div>
 
 
-                      </a>
+                      </Link>
                       </article>
 
                   ))}
