@@ -78,6 +78,11 @@ function DashLibrary() {
                 imageUrl: album.imageUrl,
                 description: album.description,
                 price: album.price,
+                audioFiles: album.audioFiles,
+                totalStreams: album.totalStreams,
+                totalPurchases: album.totalPurchases,
+                royaltiesOwners: album.royaltiesOwners,
+                royaltiesPercentages: album.royaltiesPercentages
               };
             })
           );
@@ -162,7 +167,19 @@ function DashLibrary() {
 
                   <article key={album.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
                           <Link to='/dashalbumsingle'
-                          
+                            state={{
+                                id: album.id,
+                                title: album.title,
+                                imageUrl: album.imageUrl,
+                                artist: album.artist,
+                                description: album.description,
+                                price: album.price,
+                                audioFiles: album.audioFiles,
+                                totalStreams: album.totalStreams,
+                                totalPurchases: album.totalPurchases,
+                                royaltiesOwners: album.royaltiesOwners,
+                                royaltiesPercentages: album.royaltiesPercentages
+                            }}
                           >
                       <img
                           src={album.imageUrl} 
