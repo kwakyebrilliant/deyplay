@@ -85,9 +85,16 @@ contract Deyplay{
     }
 
     //Add track to album function
-    function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
+    function addTrackToAlbum(uint _trackId, uint _albumId, string memory _title, string memory _imageUrl, string memory _audioFile, uint _totalStreams, uint _totalPurchases) public trackExists(_trackId) albumExists(_albumId) {
         Album storage album = albums[_albumId];
         album.audioFiles.push(_trackId);
+
+        Track storage track = tracks[_trackId];
+        track.title = _title;
+        track.imageUrl = _imageUrl;
+        track.audioFile = _audioFile;
+        track.totalStreams = _totalStreams;
+        track.totalPurchases = _totalPurchases;
     }
 
 
