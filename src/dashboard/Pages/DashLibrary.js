@@ -15,6 +15,7 @@ function DashLibrary() {
     const [tracks, setTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [currentAccount, setCurrentAccount] = useState('');
+    const [filter, setFilter] = useState('');
   
     useEffect(() => {
         connectToMetaMask();
