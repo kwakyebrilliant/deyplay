@@ -3,8 +3,16 @@ import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import library from '../../component/assets/library.jpg';
 import { FaPlayCircle, FaMoneyBill, FaEye } from 'react-icons/fa'
+import { ethers } from 'ethers';
+
+import { useLocation } from 'react-router-dom'
 
 function DashAlbumSingle() {
+
+    let location = useLocation();
+    const albums = location.state;
+    console.log(location);
+
     return (
         <div>
           <div className='bg-black/80'>
@@ -18,20 +26,20 @@ function DashAlbumSingle() {
                   <div className='relative grid grid-cols-1 lg:grid-cols-2'>
                     <article className="overflow-hidden lg:h-min lg:w-11/12 rounded-lg bg-gradient-to-b from-black to-transparent shadow-sm">
                     
-                      <a>
+                     
                         <img
-                          alt="Office"
-                          src={library}
+                          alt={albums.title}
+                          src={albums.imageUrl}
                           className="w-full h-80 p-4 object-cover"
                         />
     
                         <div className="px-4 pt-4 sm:pt-4 sm:px-6">
                             <div className='flex justify-between'>
                                 <h3 className="font-bold text-3xl text-white">
-                                I can fly
+                                {albums.title}
                                 </h3>
                                 <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                                $7.99
+                                ${ethers.utils.formatEther(albums.price)}
                                 </h3>
                             </div>
     
@@ -53,26 +61,13 @@ function DashAlbumSingle() {
                         </div>
     
     
-                        <div className="px-4 pt-4 sm:px-6">
-                        <a className="inline-flex mt-3 items-center gap-2 rounded-2xl border border-white bg-white px-4 py-2 text-black"
-                            href="#"
-                        >
-                        <span className="text-sm font-medium">Play all </span>
-    
-                        <FaPlayCircle className=' lg:w-6 lg:h-6 hover:text-black' />
-                        </a>
-                        </div>
     
                         <div className="px-4 py-4 sm:px-6">
                         <h3 className="text-sm/relaxed text-white">
-                        Learn to Build Native Android & iOS Applications with React Native 
-    I                   included: React Hooks, Redux, React Navigation, Firebase Push Notification
-                         & Functional Component
+                        {albums.description}
                         </h3>
                         </div>
     
-    
-                      </a>
                     </article>
     
                     <div className='overflow-y-scroll h-[500px]'>
