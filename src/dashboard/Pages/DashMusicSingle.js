@@ -26,12 +26,12 @@ function DashMusicSingle() {
                     <PartialNavbar />
 
                     <div className="relative mx-2">
-                        <img src={coverimg} alt="Background" className="w-full rounded object-cover h-96" />
+                        <img src={tracks.imageUrl} alt={tracks.title}  className="w-full rounded object-cover h-96" />
 
                         <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
                         
                         <h3 className="text-xl font-medium text-white">
-                            John Doe
+                        {tracks.artist.slice(0, 6)}…{tracks.artist.slice(tracks.artist.length - 6)}
                         </h3>
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
