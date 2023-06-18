@@ -1,9 +1,7 @@
 import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
-import coverimg from '../../component/assets/coverimg.jpeg';
-import { FaUpload } from 'react-icons/fa';
-
+import { FaUpload, FaMoneyBill, FaEye } from 'react-icons/fa';
 import { ethers } from 'ethers';
 
 import { useLocation } from 'react-router-dom'
@@ -33,27 +31,23 @@ function DashMusicSingle() {
                         <h3 className="text-xl font-medium text-white">
                         {tracks.artist.slice(0, 6)}…{tracks.artist.slice(tracks.artist.length - 6)}
                         </h3>
-                        <p class="mt-1.5 max-w-[40ch] text-xs text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
-                        dicta impedit aperiam ipsum!
-                        </p>
+                        <div className="px-4 pt-4 sm:px-6">
+                            <div className='flex'>
+                                <h3 className="font-bold flex text-sm/relaxed text-white">
+                                <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalStreams)}
+                                </h3>
+                                <h3 className="font-bold flex px-2 text-sm/relaxed text-white">
+                                <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalPurchases)}
+                                </h3>
+                            </div>
+                        </div>
 
                         <div className="mt-4 flex flex-col items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-12 w-12 text-white cursor-pointer"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5 4v12l10-6z"
-                          />
-                        </svg>
 
-                        <div className="w-96 h-2 bg-gray-300 mt-2">
-                          <div className="h-full bg-green-500" style={{ width: '80%' }} />
-                        </div>
+                        <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
+                            ${ethers.utils.formatEther(tracks.price)}
+                        </h3>
+                        
                         </div>
                         </div>
                    
