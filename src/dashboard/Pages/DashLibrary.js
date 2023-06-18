@@ -87,6 +87,20 @@ function DashLibrary() {
         }
       }
 
+      function filterTracksAndAlbums() {
+        const filteredTracks = tracks.filter((track) =>
+          track.title.toLowerCase().includes(filter.toLowerCase())
+        );
+    
+        const filteredAlbums = albums.filter((album) =>
+          album.title.toLowerCase().includes(filter.toLowerCase())
+        );
+    
+        setTracks(filteredTracks);
+        setAlbums(filteredAlbums);
+      }
+
+
 
   return (
     <div>
@@ -109,8 +123,10 @@ function DashLibrary() {
                             className="w-64 bg-transparent focus:outline-none text-white placeholder-white"
                             type="text"
                             placeholder="Search..."
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
                             />
-                            <button className="ml-2 text-black">
+                            <button onClick={filterTracksAndAlbums} className="ml-2 text-black">
                             <FiSearch className='text-black' />
                             </button>
                         </div>
