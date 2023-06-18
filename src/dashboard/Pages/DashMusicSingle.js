@@ -31,6 +31,9 @@ function DashMusicSingle() {
                         <h3 className="text-xl font-medium text-white">
                         {tracks.artist.slice(0, 6)}…{tracks.artist.slice(tracks.artist.length - 6)}
                         </h3>
+                        <p className="line-clamp-3 text-sm/relaxed text-white">
+                          {tracks.title}
+                          </p>
                         <div className="px-4 pt-4 sm:px-6">
                             <div className='flex'>
                                 <h3 className="font-bold flex text-sm/relaxed text-white">
