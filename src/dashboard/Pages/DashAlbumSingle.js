@@ -45,7 +45,7 @@ function DashAlbumSingle() {
                             </div>
     
                             <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                                John Doe
+                            {albums.artist.slice(0, 6)}…{albums.artist.slice(albums.artist.length - 6)}
                             </p>
                         </div>
     
