@@ -14,6 +14,7 @@ function DashAlbumSingle() {
     const albums = location.state;
     console.log(location);
 
+  
     return (
         <div>
           <div className='bg-black/80'>
@@ -70,6 +71,7 @@ function DashAlbumSingle() {
                         </div>
     
                     </article>
+
     
                     <div className='overflow-y-scroll h-[500px]'>
     
