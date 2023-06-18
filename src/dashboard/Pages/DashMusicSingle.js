@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import { FaUpload, FaMoneyBill, FaEye } from 'react-icons/fa';
@@ -17,7 +17,43 @@ function DashMusicSingle() {
     console.log(location);
 
 
+    const [currentAccount, setCurrentAccount] = useState('');
+    const [albumId, setAlbumId] = useState('');
+    const [trackId, setTrackId] = useState('');
+
+    useEffect(() => {
+        connectToMetaMask();
+      }, []);
     
+      async function connectToMetaMask() {
+        try {
+          await window.ethereum.enable();
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+    
+          const accounts = await provider.listAccounts();
+          setCurrentAccount(accounts[0]);
+        } catch (error) {
+          console.error('Error connecting to MetaMask:', error);
+        }
+      }
+
+
+      async function handleAddTrackToAlbum() {
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+    
+          await contract.addTrackToAlbum(albumId, tracks.title);
+          console.log('Track added to album successfully');
+        } catch (error) {
+          console.error('Error adding track to album:', error);
+        }
+      }
+
+
 
   return (
     <div>
@@ -75,10 +111,32 @@ function DashMusicSingle() {
                         </p>
                     </div>
 
+                    <div className="flex items-center mb-4">
+        <label htmlFor="albumIdInput" className="mr-2">
+          Album ID:
+        </label>
+        <input
+          id="albumIdInput"
+          type="text"
+          value={albumId}
+          className="border border-gray-300 px-2 py-1"
+        />
+      </div>
+    
+
                     <div className='flex m-3 pt-4'>
                         <div className="flex w-full">
                             <div className="px-8 w-full">
                                 <form>
+
+                                <div className="mb-4">
+                                <input
+                                    id="trackIdInput"
+                                    type="text"
+                                    value={tracks.title}
+                                    className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                                    />
+                                </div>
                                     <div className="mb-4">
                                     <select
                                             name="HeadlineAct"
@@ -95,14 +153,10 @@ function DashMusicSingle() {
                                         <label
                                         htmlFor="file-input"
                                         className="flex items-center justify-center w-48 h-12 px-4 py-2 text-sm font-medium text-black bg-white hover:bg-black hover:text-white rounded-md cursor-pointer"
+                                        onClick={handleAddTrackToAlbum}
                                         >
                                         <FaUpload className="mr-2" />
                                         Add to Album
-                                        <input
-                                            id="file-input"
-                                            type="file"
-                                            className="hidden"
-                                        />
                                         </label>
                                     </div>
                                 </form>
