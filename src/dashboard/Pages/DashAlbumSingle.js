@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react'
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import library from '../../component/assets/library.jpg';
-import { FaPlayCircle, FaMoneyBill, FaEye } from 'react-icons/fa'
+import { FaMoneyBill, FaEye } from 'react-icons/fa'
 import { ethers } from 'ethers';
 
 import { useLocation } from 'react-router-dom'
@@ -52,10 +53,10 @@ function DashAlbumSingle() {
                         <div className="px-4 pt-4 sm:px-6">
                             <div className='flex'>
                                 <h3 className="font-bold flex text-sm/relaxed text-gray-500">
-                                <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 52, 367
+                                <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(albums.totalStreams)}
                                 </h3>
                                 <h3 className="font-bold flex px-2 text-sm/relaxed text-gray-500">
-                                <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> 178
+                                <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(albums.totalPurchases)}
                                 </h3>
                             </div>
                         </div>
