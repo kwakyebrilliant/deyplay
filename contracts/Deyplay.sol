@@ -66,7 +66,7 @@ contract Deyplay{
 
 
     //Modiefiers
-     modifier trackExists(uint _trackId) {
+    modifier trackExists(uint _trackId) {
         require(_trackId > 0 && _trackId <= trackCount, "Track does not exist");
         _;
     }
@@ -92,10 +92,11 @@ contract Deyplay{
     }
 
     // Add track to album function
-    function addTrackToAlbum(uint _albumId, uint _trackId) public albumExists(_albumId) trackExists(_trackId) {
-        Album storage album = albums[_albumId];
-        album.audioFileIds.push(_trackId);
-        emit TrackAddedToAlbum(_albumId, _trackId);
+    function addTrackToAlbum(uint _albumId, string memory _title, string memory _audioFile, string memory _imageUrl, uint _price) public albumExists(_albumId) {
+        albumCount++;
+        albums[_albumId].audioFileIds.push(albumCount);
+        tracks[albumCount] = Track(albumCount, _title, albums[_albumId].artist, _imageUrl, _audioFile, _price, 0, 0, albums[_albumId].royaltiesOwners, albums[_albumId].royaltiesPercentages);
+        emit TrackAddedToAlbum(_albumId, albumCount);
     }
 
 
