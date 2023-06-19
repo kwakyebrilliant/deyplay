@@ -6,7 +6,7 @@ import musicstream from '../../component/assets/musicstream.jpg';
 import albumstream from '../../component/assets/albumstream.jpg';
 import musics from '../../component/assets/musics.jpg'
 import albums from '../../component/assets/albums.jpg';
-import { FaEye, FaMoneyBill } from 'react-icons/fa'
+import { FaEye, FaMoneyBill, FaFileUpload } from 'react-icons/fa'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
@@ -156,11 +156,11 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                Total Amount From Albums
+                                Total Musics Uploaded
                             </h3>
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
-                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
+                            <FaFileUpload className=' text-white w-6 h-6 lg:w-4 lg:h-4 pr-1' />
                             # ETH
                             </p>
 
@@ -200,7 +200,7 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                Albums Streams
+                                Total Purchased Musics
                             </h3>
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
