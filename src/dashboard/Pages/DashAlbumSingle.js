@@ -1,12 +1,26 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import library from '../../component/assets/library.jpg';
 import { FaMoneyBill, FaEye } from 'react-icons/fa'
-import { ethers } from 'ethers';
-
 import { useLocation } from 'react-router-dom'
+
+
+import { ethers } from 'ethers';
+import { Web3Storage } from 'web3.storage';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0xeEdBB02233a9dEbEDc47Dc718DfE31D12C586B37";
+
+function getAccessToken () {
+   
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE0ZGU4NTUwMjAxMTdENDIyY0IxOTRBREJiZERlOTJGZjBkYzkxNzciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODY0ODYwNjYyNjksIm5hbWUiOiJEZXlwbGF5In0.7IJOEuXqeiau_nue9GSlHWWcpnROnPE6TP24oy4e9No'
+}
+
+function makeStorageClient () {
+  return new Web3Storage({ token: getAccessToken() })
+}
+
 
 function DashAlbumSingle() {
 
@@ -147,9 +161,14 @@ function DashAlbumSingle() {
     
                   </div>
     
-    
-    
                 </div>
+
+                <div className='mx-3 mt-8 mb-32'>
+
+
+                </div>
+
+
               </div>
             </div>
           </div>
