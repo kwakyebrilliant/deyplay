@@ -14,7 +14,6 @@ const deyplayAddress = "0x6F28f49888cda9cb182d3945c09e82f9667B675a";
 function DashLibrary() {
 
     const [tracks, setTracks] = useState([]);
-    const [albums, setAlbums] = useState([]);
     const [currentAccount, setCurrentAccount] = useState('');
     const [filter, setFilter] = useState('');
   
@@ -34,7 +33,6 @@ function DashLibrary() {
           setCurrentAccount(accounts[0]);
     
           fetchTracksByArtist(contract, accounts[0]);
-          fetchAlbumsByArtist(contract, accounts[0]);
         } catch (error) {
           console.error('Error connecting to MetaMask:', error);
         }
@@ -50,6 +48,7 @@ function DashLibrary() {
             return {
               id: track.id,
               title: track.title,
+              description: track.description,
               artist: track.artist,
               imageUrl: track.imageUrl,
               audioFile: track.audioFile,
@@ -68,46 +67,15 @@ function DashLibrary() {
       }
     }
     
-    async function fetchAlbumsByArtist(contract, artistAddress) {
-        try {
-          const albumIds = await contract.listAlbumsByArtist(artistAddress);
-    
-          const albumDetails = await Promise.all(
-            albumIds.map(async (albumId) => {
-              const album = await contract.getAlbum(albumId);
-              return {
-                id: album.id,
-                title: album.title,
-                artist: album.artist,
-                imageUrl: album.imageUrl,
-                description: album.description,
-                price: album.price,
-                audioFiles: album.audioFiles,
-                totalStreams: album.totalStreams,
-                totalPurchases: album.totalPurchases,
-                royaltiesOwners: album.royaltiesOwners,
-                royaltiesPercentages: album.royaltiesPercentages
-              };
-            })
-          );
-    
-          setAlbums(albumDetails);
-        } catch (error) {
-          console.error('Error fetching albums by artist:', error);
-        }
-      }
 
-      function filterTracksAndAlbums() {
+
+      function filterTracks() {
         const filteredTracks = tracks.filter((track) =>
           track.title.toLowerCase().includes(filter.toLowerCase())
         );
     
-        const filteredAlbums = albums.filter((album) =>
-          album.title.toLowerCase().includes(filter.toLowerCase())
-        );
     
         setTracks(filteredTracks);
-        setAlbums(filteredAlbums);
       }
 
 
@@ -136,7 +104,7 @@ function DashLibrary() {
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             />
-                            <button onClick={filterTracksAndAlbums} className="ml-2 text-black">
+                            <button onClick={filterTracks} className="ml-2 text-black">
                             <FiSearch className='text-black' />
                             </button>
                         </div>
@@ -156,72 +124,13 @@ function DashLibrary() {
                     </div>
 
 
-                <div className='flex m-3 pt-4'>
-                  <h2 className="text-2xl text-white font-bold mb-4">Album Uploaded</h2>
-                
-                </div>
-
-                <div className='mx-3 mb-12'>
-                {albums.length === 0 ? (
-                        <h1 className="font-bold text-5xl text-center text-white">No albums available</h1>
-                    ) : (
-                  <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
-
-                {albums.map((album) => (
-
-                  <article key={album.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <Link to='/dashalbumsingle'
-                            state={{
-                                id: album.id,
-                                title: album.title,
-                                imageUrl: album.imageUrl,
-                                artist: album.artist,
-                                description: album.description,
-                                price: album.price,
-                                audioFiles: album.audioFiles,
-                                totalStreams: album.totalStreams,
-                                totalPurchases: album.totalPurchases,
-                                royaltiesOwners: album.royaltiesOwners,
-                                royaltiesPercentages: album.royaltiesPercentages
-                            }}
-                          >
-                      <img
-                          src={album.imageUrl} 
-                          alt={album.title} 
-                          className="w-full h-40 p-4 object-cover"
-                      />
-
-
-                      <div className="p-4 sm:p-6">
-                          <h3 className="font-medium text-white">
-                          {album.artist.slice(0, 6)}…{album.artist.slice(album.artist.length - 6)}
-                          </h3>
-
-                          <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                          {album.title}
-                          </p>
-
-                      </div>
-
-
-                      </Link>
-                      </article>
-
-                  ))}
-                  </div>
-                  )}
-
-
-                  </div>
-
-
 
                 <div className='flex m-3 pt-4'>
                   <h2 className="text-2xl text-white font-bold mb-4">Songs Uploaded</h2>
                 
                 </div>
 
-                <div className='mx-3 mb-12'>
+                <div className='mx-3 mb-60'>
                 {tracks.length === 0 ? (
                         <h1 className="font-bold text-5xl text-center text-white">No tracks available</h1>
                     ) : (
@@ -234,6 +143,7 @@ function DashLibrary() {
                             state={{
                                 id: track.id,
                                 title: track.title,
+                                description: track.description,
                                 artist: track.artist,
                                 imageUrl: track.imageUrl,
                                 audioFile: track.audioFile,
