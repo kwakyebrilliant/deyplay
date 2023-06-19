@@ -23,6 +23,7 @@ function DashMusic() {
 
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
+  const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState('');
   const [audioFile, setAudioFile] = useState('');
   const [price, setPrice] = useState('');
@@ -125,6 +126,7 @@ function DashMusic() {
     try {
       const transaction = await contract.addTrack(
         title,
+        description,
         artist,
         imageFile,
         audioFile,
@@ -138,6 +140,7 @@ function DashMusic() {
 
       // Reset the form fields
       setTitle('');
+      setDescription('');
       setArtist('');
       setImageFile('');
       setAudioFile('');
@@ -215,6 +218,21 @@ function DashMusic() {
                             />
                           </div>
                           <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="description">
+                              Description
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="text"
+                              id="description"
+                              name="description"
+                              placeholder="Song Description"
+                              value={description} 
+                              onChange={(e) => setDescription(e.target.value)}
+                              required
+                            />
+                          </div>
+                          <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="address">
                               Your Address
                             </label>
@@ -251,9 +269,8 @@ function DashMusic() {
                             </h1>
                             <p class="text-xs mt-6 text-white mb-8">
                             You have the opportunity to list all individuals entitled to royalties.
-                            Provide the address of a royalty owner in the first input and enter a figure from 1-100
-                            to that address in the second input, do not add the percentage sign.
-                            Use the "Add Royalties" button to add other royalty owners.
+                            Provide the address of each royalty owner and separate them with commas,
+                             and do same with their percentage (1-100) without the percentage sign accordingly.
                             </p>
 
                             <div className="mb-4">
