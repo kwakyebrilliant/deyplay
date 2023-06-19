@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaMusic, FaRegFolder, FaHeart } from 'react-icons/fa';
+import { FaHome, FaMusic, FaHeart } from 'react-icons/fa';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
@@ -45,12 +45,6 @@ const PartialNavbar = () => {
               <Link to='/dashmusic' className='flex' onClick={handleClose}>
                 <FaMusic className='text-2xl mr-4' />
                 Music
-              </Link>
-            </li>
-            <li className='border-zinc-900 w-fit text-white'>
-              <Link to='/dashalbum' className='flex' onClick={handleClose}>
-                <FaRegFolder className='text-2xl mr-4' />
-                Album
               </Link>
             </li>
             <li className='border-zinc-900 w-fit text-white'>
