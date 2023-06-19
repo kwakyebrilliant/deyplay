@@ -3,8 +3,8 @@ pragma solidity ^0.8.4;
 
 contract Deyplay{
 
- // Track struct
-    struct Track {
+ //Track struct
+  struct Track {
         uint id;
         string title;
         address artist;
@@ -17,7 +17,8 @@ contract Deyplay{
         uint[] royaltiesPercentages;
     }
 
-    // Album struct
+
+    //Album struct
     struct Album {
         uint id;
         string title;
@@ -27,20 +28,9 @@ contract Deyplay{
         uint price;
         uint totalStreams;
         uint totalPurchases;
-        uint[] audioFileIds;
+        uint[] audioFiles;
         address[] royaltiesOwners;
         uint[] royaltiesPercentages;
-    }
-
-
-    //AudioFile struct
-    struct AudioFile {
-        uint trackId;
-        string title;
-        string audioFile;
-        string imageUrl;
-        uint totalStreams;
-        uint totalPurchases;
     }
 
 
@@ -52,6 +42,7 @@ contract Deyplay{
     mapping(uint => Album) private albums;
     mapping(address => uint[]) private userPurchasedTracks;
     mapping(address => uint[]) private userPurchasedAlbums;
+
     mapping(address => uint) private artistBalances;
 
 
@@ -62,7 +53,6 @@ contract Deyplay{
     event AlbumStreamed(uint albumId, address listener, uint amount);
     event TrackPurchased(uint trackId, address buyer, uint amount);
     event AlbumPurchased(uint albumId, address buyer, uint amount);
-    event TrackAddedToAlbum(uint albumId, uint trackId);
 
 
     //Modiefiers
@@ -77,25 +67,27 @@ contract Deyplay{
     }
 
 
-    // Add track function
+    //Add track function
     function addTrack(string memory _title, address _artist, string memory _imageUrl, string memory _audioFile, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
         trackCount++;
         tracks[trackCount] = Track(trackCount, _title, _artist, _imageUrl, _audioFile, _price, 0, 0, _royaltiesOwners, _royaltiesPercentages);
+
         emit TrackCreated(trackCount, _title, _artist, _imageUrl, _audioFile, _price, _royaltiesOwners, _royaltiesPercentages);
     }
 
-    // Add album function
+
+    //Add album function
     function addAlbum(string memory _title, address _artist, string memory _imageUrl, string memory _description, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
         albumCount++;
         albums[albumCount] = Album(albumCount, _title, _artist, _imageUrl, _description, _price, 0, 0, new uint[](0), _royaltiesOwners, _royaltiesPercentages);
+
         emit AlbumCreated(albumCount, _title, _artist, _imageUrl, _description, _price, _royaltiesOwners, _royaltiesPercentages);
     }
 
-    // Add track to album function
-    function addTrackToAlbum(uint _albumId, uint _trackId) public albumExists(_albumId) trackExists(_trackId) {
+    //Add track to album function
+    function addTrackToAlbum(uint _trackId, uint _albumId) public trackExists(_trackId) albumExists(_albumId) {
         Album storage album = albums[_albumId];
-        album.audioFileIds.push(_trackId);
-        emit TrackAddedToAlbum(_albumId, _trackId);
+        album.audioFiles.push(_trackId);
     }
 
 
