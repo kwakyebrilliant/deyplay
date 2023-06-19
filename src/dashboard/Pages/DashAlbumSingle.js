@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 import { ethers } from 'ethers';
 import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0xeEdBB02233a9dEbEDc47Dc718DfE31D12C586B37";
+const deyplayAddress = "0x9229e1E6b573c55DC32eb3DFdD6a2903acCC861c";
 
 function getAccessToken () {
    
