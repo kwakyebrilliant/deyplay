@@ -68,6 +68,31 @@ contract Deyplay {
         return artistTracks;
     }
 
+    // Gets the total number of tracks uploaded by an artist
+    function getTotalTracksUploadedByArtist(address _artist) public view returns (uint) {
+        uint totalTracksUploaded = 0;
+        for (uint i = 1; i <= trackCount; i++) {
+            if (tracks[i].artist == _artist) {
+                totalTracksUploaded++;
+            }
+        }
+        return totalTracksUploaded;
+    }
+
+
+    // Gets the total number of tracks purchased from an artist
+    function getTotalTracksPurchasedFromArtist(address _artist) public view returns (uint) {
+        uint totalTracksPurchased = 0;
+        uint[] memory purchasedTracks = userPurchasedTracks[msg.sender];
+        for (uint i = 0; i < purchasedTracks.length; i++) {
+            uint trackId = purchasedTracks[i];
+            if (tracks[trackId].artist == _artist) {
+                totalTracksPurchased++;
+            }
+        }
+        return totalTracksPurchased;
+    }
+
     // Allow a user to stream a track
     function streamTrack(uint _trackId) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
