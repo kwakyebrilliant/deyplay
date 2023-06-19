@@ -29,9 +29,7 @@ function Dashboard() {
         const [userAddress, setUserAddress] = useState('');
         const [balance, setBalance] = useState(0);
         const [trackAmount, setTrackAmount] = useState(0);
-        const [albumAmount, setAlbumAmount] = useState(0);
         const [trackStreams, setTrackStreams] = useState(0);
-        const [albumStreams, setAlbumStreams] = useState(0);
 
         useEffect(() => {
             const fetchContractData = async () => {
@@ -55,16 +53,12 @@ function Dashboard() {
                   // Fetch data from the smart contract
                   const artistBalance = await contract.getArtistBalance();
                   const totalTrackAmount = await contract.getTotalTrackAmount();
-                  const totalAlbumAmount = await contract.getTotalAlbumAmount();
                   const totalTrackStreams = await contract.getTotalTrackStreams();
-                  const totalAlbumStreams = await contract.getTotalAlbumStreams();
         
                   // Update the state with the fetched data
                   setBalance(artistBalance);
                   setTrackAmount(totalTrackAmount);
-                  setAlbumAmount(totalAlbumAmount);
                   setTrackStreams(totalTrackStreams);
-                  setAlbumStreams(totalAlbumStreams);
                 } else {
                   console.error('MetaMask is not installed');
                 }
@@ -167,7 +161,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {ethers.utils.formatEther(albumAmount)} ETH
+                            # ETH
                             </p>
 
                         </div>
@@ -211,7 +205,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {albumStreams}
+                            #
                             </p>
 
                         </div>
@@ -252,11 +246,6 @@ function Dashboard() {
 
                     <div className="flex mb-96 justify-center items-center">
                     <span className="inline-flex justify-center -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
-                        <button className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
-                        <a href="dashalbum">
-                        Add Albums
-                        </a>
-                        </button>
                         <button className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
                         <a href="dashmusic">
                         Add Musics
