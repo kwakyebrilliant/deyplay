@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0xf3d257D4Ee9AF5B663e1D3543CBe59eC98459B39";
+const deyplayAddress = "0x2acdb6F82269a3e359BA580D5D65080a03011032";
 
 
 function DashMusicSingle() {
