@@ -221,16 +221,18 @@ function DashMusic() {
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="description">
                               Description
                             </label>
-                            <input
+                            <textarea
                               className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
                               type="text"
                               id="description"
                               name="description"
-                              placeholder="Song Description"
-                              value={description} 
+                              placeholder="Track Description"
+                              value={description}
                               onChange={(e) => setDescription(e.target.value)}
                               required
-                            />
+                              rows='4'
+                            >
+                              </textarea>
                           </div>
                           <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="address">
