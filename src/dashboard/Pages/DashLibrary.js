@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x9229e1E6b573c55DC32eb3DFdD6a2903acCC861c";
+const deyplayAddress = "0x6F28f49888cda9cb182d3945c09e82f9667B675a";
 
 
 function DashLibrary() {
