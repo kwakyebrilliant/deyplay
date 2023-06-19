@@ -184,7 +184,7 @@ function DashAlbumSingle() {
                           <p className="text-lg font-bold">1</p>
                         </div>
                         <div className="">
-                          <img src={library} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
+                          <img src={albums.audioFiles} alt="Image" className="w-36 h-24 rounded-lg object-cover" />
                         </div>
                         <div className="p-4">
                           <p className="text-lg font-bold mb-2">Title</p>
