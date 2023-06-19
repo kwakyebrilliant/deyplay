@@ -8,7 +8,7 @@ import { FaUpload } from 'react-icons/fa';
 import { ethers } from 'ethers';
 import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x2acdb6F82269a3e359BA580D5D65080a03011032";
+const deyplayAddress = "0xeEdBB02233a9dEbEDc47Dc718DfE31D12C586B37";
 
 function getAccessToken () {
    
