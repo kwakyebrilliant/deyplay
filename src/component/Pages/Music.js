@@ -65,6 +65,7 @@ function Music() {
                 price: track.price,
                 totalStreams: track.totalStreams,
                 totalPurchases: track.totalPurchases,
+                streamAmount: track.streamAmount,
                 royaltiesOwners: track.royaltiesOwners,
                 royaltiesPercentages: track.royaltiesPercentages
               };
@@ -162,6 +163,7 @@ function Music() {
                                 price: track.price,
                                 totalStreams: track.totalStreams,
                                 totalPurchases: track.totalPurchases,
+                                streamAmount: track.streamAmount,
                                 royaltiesOwners: track.royaltiesOwners,
                                 royaltiesPercentages: track.royaltiesPercentages
                             }}
