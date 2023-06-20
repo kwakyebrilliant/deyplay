@@ -30,6 +30,8 @@ function Dashboard() {
         const [balance, setBalance] = useState(0);
         const [trackAmount, setTrackAmount] = useState(0);
         const [trackStreams, setTrackStreams] = useState(0);
+        const [totalTracksUploaded, setTotalTracksUploaded] = useState(0);
+        const [totalTracksPurchased, setTotalTracksPurchased] = useState(0);
 
         useEffect(() => {
             const fetchContractData = async () => {
@@ -54,11 +56,15 @@ function Dashboard() {
                   const artistBalance = await contract.getArtistBalance();
                   const totalTrackAmount = await contract.getTotalTrackAmount();
                   const totalTrackStreams = await contract.getTotalTrackStreams();
+                  const uploadedTracks = await contract.getTotalTracksUploadedByArtist();
+                  const purchasedTracks = await contract.getTotalTracksPurchasedFromArtist();
         
                   // Update the state with the fetched data
                   setBalance(artistBalance);
                   setTrackAmount(totalTrackAmount);
                   setTrackStreams(totalTrackStreams);
+                  setTotalTracksUploaded(uploadedTracks);
+                  setTotalTracksPurchased(purchasedTracks);
                 } else {
                   console.error('MetaMask is not installed');
                 }
@@ -161,7 +167,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaFileUpload className=' text-white w-6 h-6 lg:w-4 lg:h-4 pr-1' />
-                            # ETH
+                            {ethers.utils.formatEther(totalTracksUploaded)}
                             </p>
 
                         </div>
@@ -200,12 +206,12 @@ function Dashboard() {
 
                         <div className="p-4 sm:p-6">
                             <h3 className="font-medium text-white">
-                                Total Purchased Musics
+                                Purchased Musics From You
                             </h3>
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
-                            <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            #
+                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
+                            {ethers.utils.formatEther(totalTracksPurchased)}
                             </p>
 
                         </div>
