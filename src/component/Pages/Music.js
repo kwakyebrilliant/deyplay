@@ -138,7 +138,7 @@ function Music() {
                   {tracks.map((track) => (
 
                   <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                          <Link to='/dashmusicsingle'
+                          <Link to='/musicdetails'
                             state={{
                                 id: track.id,
                                 title: track.title,
