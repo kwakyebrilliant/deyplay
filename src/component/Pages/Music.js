@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
-import coverimg from '../assets/coverimg.jpeg';
+import musics from '../assets/musics.jpg';
 import { FiSearch } from 'react-icons/fi';
 import MusicCard from '../Cards/MusicCard';
 
@@ -19,7 +19,7 @@ function Music() {
 
                     
                     <div className="relative mx-2">
-                        <img src={coverimg} alt="Background" className="w-full rounded object-cover h-96" />
+                        <img src={musics} alt="Background" className="w-full rounded object-cover h-96" />
 
                         <div className="absolute bg-black/30 inset-0 flex flex-col items-center justify-end p-6">
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center rounded-md bg-gradient-to-r from-purple-500 to-pink-500 p-2">
