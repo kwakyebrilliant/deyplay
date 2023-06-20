@@ -65,6 +65,7 @@ function Homepage() {
               price: track.price,
               totalStreams: track.totalStreams,
               totalPurchases: track.totalPurchases,
+              streamAmount: track.streamAmount,
               royaltiesOwners: track.royaltiesOwners,
               royaltiesPercentages: track.royaltiesPercentages
             };
@@ -106,7 +107,7 @@ function Homepage() {
                       <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
                     ) : (
                     <div>
-                      {shuffledTracks.map((track) => (
+                      {shuffledTracks.slice(1).map((track) => (
                 <a key={track.id} className="relative object-cover w-full block group">
                 <img
                     src={track.imageUrl} 
@@ -188,6 +189,7 @@ function Homepage() {
                                 price: track.price,
                                 totalStreams: track.totalStreams,
                                 totalPurchases: track.totalPurchases,
+                                streamAmount: track.streamAmount,
                                 royaltiesOwners: track.royaltiesOwners,
                                 royaltiesPercentages: track.royaltiesPercentages
                               }}
@@ -243,6 +245,7 @@ function Homepage() {
                             price: track.price,
                             totalStreams: track.totalStreams,
                             totalPurchases: track.totalPurchases,
+                            streamAmount: track.streamAmount,
                             royaltiesOwners: track.royaltiesOwners,
                             royaltiesPercentages: track.royaltiesPercentages
                           }}
