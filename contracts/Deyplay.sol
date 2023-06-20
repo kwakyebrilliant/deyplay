@@ -24,7 +24,7 @@ contract Deyplay {
     mapping(address => uint) private artistBalances;
 
     //Events
-    event TrackCreated(uint id, string title, string description, address artist, string imageUrl, string audioFile, uint price, address[] royaltiesOwners, uint[] royaltiesPercentages);
+    event TrackCreated(uint id, string title, string description, address artist, string imageUrl, string audioFile, uint price, uint streamAmount, address[] royaltiesOwners, uint[] royaltiesPercentages);
     event TrackStreamed(uint trackId, address listener, uint amount);
     event TrackPurchased(uint trackId, address buyer, uint amount);
 
@@ -35,10 +35,10 @@ contract Deyplay {
     }
 
     // Add track function
-    function addTrack(string memory _title, string memory _description, address _artist, string memory _imageUrl, string memory _audioFile, uint _price, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
+    function addTrack(string memory _title, string memory _description, address _artist, string memory _imageUrl, string memory _audioFile, uint _price, uint _streamAmount, address[] memory _royaltiesOwners, uint[] memory _royaltiesPercentages) public {
         trackCount++;
         tracks[trackCount] = Track(trackCount, _title, _description, _artist, _imageUrl, _audioFile, _price, 0, 0, _royaltiesOwners, _royaltiesPercentages);
-        emit TrackCreated(trackCount, _title, _description, _artist, _imageUrl, _audioFile, _price, _royaltiesOwners, _royaltiesPercentages);
+        emit TrackCreated(trackCount, _title, _description, _artist, _imageUrl, _audioFile, _price, _streamAmount, _royaltiesOwners, _royaltiesPercentages);
     }
 
     // Fetch track details
@@ -79,7 +79,6 @@ contract Deyplay {
         return totalTracksUploaded;
     }
 
-
     // Gets the total number of tracks purchased from an artist
     function getTotalTracksPurchasedFromArtist(address _artist) public view returns (uint) {
         uint totalTracksPurchased = 0;
@@ -94,18 +93,18 @@ contract Deyplay {
     }
 
     // Allow a user to stream a track
-    function streamTrack(uint _trackId) public payable trackExists(_trackId) {
+    function streamTrack(uint _trackId, uint _streamAmount) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
-        require(msg.value >= track.price, "Insufficient payment to stream the track");
+        require(msg.value >= _streamAmount, "Insufficient payment to stream the track");
 
-        uint royaltiesAmount = calculateRoyalties(track.price, track.royaltiesOwners, track.royaltiesPercentages);
-        uint artistAmount = track.price - royaltiesAmount;
+        uint royaltiesAmount = calculateRoyalties(_streamAmount, track.royaltiesOwners, track.royaltiesPercentages);
+        uint artistAmount = _streamAmount - royaltiesAmount;
 
         track.totalStreams++;
         artistBalances[track.artist] += artistAmount;
         distributeRoyalties(track.royaltiesOwners, track.royaltiesPercentages, royaltiesAmount);
 
-        emit TrackStreamed(_trackId, msg.sender, track.price);
+        emit TrackStreamed(_trackId, msg.sender, _streamAmount);
     }
 
     // Purchase track function
