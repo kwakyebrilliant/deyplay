@@ -27,6 +27,7 @@ function DashMusic() {
   const [imageFile, setImageFile] = useState('');
   const [audioFile, setAudioFile] = useState('');
   const [price, setPrice] = useState('');
+  const [streamamount, setStreamAmount] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState('');
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
   const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
@@ -131,6 +132,7 @@ function DashMusic() {
         imageFile,
         audioFile,
         ethers.utils.parseEther(price),
+        ethers.utils.parseEther(streamamount),
         owners,
         percentages
       );
@@ -145,6 +147,7 @@ function DashMusic() {
       setImageFile('');
       setAudioFile('');
       setPrice('');
+      setStreamAmount('');
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
 
@@ -261,6 +264,22 @@ function DashMusic() {
                               placeholder="Song Price"
                               value={price} 
                               onChange={(e) => setPrice(e.target.value)}
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="streamamount">
+                              Stream Amount
+                            </label>
+                            <input
+                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
+                              type="number"
+                              id="streamamount"
+                              name="streamamount"
+                              placeholder="Song Stream Amount"
+                              value={streamamount} 
+                              onChange={(e) => setStreamAmount(e.target.value)}
                               required
                             />
                           </div>
