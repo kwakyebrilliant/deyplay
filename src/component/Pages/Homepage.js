@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
-import AlbumCard from '../Cards/AlbumCard'
-import MusicCard from '../Cards/MusicCard'
 import CoversCard from '../Cards/CoversCard'
 
 import { Link } from 'react-router-dom'
@@ -150,8 +148,48 @@ function Homepage() {
             
                 </div>
 
-                {/* Music Card imported */}
-                <MusicCard />
+                <div className='mx-3 mb-12'>
+                {tracks.length === 0 ? (
+                  <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
+                ) : (
+                  <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
+                    {tracks.slice(-1).map((track) => (
+                      <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
+                        <Link
+                          to='/musicdetails'
+                          state={{
+                            id: track.id,
+                            title: track.title,
+                            description: track.description,
+                            artist: track.artist,
+                            imageUrl: track.imageUrl,
+                            audioFile: track.audioFile,
+                            price: track.price,
+                            totalStreams: track.totalStreams,
+                            totalPurchases: track.totalPurchases,
+                            royaltiesOwners: track.royaltiesOwners,
+                            royaltiesPercentages: track.royaltiesPercentages
+                          }}
+                        >
+                          <img
+                            src={track.imageUrl}
+                            alt={track.title}
+                            className="w-full h-40 p-4 object-cover"
+                          />
+                          <div className="p-4 sm:p-6">
+                            <h3 className="font-medium text-white">
+                              {track.artist.slice(0, 6)}…{track.artist.slice(track.artist.length - 6)}
+                            </h3>
+                            <p className="line-clamp-3 text-sm/relaxed text-gray-500">
+                              {track.title}
+                            </p>
+                          </div>
+                        </Link>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </div>
 
             </div>
 
