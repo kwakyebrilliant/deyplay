@@ -14,6 +14,7 @@ function Music() {
     const [account, setAccount] = useState('');
     const [contract, setContract] = useState(null);
     const [web3Provider, setWeb3Provider] = useState(null);
+    const [filter, setFilter] = useState('');
     const [tracks, setTracks] = useState([]);
 
     useEffect(() => {
@@ -82,6 +83,16 @@ function Music() {
         fetchTracks();
       }, []);
 
+      function filterTracks() {
+        const filteredTracks = tracks.filter((track) =>
+          track.title.toLowerCase().includes(filter.toLowerCase())
+        );
+    
+    
+        setTracks(filteredTracks);
+      }
+
+
 
     return (
         <div>
@@ -104,8 +115,10 @@ function Music() {
                             className="w-64 bg-transparent focus:outline-none text-white placeholder-white"
                             type="text"
                             placeholder="Search..."
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
                             />
-                            <button className="ml-2 text-white">
+                            <button onClick={filterTracks} className="ml-2 text-black">
                             <FiSearch className='text-black' />
                             </button>
                         </div>
@@ -131,7 +144,7 @@ function Music() {
                     
                     <div className='mx-3 mb-12'>
                 {tracks.length === 0 ? (
-                        <h1 className="font-bold text-5xl text-center text-white">No tracks available</h1>
+                        <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
                     ) : (
                   <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
 
