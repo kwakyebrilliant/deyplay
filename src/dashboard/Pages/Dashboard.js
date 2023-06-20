@@ -26,55 +26,54 @@ function Dashboard() {
         greet = "evening";
 
 
-        const [userAddress, setUserAddress] = useState('');
-        const [balance, setBalance] = useState(0);
-        const [trackAmount, setTrackAmount] = useState(0);
-        const [trackStreams, setTrackStreams] = useState(0);
-        const [totalTracksUploaded, setTotalTracksUploaded] = useState(0);
-        const [totalTracksPurchased, setTotalTracksPurchased] = useState(0);
-
+        const [web3Provider, setWeb3Provider] = useState(null);
+        const [contract, setContract] = useState(null);
+        const [account, setAccount] = useState('');
+        const [totalUploaded, setTotalUploaded] = useState(0);
+        const [totalPurchased, setTotalPurchased] = useState(0);
+        const [totalAmount, setTotalAmount] = useState(0);
+        const [totalStreams, setTotalStreams] = useState(0);
+        const [artistBalance, setArtistBalance] = useState(0);
+      
         useEffect(() => {
-            const fetchContractData = async () => {
-              try {
-                // Check if MetaMask is installed
-                if (typeof window.ethereum !== 'undefined') {
-                  // Request access to the user's MetaMask account
-                  await window.ethereum.request({ method: 'eth_requestAccounts' });
-        
-                  // Connect to the Ethereum network
-                  const provider = new ethers.providers.Web3Provider(window.ethereum);
-                  const signer = provider.getSigner();
-        
-                  // Get the user's address
-                  const address = await signer.getAddress();
-                  setUserAddress(address);
-        
-                  // Load the smart contract
-                  const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-        
-                  // Fetch data from the smart contract
-                  const artistBalance = await contract.getArtistBalance();
-                  const totalTrackAmount = await contract.getTotalTrackAmount();
-                  const totalTrackStreams = await contract.getTotalTrackStreams();
-                  const uploadedTracks = await contract.getTotalTracksUploadedByArtist();
-                  const purchasedTracks = await contract.getTotalTracksPurchasedFromArtist();
-        
-                  // Update the state with the fetched data
-                  setBalance(artistBalance);
-                  setTrackAmount(totalTrackAmount);
-                  setTrackStreams(totalTrackStreams);
-                  setTotalTracksUploaded(uploadedTracks);
-                  setTotalTracksPurchased(purchasedTracks);
-                } else {
-                  console.error('MetaMask is not installed');
-                }
-              } catch (error) {
-                console.error('Error fetching contract data:', error);
-              }
-            };
-        
-            fetchContractData();
-          }, []);
+          const init = async () => {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            setWeb3Provider(provider);
+      
+            await window.ethereum.enable();
+      
+            const [account] = await provider.listAccounts();
+            setAccount(account);
+      
+            const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, provider);
+            setContract(contract);
+          };
+      
+          init();
+        }, []);
+      
+        const handleGetStats = async () => {
+          if (!contract || !account) return;
+      
+          try {
+            const totalUploaded = await contract.getTotalTracksUploadedByArtist(account);
+            setTotalUploaded(totalUploaded.toNumber());
+      
+            const totalPurchased = await contract.getTotalTracksPurchasedFromArtist(account);
+            setTotalPurchased(totalPurchased.toNumber());
+      
+            const totalAmount = await contract.getTotalTrackAmount(account);
+            setTotalAmount(ethers.utils.formatEther(totalAmount));
+      
+            const totalStreams = await contract.getTotalTrackStreams(account);
+            setTotalStreams(totalStreams.toNumber());
+      
+            const artistBalance = await contract.getArtistBalance(account);
+            setArtistBalance(ethers.utils.formatEther(artistBalance));
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        };
         
 
     
@@ -96,8 +95,15 @@ function Dashboard() {
                         <div className="sm:justify-between sm:items-center sm:flex">
                         <div className="text-center sm:text-left">
                             <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-                            Good {greet}, {userAddress.slice(0, 6)}…{userAddress.slice(userAddress.length - 6)}
+                            Good {greet}, {account.slice(0, 6)}…{account.slice(account.length - 6)}
                             </h1>
+
+                            <button
+          onClick={handleGetStats}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Get Statistics
+        </button>
 
                             <p className="mt-1.5 text-sm text-gray-900">
                             Check your statistics on Deyplay🎉
@@ -122,7 +128,7 @@ function Dashboard() {
                     <div className="flex items-center">
                     <FaMoneyBill className=' text-white w-6 h-6 lg:w-12 lg:h-12 pr-1' />
                     <h3 className="text-xl ml-2 font-bold text-white">
-                    {ethers.utils.formatEther(balance)} ETH
+                    {artistBalance} ETH
                     </h3>
                     </div>
 
@@ -167,7 +173,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaFileUpload className=' text-white w-6 h-6 lg:w-4 lg:h-4 pr-1' />
-                            {ethers.utils.formatEther(totalTracksUploaded)}
+                            {totalUploaded}
                             </p>
 
                         </div>
@@ -189,7 +195,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {ethers.utils.formatEther(trackAmount)} ETH
+                            {totalAmount} ETH
                             </p>
 
                         </div>
@@ -211,7 +217,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {ethers.utils.formatEther(totalTracksPurchased)}
+                            {totalPurchased}
                             </p>
 
                         </div>
@@ -233,7 +239,7 @@ function Dashboard() {
 
                             <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
                             <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {trackStreams}
+                            {totalStreams}
                             </p>
 
                         </div>
