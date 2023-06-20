@@ -50,7 +50,7 @@ function Dashboard() {
                   setUserAddress(address);
         
                   // Load the smart contract
-                  const contract = new ethers.Contract(deyplayAddress, Deyplay, signer);
+                  const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
         
                   // Fetch data from the smart contract
                   const artistBalance = await contract.getArtistBalance();
