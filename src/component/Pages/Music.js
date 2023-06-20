@@ -129,7 +129,7 @@ function Music() {
                     </div>
 
                     
-                    <div className='mx-3 mb-60'>
+                    <div className='mx-3 mb-12'>
                 {tracks.length === 0 ? (
                         <h1 className="font-bold text-5xl text-center text-white">No tracks available</h1>
                     ) : (
