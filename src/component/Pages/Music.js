@@ -5,7 +5,33 @@ import musics from '../assets/musics.jpg';
 import { FiSearch } from 'react-icons/fi';
 import MusicCard from '../Cards/MusicCard';
 
+import { ethers } from 'ethers';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0xE94C4eF5f0ac10D6dfa9338FcAFB6fF67841FAB0";
+
 function Music() {
+    const [account, setAccount] = useState('');
+    const [contract, setContract] = useState(null);
+    const [web3Provider, setWeb3Provider] = useState(null);
+
+    useEffect(() => {
+        const init = async () => {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          setWeb3Provider(provider);
+    
+          await window.ethereum.enable();
+    
+          const [account] = await provider.listAccounts();
+          setAccount(account);
+    
+          const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, provider);
+          setContract(contract);
+        };
+    
+        init();
+      }, []);
+
+
     return (
         <div>
             <div className='bg-black/80'>
@@ -29,12 +55,12 @@ function Music() {
                             placeholder="Search..."
                             />
                             <button className="ml-2 text-white">
-                            <FiSearch className='text-white' />
+                            <FiSearch className='text-black' />
                             </button>
                         </div>
                         
                         <h3 className="text-xl font-medium text-white">
-                            John Doe
+                        {account.slice(0, 6)}…{account.slice(account.length - 6)}
                         </h3>
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
