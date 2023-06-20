@@ -42,7 +42,7 @@ function MusicDetails() {
 
                     <PartialNavbar />
 
-                    <div className='mx-3 mt-8 mb-12'>
+                    <div className='mx-3 mt-8 mb-16'>
                     <div className='relative grid grid-cols-1'>
                 <article className="overflow-hidden lg:h-min lg:w-full rounded-lg bg-gradient-to-b from-black to-transparent shadow-sm">
                   <img
