@@ -10,6 +10,7 @@ import Login from './component/Pages/Login';
 import Dashboard from './dashboard/Pages/Dashboard';
 import DashAlbum from './dashboard/Pages/DashAlbum';
 import DashMusic from './dashboard/Pages/DashMusic';
+import MusicDetails from './component/Singles/MusicDetails';
 import DashLibrary from './dashboard/Pages/DashLibrary';
 import DashMusicSingle from './dashboard/Pages/DashMusicSingle';
 import DashAlbumSingle from './dashboard/Pages/DashAlbumSingle';
@@ -21,6 +22,7 @@ function App() {
         <Routes>
         <Route path="/" exact element={<Homepage />} />
         <Route path="/music" exact element={<Music />} />
+        <Route path="/musicdetails" exact element={<MusicDetails />} />
         <Route path="/album" exact element={<Album />} />
         <Route path="/library" exact element={<Library />} />
         <Route path="/albumsingle" exact element={<AlbumSingle />} />
