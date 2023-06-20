@@ -76,6 +76,12 @@ function DashMusicSingle() {
 
                   <div className="px-4 py-4 sm:px-6">
                     <h3 className="text-sm/relaxed text-white">
+                    Stream Amount- ${ethers.utils.formatEther(tracks.streamAmount)}
+                    </h3>
+                  </div>
+
+                  <div className="px-4 py-4 sm:px-6">
+                    <h3 className="text-sm/relaxed text-white">
                       {tracks.description}
                     </h3>
                   </div>
