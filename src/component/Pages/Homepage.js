@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from 'react';
-import Sidebar from '../Partials/Sidebar'
-import PartialNavbar from '../Partials/PartialNavbar'
-import { FaPlayCircle } from 'react-icons/fa'
+import React, { useEffect, useState, useRef } from 'react';
+import Sidebar from '../Partials/Sidebar';
+import PartialNavbar from '../Partials/PartialNavbar';
+import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
 
 import { Link } from 'react-router-dom'
 
@@ -14,6 +14,24 @@ function Homepage() {
 
     const [shuffledTracks, setShuffledTracks] = useState([]);
     const [tracks, setTracks] = useState([]);
+
+    const audioRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+    const handleTogglePlay = () => {
+      if (isPlaying) {
+      audioRef.current.pause();
+      } else {
+      audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+  };
+
+  const handleProgressChange = () => {
+      const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setProgress(progressValue);
+  };
 
 
     useEffect(() => {
@@ -105,15 +123,40 @@ function Homepage() {
                     {track.title}
                     </p>
 
+                    <div className='w-full'>
+                    <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 text-black rounded-full bg-white flex items-center justify-center">
+                        {isPlaying ? (
+                        <PauseIcon className="h-6 w-6" onClick={handleTogglePlay} />
+                        ) : (
+                        <PlayIcon className="h-6 w-6" onClick={handleTogglePlay} />
+                        )}
+                    </div>
+                    </div>
 
-                    <a
-                    className="inline-flex cursor-pointer mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
-                    >
-                    <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
-                    </a>
+                    <div className="flex items-center mt-4">
+                    <div className="flex-1">
+                        <div className="relative">
+                        <div className="h-1 bg-gray-700 rounded-full">
+                            <div
+                            className="h-1 bg-blue-500 rounded-full"
+                            style={{ width: `${progress}%` }}
+                            ></div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <audio
+                    ref={audioRef}
+                    src={track.audioFile}
+                    onTimeUpdate={handleProgressChange}
+                    crossOrigin="anonymous"
+                    />
 
+                    </div>
 
                 </div>
+                
                 </a>
                       ))}
                 </div>
