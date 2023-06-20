@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0xE94C4eF5f0ac10D6dfa9338FcAFB6fF67841FAB0";
+const deyplayAddress = "0x10032186693ebe3e611182B7dfe51a8a7d95853E";
 
 function Homepage() {
 
