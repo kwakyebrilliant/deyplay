@@ -1,7 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar'
-import coverimg from '../assets/coverimg.jpeg';
 import { FaPlayCircle } from 'react-icons/fa'
 
 import { Link } from 'react-router-dom'
@@ -12,8 +12,6 @@ const deyplayAddress = "0xE94C4eF5f0ac10D6dfa9338FcAFB6fF67841FAB0";
 
 function Homepage() {
 
-    const [contract, setContract] = useState(null);
-    const [web3Provider, setWeb3Provider] = useState(null);
     const [shuffledTracks, setShuffledTracks] = useState([]);
     const [tracks, setTracks] = useState([]);
 
@@ -86,35 +84,41 @@ function Homepage() {
                 <PartialNavbar />
 
                 <div className='flex mx-3'>
-        <a className="relative object-cover w-full block group">
-        <img
-            src={coverimg}
-            alt=""
-            className="w-full object-cover rounded transition duration-500 group-hover:opacity-90 sm:h-[450px]"
-        />
+                {shuffledTracks.length === 0 ? (
+                      <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
+                    ) : (
+                    <div>
+                      {shuffledTracks.map((track) => (
+                <a key={track.id} className="relative object-cover w-full block group">
+                <img
+                    src={track.imageUrl} 
+                    alt={track.title}
+                    className="w-screen object-cover rounded transition duration-500 group-hover:opacity-90 sm:h-[450px]"
+                />
 
-        <div className="absolute bg-black/50 inset-0 flex flex-col items-start justify-end p-6">
-            <h3 className="text-xl font-medium text-white">John Doe</h3>
+                <div className="absolute bg-black/50 inset-0 flex flex-col items-start justify-end p-6">
+                    <h3 className="text-xl font-medium text-white">
+                    {track.artist.slice(0, 6)}…{track.artist.slice(track.artist.length - 6)}
+                    </h3>
 
-            <p className="mt-1.5 max-w-[40ch] text-xs text-white">
-            I can fly
-            </p>
-
-
-            <a
-            className="inline-flex mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
-            href="/musicsingle"
-            >
-            <span className="text-sm font-medium"> $1 for </span>
-
-            <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
-            </a>
+                    <p className="mt-1.5 max-w-[40ch] text-xs text-white">
+                    {track.title}
+                    </p>
 
 
-        </div>
-        </a>
+                    <a
+                    className="inline-flex cursor-pointer mt-3 items-center gap-2 rounded border border-black bg-black px-8 py-3 text-white hover:bg-white hover:text-black focus:outline-none focus:ring"
+                    >
+                    <FaPlayCircle className=' lg:w-[35px] lg:h-[35px] hover:text-black' />
+                    </a>
 
-    </div>
+
+                </div>
+                </a>
+                      ))}
+                </div>
+              )}
+            </div>
 
                 <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
