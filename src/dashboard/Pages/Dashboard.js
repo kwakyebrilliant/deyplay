@@ -98,13 +98,6 @@ function Dashboard() {
                             Good {greet}, {account.slice(0, 6)}…{account.slice(account.length - 6)}
                             </h1>
 
-                            <button
-          onClick={handleGetStats}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Get Statistics
-        </button>
-
                             <p className="mt-1.5 text-sm text-gray-900">
                             Check your statistics on Deyplay🎉
                             </p>
@@ -117,10 +110,15 @@ function Dashboard() {
                 </div>
 
 
-                <div className='flex m-3 pt-4'>
+                <div className='m-3 pt-4'>
                   <h2 className='text-white font-bold'>
                     Some Actions
                   </h2>
+                  <div className="flex pt-4 items-center">
+                    <div   onClick={handleGetStats} className="bg-white text-black hover:bg-black hover:text-white rounded-lg p-2 cursor-pointer">
+                        <span>Get Statistics</span>
+                    </div>
+                    </div>
                 </div>
 
                 <div className="container mx-auto p-4">
