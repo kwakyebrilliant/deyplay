@@ -129,9 +129,9 @@ function Homepage() {
                     <div className="flex items-center justify-center">
                     <div className="w-12 h-12 text-black rounded-full bg-white flex items-center justify-center">
                         {isPlaying ? (
-                        <PauseIcon className="h-6 w-6" onClick={handleTogglePlay} />
+                        <PauseIcon className="h-6 w-6 cursor-pointer" onClick={handleTogglePlay} />
                         ) : (
-                        <PlayIcon className="h-6 w-6"onClick={() => handleTogglePlay(track)}/>
+                        <PlayIcon className="h-6 w-6 cursor-pointer"onClick={() => handleTogglePlay(track)}/>
                         )}
                     </div>
                     </div>
