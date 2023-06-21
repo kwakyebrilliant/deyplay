@@ -12,83 +12,84 @@ const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
 
 function Homepage() {
 
-    const [shuffledTracks, setShuffledTracks] = useState([]);
-    const [tracks, setTracks] = useState([]);
+  const [shuffledTracks, setShuffledTracks] = useState([]);
+  const [tracks, setTracks] = useState([]);
 
-    const audioRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [progress, setProgress] = useState(0);
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-    const handleTogglePlay = () => {
+  const handleTogglePlay = async (track) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+
+      // Stream the track by calling the streamTrack function
+      const tx = await contract.streamTrack(track.id, { value: track.streamAmount });
+      await tx.wait();
+
+      // Update the track information with the new stream count
+      const updatedTrack = { ...track, totalStreams: track.totalStreams + 1 };
+      setTracks((prevTracks) =>
+        prevTracks.map((t) => (t.id === updatedTrack.id ? updatedTrack : t))
+      );
+
+      // Play the audio track
       if (isPlaying) {
-      audioRef.current.pause();
+        audioRef.current.pause();
       } else {
-      audioRef.current.play();
+        audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
+    } catch (error) {
+      console.error('Error streaming track:', error);
+    }
   };
 
   const handleProgressChange = () => {
-      const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-      setProgress(progressValue);
+    const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+    setProgress(progressValue);
   };
 
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, provider);
+        const trackIds = await contract.listAllTracks();
+        const trackIdsArray = trackIds.map((trackId) => trackId.toNumber());
+        const trackDetailsPromises = trackIdsArray.map(async (trackId) => {
+          const track = await contract.getTrack(trackId);
+          return {
+            id: track.id,
+            title: track.title,
+            description: track.description,
+            artist: track.artist,
+            imageUrl: track.imageUrl,
+            audioFile: track.audioFile,
+            price: track.price,
+            totalStreams: track.totalStreams,
+            totalPurchases: track.totalPurchases,
+            streamAmount: track.streamAmount,
+            royaltiesOwners: track.royaltiesOwners,
+            royaltiesPercentages: track.royaltiesPercentages
+          };
+        });
+        const trackDetails = await Promise.all(trackDetailsPromises);
+        setTracks(trackDetails);
+      } catch (error) {
+        console.error('Error fetching tracks:', error);
+      }
+    };
 
-    useEffect(() => {
-      const fetchTracks = async () => {
-        try {
-          // Connect to Ethereum provider
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-  
-          // Get signer (required for contract methods that modify state)
-          await provider.getSigner();
-  
-          // Instantiate the contract object
-          const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, provider);
-  
-          // Call the listAllTracks function
-          const trackIds = await contract.listAllTracks();
-  
-          // Convert BigNumber objects to JavaScript numbers
-          const trackIdsArray = trackIds.map((trackId) => trackId.toNumber());
-  
-          // Fetch additional details for each track
-          const trackDetailsPromises = trackIdsArray.map(async (trackId) => {
-            const track = await contract.getTrack(trackId);
-            return {
-              id: track.id,
-              title: track.title,
-              description: track.description,
-              artist: track.artist,
-              imageUrl: track.imageUrl,
-              audioFile: track.audioFile,
-              price: track.price,
-              totalStreams: track.totalStreams,
-              totalPurchases: track.totalPurchases,
-              streamAmount: track.streamAmount,
-              royaltiesOwners: track.royaltiesOwners,
-              royaltiesPercentages: track.royaltiesPercentages
-            };
-          });
-  
-          // Wait for all track details to be fetched
-          const trackDetails = await Promise.all(trackDetailsPromises);
-  
-          // Set the retrieved track details in the state
-          setTracks(trackDetails);
-        } catch (error) {
-          console.error('Error fetching tracks:', error);
-        }
-      };
-  
-      fetchTracks();
-    }, []);
+    fetchTracks();
+  }, []);
 
-    useEffect(() => {
-      // Shuffle the tracks array
-      const shuffled = [...tracks].sort(() => Math.random() - 0.5);
-      setShuffledTracks(shuffled);
-    }, [tracks]);
+  useEffect(() => {
+    const shuffled = [...tracks].sort(() => Math.random() - 0.5);
+    setShuffledTracks(shuffled);
+  }, [tracks]);
 
 
   return (
@@ -128,9 +129,9 @@ function Homepage() {
                     <div className="flex items-center justify-center">
                     <div className="w-12 h-12 text-black rounded-full bg-white flex items-center justify-center">
                         {isPlaying ? (
-                        <PauseIcon className="h-6 w-6" onClick={handleTogglePlay} />
+                        <PauseIcon className="h-6 w-6" onClick={() => handleTogglePlay(track)} />
                         ) : (
-                        <PlayIcon className="h-6 w-6" onClick={handleTogglePlay} />
+                        <PlayIcon className="h-6 w-6" onClick={() => handleTogglePlay(track)} />
                         )}
                     </div>
                     </div>
