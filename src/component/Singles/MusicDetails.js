@@ -62,9 +62,17 @@ function MusicDetails() {
                       <h3 className="font-bold text-3xl text-white">
                         {tracks.title}
                       </h3>
-                      <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
+                      <div className='flex'>
+                        <button
+                          className='mx-2 bg-white text-black hover:bg-black hover:text-white p-2 cursor-pointer'
+                        >
+                          Buy
+                        </button>
+                        <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
                         ${ethers.utils.formatEther(tracks.price)}
-                      </h3>
+                        </h3>
+                      </div>
+                     
                     </div>
 
                     <p className="line-clamp-3 text-sm/relaxed text-gray-500">
