@@ -129,9 +129,9 @@ function Homepage() {
                     <div className="flex items-center justify-center">
                     <div className="w-12 h-12 text-black rounded-full bg-white flex items-center justify-center">
                         {isPlaying ? (
-                        <PauseIcon className="h-6 w-6" onClick={() => handleTogglePlay(track)} />
+                        <PauseIcon className="h-6 w-6" onClick={handleTogglePlay} />
                         ) : (
-                        <PlayIcon className="h-6 w-6" onClick={() => handleTogglePlay(track)} />
+                        <PlayIcon className="h-6 w-6"onClick={() => handleTogglePlay(track)}/>
                         )}
                     </div>
                     </div>
@@ -152,6 +152,7 @@ function Homepage() {
                     ref={audioRef}
                     src={track.audioFile}
                     onTimeUpdate={handleProgressChange}
+                    onEnded={() => setIsPlaying(false)}
                     crossOrigin="anonymous"
                     />
 
