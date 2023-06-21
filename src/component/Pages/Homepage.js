@@ -69,8 +69,8 @@ function Homepage() {
             imageUrl: track.imageUrl,
             audioFile: track.audioFile,
             price: track.price,
-            totalStreams: track.totalStreams,
-            totalPurchases: track.totalPurchases,
+            totalStreams: track.totalStreams.toNumber(),
+            totalPurchases: track.totalPurchases.toNumber(),
             streamAmount: track.streamAmount,
             royaltiesOwners: track.royaltiesOwners,
             royaltiesPercentages: track.royaltiesPercentages

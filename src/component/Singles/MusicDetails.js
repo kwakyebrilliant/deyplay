@@ -7,16 +7,19 @@ import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
 import { useLocation } from 'react-router-dom';
 
 import { ethers } from 'ethers';
+import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
+const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
+
 
 function MusicDetails() {
     let location = useLocation();
     const tracks = location.state;
 
-    const totalStreamsString = ethers.utils.formatEther(tracks.totalStreams);
-    const totalstreams = totalStreamsString.charAt(totalStreamsString.length - 1);
+    // const totalStreamsString = ethers.utils.formatEther(tracks.totalStreams);
+    // const totalstreams = totalStreamsString.charAt(totalStreamsString.length - 1);
 
-    const totalPurchasesString = ethers.utils.formatEther(tracks.totalPurchases);
-    const totalpurchases = totalPurchasesString.charAt(totalPurchasesString.length - 1);
+    // const totalPurchasesString = ethers.utils.formatEther(tracks.totalPurchases);
+    // const totalpurchases = totalPurchasesString.charAt(totalPurchasesString.length - 1);
 
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -83,10 +86,10 @@ function MusicDetails() {
                   <div className="px-4 pt-4 sm:px-6">
                     <div className='flex'>
                       <h3 className="font-bold flex text-sm/relaxed text-gray-500">
-                        <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {totalstreams}
+                        <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalStreams}
                       </h3>
                       <h3 className="font-bold flex px-2 text-sm/relaxed text-gray-500">
-                        <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {totalpurchases}
+                        <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalPurchases}
                       </h3>
                     </div>
                   </div>
