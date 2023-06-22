@@ -4,6 +4,7 @@ import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musics from '../../component/assets/musics.jpg';
 import { FaUpload } from 'react-icons/fa';
+import ReactModal from 'react-modal';
 
 import { ethers } from 'ethers';
 import { Web3Storage } from 'web3.storage';
@@ -19,6 +20,17 @@ function makeStorageClient () {
   return new Web3Storage({ token: getAccessToken() })
 }
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 function DashMusic() {
 
   const [title, setTitle] = useState('');
@@ -31,6 +43,8 @@ function DashMusic() {
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
   const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
   const [connectedAddress, setConnectedAddress] = useState('');
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
   async function handleAudioFileChange(event) {
@@ -150,12 +164,18 @@ function DashMusic() {
 
       // Display a success message or perform any other actions
       console.log('Track added successfully!');
+      setModalIsOpen(true);
     } catch (error) {
       // Handle the error appropriately
       console.error('Failed to add track:', error);
     }
   };
 
+
+      const closeModal = () => {
+        // Close the modal and perform any additional actions
+        setModalIsOpen(false);
+      };
 
   return (
     <div>
@@ -380,6 +400,16 @@ function DashMusic() {
                             </label>
                           </div>
 
+                          <ReactModal
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel="Transaction Success Modal"
+                            style={customStyles}
+                          >
+                            <h2 className='text-2xl font-bold'>Alert</h2>
+                            <p>Your track has been successfully added.</p>
+                            <button className='bg-black hover:bg-red-700 hover:text-white px-1 text-white' onClick={closeModal}>X</button>
+                          </ReactModal>
                          
                         </form>
                       </div>
