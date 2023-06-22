@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaMusic, FaHeart } from 'react-icons/fa';
+import { FaHome, FaMusic } from 'react-icons/fa';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
@@ -34,11 +34,6 @@ const PartialNavbar = () => {
             <li className="border-zinc-900 w-fit text-white">
               <Link to="/music" className="flex" onClick={handleClose}>
                 <FaMusic className="text-2xl mr-4" />Music
-              </Link>
-            </li>
-            <li className="border-zinc-900 w-fit text-white">
-              <Link to="/library" className="flex" onClick={handleClose}>
-                <FaHeart className="text-2xl mr-4" />Library
               </Link>
             </li>
             <li className="border-zinc-900 w-fit text-white">
