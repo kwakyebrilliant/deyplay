@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar';
 import { FaEye } from 'react-icons/fa';
 import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
 
 import { useLocation } from 'react-router-dom';
+
+import axios from 'axios';
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
@@ -19,6 +21,7 @@ function MusicDetails() {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [ethPrice, setEthPrice] = useState(0);
 
     const handleTogglePlay = async () => {
       try {
@@ -50,6 +53,21 @@ function MusicDetails() {
         setProgress(progressValue);
     };
 
+    useEffect(() => {
+      const fetchEthPrice = async () => {
+        try {
+          const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+          const { ethereum: { usd: ethUsdPrice } } = response.data;
+          setEthPrice(ethUsdPrice);
+        } catch (error) {
+          console.error('Error fetching ETH price:', error);
+        }
+      };
+    
+      fetchEthPrice();
+    }, []);
+
+    const streamAmountInUsd = (ethers.utils.formatEther(tracks.streamAmount) * ethPrice).toFixed(2);
 
   return (
     <div>
@@ -79,7 +97,7 @@ function MusicDetails() {
                       </h3>
                       <div className='flex'>
                         <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                        ${ethers.utils.formatEther(tracks.streamAmount)}
+                        ${streamAmountInUsd}
                         </h3>
                       </div>
                      
