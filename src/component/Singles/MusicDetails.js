@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar';
-import { FaMoneyBill, FaEye } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
 
 import { useLocation } from 'react-router-dom';
@@ -20,13 +20,29 @@ function MusicDetails() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
 
-    const handleTogglePlay = () => {
+    const handleTogglePlay = async () => {
+      try {
+        
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+
+        const transaction = await contract.streamTrack(tracks.id, {
+          value: tracks.streamAmount,
+        });
+        await transaction.wait();
+  
         if (isPlaying) {
-        audioRef.current.pause();
+          audioRef.current.pause();
         } else {
-        audioRef.current.play();
+          audioRef.current.play();
+          setProgress(0); // Reset progress when a new stream starts
         }
+  
         setIsPlaying(!isPlaying);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     const handleProgressChange = () => {
@@ -78,9 +94,6 @@ function MusicDetails() {
                     <div className='flex'>
                       <h3 className="font-bold flex text-sm/relaxed text-gray-500">
                         <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalStreams}
-                      </h3>
-                      <h3 className="font-bold flex px-2 text-sm/relaxed text-gray-500">
-                        <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalPurchases}
                       </h3>
                     </div>
                   </div>
