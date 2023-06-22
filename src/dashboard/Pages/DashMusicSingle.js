@@ -1,8 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import { FaEye } from 'react-icons/fa';
 import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
+
+import axios from 'axios';
+
+import { ethers } from 'ethers';
 
 import { useLocation } from 'react-router-dom';
 
@@ -13,6 +17,7 @@ function DashMusicSingle() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [ethPrice, setEthPrice] = useState(0);
 
   const handleTogglePlay = () => {
     if (isPlaying) {
@@ -27,6 +32,22 @@ function DashMusicSingle() {
     const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
     setProgress(progressValue);
   };
+
+  useEffect(() => {
+    const fetchEthPrice = async () => {
+      try {
+        const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+        const { ethereum: { usd: ethUsdPrice } } = response.data;
+        setEthPrice(ethUsdPrice);
+      } catch (error) {
+        console.error('Error fetching ETH price:', error);
+      }
+    };
+  
+    fetchEthPrice();
+  }, []);
+
+  const streamAmountInUsd = (ethers.utils.formatEther(tracks.streamAmount) * ethPrice).toFixed(2);
 
   return (
     <div>
@@ -47,10 +68,16 @@ function DashMusicSingle() {
                   />
 
                   <div className="px-4 pt-4 sm:pt-4 sm:px-6">
-                    <div className='flex justify-between'>
+                  <div className='flex justify-between'>
                       <h3 className="font-bold text-3xl text-white">
                         {tracks.title}
                       </h3>
+                      <div className='flex'>
+                        <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
+                        ${streamAmountInUsd}
+                        </h3>
+                      </div>
+                     
                     </div>
 
                     <p className="line-clamp-3 text-sm/relaxed text-gray-500">
@@ -64,7 +91,7 @@ function DashMusicSingle() {
                         <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalStreams}
                       </h3>
                     </div>
-                  </div>
+                  </div> 
 
                   <div className="px-4 py-4 sm:px-6">
                     <h3 className="text-sm/relaxed text-white">
