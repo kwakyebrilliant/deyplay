@@ -54,7 +54,7 @@ function DashMusicSingle() {
                         {tracks.title}
                       </h3>
                       <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                        ${ethers.utils.formatEther(tracks.streamAmount)}
+                        ${ethers.utils.formatEther(tracks.streamAmount)} 
                       </h3>
                     </div>
 
@@ -66,7 +66,7 @@ function DashMusicSingle() {
                   <div className="px-4 pt-4 sm:px-6">
                     <div className='flex'>
                       <h3 className="font-bold flex text-sm/relaxed text-gray-500">
-                        <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalStreams)}
+                        <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalStreams}
                       </h3>
                     </div>
                   </div>
