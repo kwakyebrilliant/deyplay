@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
+const deyplayAddress = "0x144a3ba7066548874212EE81A1D45fe24432D397";
 
 
 function MusicDetails() {
@@ -32,27 +32,6 @@ function MusicDetails() {
     const handleProgressChange = () => {
         const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
         setProgress(progressValue);
-    };
-
-    const handlePurchase = async () => {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-  
-        const transaction = await contract.purchaseTrack(tracks.id, {
-          value: tracks.price,
-        });
-        await transaction.wait();
-  
-        // Track purchased successfully
-        console.log('Track purchased!');
-      } catch (error) {
-        // Handle error
-        console.error('Failed to purchase track:', error);
-        console.log(tracks.id)
-        console.log(tracks.price)
-      }
     };
 
 
@@ -83,14 +62,8 @@ function MusicDetails() {
                         {tracks.title}
                       </h3>
                       <div className='flex'>
-                        <button
-                          className='mx-2 bg-white text-black hover:bg-black hover:text-white p-2 cursor-pointer'
-                          onClick={handlePurchase}
-                        >
-                          Buy
-                        </button>
                         <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                        ${ethers.utils.formatEther(tracks.price)}
+                        ${ethers.utils.formatEther(tracks.streamAmount)}
                         </h3>
                       </div>
                      
@@ -110,12 +83,6 @@ function MusicDetails() {
                         <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalPurchases}
                       </h3>
                     </div>
-                  </div>
-
-                  <div className="px-4 py-4 sm:px-6">
-                    <h3 className="text-sm/relaxed text-white">
-                    Stream Amount- ${ethers.utils.formatEther(tracks.streamAmount)}
-                    </h3>
                   </div>
 
                   <div className="px-4 py-4 sm:px-6">

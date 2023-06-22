@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
+const deyplayAddress = "0x144a3ba7066548874212EE81A1D45fe24432D397";
 
 function Homepage() {
 
@@ -69,7 +69,6 @@ function Homepage() {
             artist: track.artist,
             imageUrl: track.imageUrl,
             audioFile: track.audioFile,
-            price: track.price,
             totalStreams: track.totalStreams.toNumber(),
             totalPurchases: track.totalPurchases.toNumber(),
             streamAmount: track.streamAmount,
@@ -189,7 +188,6 @@ function Homepage() {
                                 artist: track.artist,
                                 imageUrl: track.imageUrl,
                                 audioFile: track.audioFile,
-                                price: track.price,
                                 totalStreams: track.totalStreams,
                                 totalPurchases: track.totalPurchases,
                                 streamAmount: track.streamAmount,
@@ -246,7 +244,6 @@ function Homepage() {
                             artist: track.artist,
                             imageUrl: track.imageUrl,
                             audioFile: track.audioFile,
-                            price: track.price,
                             totalStreams: track.totalStreams,
                             totalPurchases: track.totalPurchases,
                             streamAmount: track.streamAmount,
