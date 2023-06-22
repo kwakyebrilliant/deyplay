@@ -151,10 +151,10 @@ contract Deyplay {
     }
 
     // Calculates royalties
-    function calculateRoyalties(uint _price, address[] memory _owners, uint[] memory _percentages) private pure returns (uint) {
+    function calculateRoyalties(uint _streamAmount, address[] memory _owners, uint[] memory _percentages) private pure returns (uint) {
         uint totalRoyalties = 0;
         for (uint i = 0; i < _owners.length; i++) {
-            totalRoyalties += (_price * _percentages[i]) / 100;
+            totalRoyalties += (_streamAmount * _percentages[i]) / 100;
         }
         return totalRoyalties;
     }
