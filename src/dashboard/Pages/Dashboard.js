@@ -3,14 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
 import musicstream from '../../component/assets/musicstream.jpg';
-import albumstream from '../../component/assets/albumstream.jpg';
-import musics from '../../component/assets/musics.jpg'
 import albums from '../../component/assets/albums.jpg';
 import { FaEye, FaMoneyBill, FaFileUpload } from 'react-icons/fa'
 
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
+const deyplayAddress = "0x144a3ba7066548874212EE81A1D45fe24432D397";
 
 function Dashboard() {
 
@@ -30,8 +28,6 @@ function Dashboard() {
         const [contract, setContract] = useState(null);
         const [account, setAccount] = useState('');
         const [totalUploaded, setTotalUploaded] = useState(0);
-        const [totalPurchased, setTotalPurchased] = useState(0);
-        const [totalAmount, setTotalAmount] = useState(0);
         const [totalStreams, setTotalStreams] = useState(0);
         const [artistBalance, setArtistBalance] = useState(0);
       
@@ -58,12 +54,6 @@ function Dashboard() {
           try {
             const totalUploaded = await contract.getTotalTracksUploadedByArtist(account);
             setTotalUploaded(totalUploaded.toNumber());
-      
-            const totalPurchased = await contract.getTotalTracksPurchasedFromArtist(account);
-            setTotalPurchased(totalPurchased.toNumber());
-      
-            const totalAmount = await contract.getTotalTrackAmount(account);
-            setTotalAmount(ethers.utils.formatEther(totalAmount));
       
             const totalStreams = await contract.getTotalTrackStreams(account);
             setTotalStreams(totalStreams.toNumber());
@@ -153,7 +143,7 @@ function Dashboard() {
                 </div>
 
 
-                <div className='relative m-3 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16'>
+                <div className='relative m-3 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-16'>
 
 
                     <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
@@ -161,7 +151,7 @@ function Dashboard() {
                         <img
                             alt="Office"
                             src={albums}
-                            className="w-full h-40 p-4 object-cover"
+                            className="w-full h-80 p-4 object-cover"
                         />
 
                         <div className="p-4 sm:p-6">
@@ -176,58 +166,14 @@ function Dashboard() {
 
                         </div>
                         </a>
-                        </article>
-
-                        <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a>
-                        <img
-                            alt="Office"
-                            src={musics}
-                            className="w-full h-40 p-4 object-cover"
-                        /> 
-
-                        <div className="p-4 sm:p-6">
-                            <h3 className="font-medium text-white">
-                                Total Amount From Musics
-                            </h3>
-
-                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
-                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {totalAmount} ETH
-                            </p>
-
-                        </div>
-                        </a>
-                        </article>
-
-                        <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <a>
-                        <img
-                            alt="Office"
-                            src={albumstream}
-                            className="w-full h-40 p-4 object-cover"
-                        />
-
-                        <div className="p-4 sm:p-6">
-                            <h3 className="font-medium text-white">
-                                Purchased Musics From You
-                            </h3>
-
-                            <p className="line-clamp-3 flex text-sm/relaxed text-gray-500">
-                            <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' />
-                            {totalPurchased}
-                            </p>
-
-                        </div>
-                        </a>
-                        </article>
+                        </article> 
 
                         <article className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
                             <a>
                         <img
                             alt="Office"
                             src={musicstream}
-                            className="w-full h-40 p-4 object-cover"
+                            className="w-full h-80 p-4 object-cover"
                         />
 
                         <div className="p-4 sm:p-6">
@@ -254,7 +200,7 @@ function Dashboard() {
                     </div>
                     
 
-                    <div className="flex mb-96 justify-center items-center">
+                    <div className="flex mb-20 justify-center items-center">
                     <span className="inline-flex justify-center -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
                         <button className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
                         <a href="dashmusic">
