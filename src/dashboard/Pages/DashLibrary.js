@@ -36,7 +36,7 @@ function DashLibrary() {
         } catch (error) {
           console.error('Error connecting to MetaMask:', error);
         }
-      }
+      } 
   
     async function fetchTracksByArtist(contract, artistAddress) {
       try {
@@ -52,7 +52,7 @@ function DashLibrary() {
               artist: track.artist,
               imageUrl: track.imageUrl,
               audioFile: track.audioFile,
-              totalStreams: track.totalStreams,
+              totalStreams: track.totalStreams.toNumber(),
               totalPurchases: track.totalPurchases,
               streamAmount: track.streamAmount,
               royaltiesOwners: track.royaltiesOwners,
