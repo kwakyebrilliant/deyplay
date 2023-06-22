@@ -1,12 +1,22 @@
 import React, { useState, useRef } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
-import { FaEye } from 'react-icons/fa';
+import { FaEye, FaMoneyBillAlt } from 'react-icons/fa';
 import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
+import ReactModal from 'react-modal';
 
 import { useLocation } from 'react-router-dom';
 
-import { ethers } from 'ethers';
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 function DashMusicSingle() {
   let location = useLocation();
@@ -15,6 +25,8 @@ function DashMusicSingle() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleTogglePlay = () => {
     if (isPlaying) {
@@ -28,6 +40,11 @@ function DashMusicSingle() {
   const handleProgressChange = () => {
     const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
     setProgress(progressValue);
+  };
+
+  const closeModal = () => {
+    // Close the modal and perform any additional actions
+    setModalIsOpen(false);
   };
 
   return (
@@ -53,9 +70,6 @@ function DashMusicSingle() {
                       <h3 className="font-bold text-3xl text-white">
                         {tracks.title}
                       </h3>
-                      <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                        ${ethers.utils.formatEther(tracks.streamAmount)} 
-                      </h3>
                     </div>
 
                     <p className="line-clamp-3 text-sm/relaxed text-gray-500">
@@ -68,8 +82,36 @@ function DashMusicSingle() {
                       <h3 className="font-bold flex text-sm/relaxed text-gray-500">
                         <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {tracks.totalStreams}
                       </h3>
+                      <h3 className="font-bold flex text-sm/relaxed text-gray-500">
+                        <FaMoneyBillAlt onClick={() => setModalIsOpen(true)} className='ml-2 cursor-pointer text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> Distribute Royalties
+                      </h3>
                     </div>
                   </div>
+
+                  <ReactModal
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel="Transaction Success Modal"
+                            style={customStyles}
+                          >
+                            <h2 className='text-2xl font-bold'>Alert</h2>
+                            <div className='flex py-6 justify-center'>
+
+                            <div className="flex items-center">
+                            <div className="bg-white mr-4 text-black border hover:bg-black hover:text-white rounded-lg p-4 cursor-pointer">
+                                <span>Calculate Royalties</span>
+                            </div>
+                            </div>
+
+                            <div className="flex items-center">
+                            <div className="bg-white text-black border hover:bg-black hover:text-white rounded-lg p-4 cursor-pointer">
+                                <span>Distribute Royalties</span>
+                            </div>
+                            </div>
+
+                            </div>
+                            <button className='bg-black hover:bg-red-700 hover:text-white px-1 text-white' onClick={closeModal}>X</button>
+                          </ReactModal>
 
                   <div className="px-4 py-4 sm:px-6">
                     <h3 className="text-sm/relaxed text-white">
