@@ -8,7 +8,7 @@ import { FaUpload } from 'react-icons/fa';
 import { ethers } from 'ethers';
 import { Web3Storage } from 'web3.storage';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
-const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
+const deyplayAddress = "0x144a3ba7066548874212EE81A1D45fe24432D397";
 
 function getAccessToken () {
    
@@ -26,7 +26,6 @@ function DashMusic() {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState('');
   const [audioFile, setAudioFile] = useState('');
-  const [price, setPrice] = useState('');
   const [streamamount, setStreamAmount] = useState('');
   const [royaltiesOwners, setRoyaltiesOwners] = useState('');
   const [royaltiesPercentages, setRoyaltiesPercentages] = useState('');
@@ -131,7 +130,6 @@ function DashMusic() {
         artist,
         imageFile,
         audioFile,
-        ethers.utils.parseEther(price),
         ethers.utils.parseEther(streamamount),
         owners,
         percentages
@@ -146,7 +144,6 @@ function DashMusic() {
       setArtist('');
       setImageFile('');
       setAudioFile('');
-      setPrice('');
       setStreamAmount('');
       setRoyaltiesOwners([]);
       setRoyaltiesPercentages([]);
@@ -249,21 +246,6 @@ function DashMusic() {
                               placeholder="Artiste Address"
                               value={artist} 
                               onChange={(e) => setArtist(e.target.value)}
-                              required
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="price">
-                              Price
-                            </label>
-                            <input
-                              className="w-full px-3 text-white py-2 rounded-lg border border-gray-300 focus:outline-none bg-transparent"
-                              type="number"
-                              id="price"
-                              name="price"
-                              placeholder="Song Price"
-                              value={price} 
-                              onChange={(e) => setPrice(e.target.value)}
                               required
                             />
                           </div>

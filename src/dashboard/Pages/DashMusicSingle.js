@@ -54,7 +54,7 @@ function DashMusicSingle() {
                         {tracks.title}
                       </h3>
                       <h3 className="font-bold text-base bg-white p-2 rounded-e-full text-black">
-                        ${ethers.utils.formatEther(tracks.price)}
+                        ${ethers.utils.formatEther(tracks.streamAmount)}
                       </h3>
                     </div>
 
@@ -72,12 +72,6 @@ function DashMusicSingle() {
                         <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalPurchases)}
                       </h3>
                     </div>
-                  </div>
-
-                  <div className="px-4 py-4 sm:px-6">
-                    <h3 className="text-sm/relaxed text-white">
-                    Stream Amount- ${ethers.utils.formatEther(tracks.streamAmount)}
-                    </h3>
                   </div>
 
                   <div className="px-4 py-4 sm:px-6">
