@@ -6,6 +6,8 @@ import musicstream from '../../component/assets/musicstream.jpg';
 import albums from '../../component/assets/albums.jpg';
 import { FaEye, FaMoneyBill, FaFileUpload } from 'react-icons/fa'
 
+import axios from 'axios';
+
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x338e99E07393674879915e280dB643A88B802439";
@@ -30,6 +32,7 @@ function Dashboard() {
         const [totalUploaded, setTotalUploaded] = useState(0);
         const [totalStreams, setTotalStreams] = useState(0);
         const [artistBalance, setArtistBalance] = useState(0);
+        const [ethPrice, setEthPrice] = useState(0);
       
         useEffect(() => {
           const init = async () => {
@@ -64,8 +67,22 @@ function Dashboard() {
             console.error('Error:', error);
           }
         };
-        
 
+        useEffect(() => {
+            const fetchEthPrice = async () => {
+              try {
+                const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+                const { ethereum: { usd: ethUsdPrice } } = response.data;
+                setEthPrice(ethUsdPrice);
+              } catch (error) {
+                console.error('Error fetching ETH price:', error);
+              }
+            };
+          
+            fetchEthPrice();
+          }, []);
+        
+          const artistBalanceInUsd = (artistBalance * ethPrice).toFixed(2);
     
 
   return (
@@ -116,7 +133,7 @@ function Dashboard() {
                     <div className="flex items-center">
                     <FaMoneyBill className=' text-white w-6 h-6 lg:w-12 lg:h-12 pr-1' />
                     <h3 className="text-xl ml-2 font-bold text-white">
-                    {artistBalance} ETH
+                    {artistBalance} ETH/ ${artistBalanceInUsd}
                     </h3>
                     </div>
 
