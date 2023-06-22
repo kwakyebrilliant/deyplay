@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Sidebar from '../Partials/Sidebar';
 import PartialNavbar from '../Partials/PartialNavbar';
-import { FaMoneyBill, FaEye } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import { PlayIcon, PauseIcon } from '@heroicons/react/solid';
 
 import { useLocation } from 'react-router-dom';
@@ -67,9 +67,6 @@ function DashMusicSingle() {
                     <div className='flex'>
                       <h3 className="font-bold flex text-sm/relaxed text-gray-500">
                         <FaEye className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalStreams)}
-                      </h3>
-                      <h3 className="font-bold flex px-2 text-sm/relaxed text-gray-500">
-                        <FaMoneyBill className=' text-white w-6 h-6 lg:w-6 lg:h-6 pr-1' /> {ethers.utils.formatEther(tracks.totalPurchases)}
                       </h3>
                     </div>
                   </div>
