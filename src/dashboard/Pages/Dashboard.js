@@ -112,7 +112,7 @@ function Dashboard() {
                 </div>
 
                 <div className="container mx-auto p-4">
-                <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0 mb-8">
+                <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 mb-8">
                     <div className="flex items-center">
                     <FaMoneyBill className=' text-white w-6 h-6 lg:w-12 lg:h-12 pr-1' />
                     <h3 className="text-xl ml-2 font-bold text-white">
@@ -120,17 +120,6 @@ function Dashboard() {
                     </h3>
                     </div>
 
-                    <div className="flex items-center">
-                    <div className="bg-white text-black hover:bg-black hover:text-white rounded-lg p-4 cursor-pointer">
-                        <span>Calculate Royalties</span>
-                    </div>
-                    </div>
-
-                    <div className="flex items-center">
-                    <div className="bg-white text-black hover:bg-black hover:text-white rounded-lg p-4 cursor-pointer">
-                        <span>Distribute Royalties</span>
-                    </div>
-                    </div>
                 </div>
 
                 <div className="w-full h-px bg-gray-200"></div>
