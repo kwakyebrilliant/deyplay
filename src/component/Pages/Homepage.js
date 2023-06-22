@@ -13,6 +13,7 @@ const deyplayAddress = "0x144a3ba7066548874212EE81A1D45fe24432D397";
 function Homepage() {
 
   const [shuffledTracks, setShuffledTracks] = useState([]);
+  const [mostStreamedSchools, setMostStreamedSchools] = useState([]);
   const [tracks, setTracks] = useState([]);
 
   const audioRef = useRef(null);
@@ -78,6 +79,11 @@ function Homepage() {
         });
         const trackDetails = await Promise.all(trackDetailsPromises);
         setTracks(trackDetails);
+
+        // Get the 6 most streamed schools
+        const sortedByStreams = trackDetails.sort((a, b) => b.totalStreams - a.totalStreams);
+        const mostStreamed = sortedByStreams.slice(0, 6).map((track) => track.artist);
+        setMostStreamedSchools(mostStreamed);
       } catch (error) {
         console.error('Error fetching tracks:', error);
       }
@@ -166,60 +172,6 @@ function Homepage() {
               )}
             </div>
 
-                <div className='flex m-3 pt-4'>
-                  <h2 className='text-white font-bold'>
-                    Musics
-                  </h2>
-            
-                </div>
-
-                <div className='mx-3 mb-4'>
-                    {shuffledTracks.length === 0 ? (
-                      <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
-                    ) : (
-                      <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
-                        {shuffledTracks.map((track) => (
-                          <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
-                            <Link to='/musicdetails'
-                              state={{
-                                id: track.id,
-                                title: track.title,
-                                description: track.description,
-                                artist: track.artist,
-                                imageUrl: track.imageUrl,
-                                audioFile: track.audioFile,
-                                totalStreams: track.totalStreams,
-                                totalPurchases: track.totalPurchases,
-                                streamAmount: track.streamAmount,
-                                royaltiesOwners: track.royaltiesOwners,
-                                royaltiesPercentages: track.royaltiesPercentages
-                              }}
-                            >
-                              <img
-                                src={track.imageUrl}
-                                alt={track.title}
-                                className="w-full h-40 p-4 object-cover"
-                              />
-                              
-
-                              <div className="p-4 sm:p-6">
-                                <h3 className="font-medium text-white">
-                                  {track.artist.slice(0, 6)}…{track.artist.slice(track.artist.length - 6)}
-                                </h3>
-
-                                <p className="line-clamp-3 text-sm/relaxed text-gray-500">
-                                  {track.title}
-                                </p>
-                              </div>
-                              </Link>
-                          </article>
-                        ))}
-                      </div>
-                    )}
-
-
-                  </div>
-
 
                 <div className='flex m-3 pt-4'>
                   <h2 className='text-white font-bold'>
@@ -233,7 +185,9 @@ function Homepage() {
                   <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
                 ) : (
                   <div className='relative grid grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-16'>
-                    {tracks.slice(-1).map((track) => (
+                    {tracks
+                      .filter((track) => mostStreamedSchools.includes(track.artist))
+                      .map((track) => (
                       <article key={track.id} className="overflow-hidden rounded-lg border border-black/80 bg-black shadow-sm">
                         <Link
                           to='/musicdetails'
