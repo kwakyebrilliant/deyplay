@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Sidebar from '../Partials/Sidebar'
 import PartialNavbar from '../Partials/PartialNavbar';
 import { FaMoneyBill, FaEye } from 'react-icons/fa';
@@ -10,9 +10,11 @@ import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
 
+
 function MusicDetails() {
     let location = useLocation();
     const tracks = location.state;
+
 
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -30,6 +32,27 @@ function MusicDetails() {
     const handleProgressChange = () => {
         const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
         setProgress(progressValue);
+    };
+
+    const handlePurchase = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
+  
+        const transaction = await contract.purchaseTrack(tracks.id, {
+          value: tracks.price,
+        });
+        await transaction.wait();
+  
+        // Track purchased successfully
+        console.log('Track purchased!');
+      } catch (error) {
+        // Handle error
+        console.error('Failed to purchase track:', error);
+        console.log(tracks.id)
+        console.log(tracks.price)
+      }
     };
 
 
@@ -62,6 +85,7 @@ function MusicDetails() {
                       <div className='flex'>
                         <button
                           className='mx-2 bg-white text-black hover:bg-black hover:text-white p-2 cursor-pointer'
+                          onClick={handlePurchase}
                         >
                           Buy
                         </button>

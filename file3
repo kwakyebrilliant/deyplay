@@ -10,6 +10,7 @@ contract Deyplay {
         address artist;
         string imageUrl;
         string audioFile;
+        uint price;
         uint totalStreams;
         uint totalPurchases;
         uint streamAmount; // New field for stream payment
@@ -20,11 +21,13 @@ contract Deyplay {
     //Mappings
     uint private trackCount;
     mapping(uint => Track) private tracks;
+    mapping(address => uint[]) private userPurchasedTracks;
     mapping(address => uint) private artistBalances;
 
     //Events
-    event TrackCreated(uint id, string title, string description, address artist, string imageUrl, string audioFile, uint streamAmount, address[] royaltiesOwners, uint[] royaltiesPercentages);
+    event TrackCreated(uint id, string title, string description, address artist, string imageUrl, string audioFile, uint price, uint streamAmount, address[] royaltiesOwners, uint[] royaltiesPercentages);
     event TrackStreamed(uint trackId, address listener, uint amount);
+    event TrackPurchased(uint trackId, address buyer, uint amount);
 
     //Modifiers
     modifier trackExists(uint _trackId) {
@@ -39,6 +42,7 @@ contract Deyplay {
         address _artist,
         string memory _imageUrl,
         string memory _audioFile,
+        uint _price,
         uint _streamAmount,
         address[] memory _royaltiesOwners,
         uint[] memory _royaltiesPercentages
@@ -51,6 +55,7 @@ contract Deyplay {
             _artist,
             _imageUrl,
             _audioFile,
+            _price,
             0,
             0,
             _streamAmount,
@@ -64,6 +69,7 @@ contract Deyplay {
             _artist,
             _imageUrl,
             _audioFile,
+            _price,
             _streamAmount,
             _royaltiesOwners,
             _royaltiesPercentages
@@ -108,6 +114,20 @@ contract Deyplay {
         return totalTracksUploaded;
     }
 
+
+    // Gets the total number of tracks purchased from an artist
+    function getTotalTracksPurchasedFromArtist(address _artist) public view returns (uint) {
+        uint totalTracksPurchased = 0;
+        uint[] memory purchasedTracks = userPurchasedTracks[msg.sender];
+        for (uint i = 0; i < purchasedTracks.length; i++) {
+            uint trackId = purchasedTracks[i];
+            if (tracks[trackId].artist == _artist) {
+                totalTracksPurchased++;
+            }
+        }
+        return totalTracksPurchased;
+    }
+
     // Allow a user to stream a track
     function streamTrack(uint _trackId) public payable trackExists(_trackId) {
         Track storage track = tracks[_trackId];
@@ -123,12 +143,34 @@ contract Deyplay {
         emit TrackStreamed(_trackId, msg.sender, track.streamAmount);
     }
 
+    // Purchase track function
+    function purchaseTrack(uint _trackId) public payable trackExists(_trackId) {
+        Track storage track = tracks[_trackId];
+        require(msg.value >= track.price, "Insufficient payment to purchase the track");
+
+        uint royaltiesAmount = calculateRoyalties(track.price, track.royaltiesOwners, track.royaltiesPercentages);
+        uint artistAmount = track.price - royaltiesAmount;
+
+        track.totalPurchases++;
+        artistBalances[track.artist] += artistAmount;
+        distributeRoyalties(track.royaltiesOwners, track.royaltiesPercentages, royaltiesAmount);
+
+        userPurchasedTracks[msg.sender].push(_trackId);
+
+        emit TrackPurchased(_trackId, msg.sender, track.price);
+    }
+
+    // Gets a user's purchased tracks
+    function getUserPurchasedTracks(address _user) public view returns (uint[] memory) {
+        return userPurchasedTracks[_user];
+    }
+
     // Gets the total amount an artist has made on all tracks
     function getTotalTrackAmount(address _artist) public view returns (uint) {
         uint totalAmount = 0;
         for (uint i = 1; i <= trackCount; i++) {
             if (tracks[i].artist == _artist) {
-                totalAmount += tracks[i].totalPurchases * tracks[i].streamAmount;
+                totalAmount += tracks[i].totalPurchases * tracks[i].price;
             }
         }
         return totalAmount;
@@ -166,8 +208,7 @@ contract Deyplay {
         for (uint i = 0; i < _owners.length; i++) {
             address payable owner = payable(_owners[i]);
             uint royaltyAmount = (_amount * _percentages[i]) / 100;
-            (bool success, ) = owner.call{value: royaltyAmount}("");
-            require(success, "Failed to send royalty payment");
+            owner.transfer(royaltyAmount);
         }
     }
 }

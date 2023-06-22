@@ -51,6 +51,7 @@ function Homepage() {
     const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
     setProgress(progressValue);
   };
+  
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -201,6 +202,7 @@ function Homepage() {
                                 alt={track.title}
                                 className="w-full h-40 p-4 object-cover"
                               />
+                              
 
                               <div className="p-4 sm:p-6">
                                 <h3 className="font-medium text-white">
@@ -211,7 +213,7 @@ function Homepage() {
                                   {track.title}
                                 </p>
                               </div>
-                            </Link>
+                              </Link>
                           </article>
                         ))}
                       </div>
