@@ -9,11 +9,6 @@ import { useLocation } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Deyplay from '../../artifacts/contracts/Deyplay.sol/Deyplay.json';
 const deyplayAddress = "0x19E55FB04d159a7266fce87Cd6Bd4A35C6EC3FE7";
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-const deyplayContract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-
-
 
 function MusicDetails() {
     let location = useLocation();
@@ -36,28 +31,6 @@ function MusicDetails() {
         const progressValue = (audioRef.current.currentTime / audioRef.current.duration) * 100;
         setProgress(progressValue);
     };
-
-    const handlePurchase = async () => {
-      try {
-        const trackId = tracks.id; // Assuming 'id' is the track ID property
-        const trackPrice = tracks.price; // Assuming 'price' is the track price property
-    
-        // Request access to the user's MetaMask accounts
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-    
-        const signer = provider.getSigner();
-        const deyplayContract = new ethers.Contract(deyplayAddress, Deyplay.abi, signer);
-    
-        const transaction = await deyplayContract.purchaseTrack(trackId, {
-          value: ethers.utils.parseEther(trackPrice.toString())
-        });
-        await transaction.wait();
-        // Transaction successful, perform any necessary actions
-      } catch (error) {
-        // Handle error
-      }
-    };
-    
 
 
   return (
@@ -89,7 +62,6 @@ function MusicDetails() {
                       <div className='flex'>
                         <button
                           className='mx-2 bg-white text-black hover:bg-black hover:text-white p-2 cursor-pointer'
-                          onClick={handlePurchase}
                         >
                           Buy
                         </button>
