@@ -203,8 +203,7 @@ function DashMusic() {
                         </h3>
                         )}
                         <p class="mt-1.5 max-w-[40ch] text-xs text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
-                        dicta impedit aperiam ipsum!
+                        In the form below, provide the audio file and the necessary details including royalties owners and their entitlement.
                         </p>
                         </div>
                    
