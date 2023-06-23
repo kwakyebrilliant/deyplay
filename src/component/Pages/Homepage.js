@@ -114,7 +114,7 @@ function Homepage() {
                       <h1 className="font-bold text-5xl text-center text-white mb-60">No tracks available</h1>
                     ) : (
                     <div>
-                      {shuffledTracks.slice(1).map((track) => (
+                      {shuffledTracks.slice(-1).map((track) => (
                 <a key={track.id} className="relative object-cover w-full block group">
                 <img
                     src={track.imageUrl} 
