@@ -116,8 +116,7 @@ function DashLibrary() {
                         </h3>
                         </h3>
                         <p className="mt-1.5 max-w-[40ch] text-xs text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi
-                        dicta impedit aperiam ipsum!
+                        This is a list of all songs uploaded by you on deyplay. You can view their details by clicking on each file.
                         </p>
                         </div>
                    
